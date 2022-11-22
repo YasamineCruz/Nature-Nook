@@ -32,6 +32,7 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
+    ## Make for every single table
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###qqqqqqqqq
