@@ -22,6 +22,9 @@ class Spot(db.Model):
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(255), nullable=False)
     country = db.Column(db.String(255), nullable=False)
+    amenities = db.Column(db.String(255), nullable=False)
+    type = db.Column(db.String(255), nullable = False)
+    activites = db.Column(db.String(255), nullable = False)
     lat = db.Column(db.Integer, nullable=False, default=lat_val)
     lng = db.Column(db.Integer, nullable=False, default=lng_val)
     created_at = db.Column(db.String(255), nullable=False, default=now_str)
@@ -29,8 +32,8 @@ class Spot(db.Model):
 
     ## relationships
     user = db.relationship('User', back_populates='spots')
-    spot_images = db.relationship('SpotImage', back_populates='spot')
-    reviews = db.relationship('Review', back_populates='spot')
+    spot_images = db.relationship('SpotImage', back_populates='spot', cascade="all, delete-orphan")
+    reviews = db.relationship('Review', back_populates='spot', cascade="all, delete-orphan")
 
 
     def to_dict(self, plain = False, with_ltlg = False, photos = False, reviews = False):
@@ -44,6 +47,9 @@ class Spot(db.Model):
                 'city': self.city,
                 'state': self.state,
                 'country': self.country,
+                'amenities': self.amenities,
+                'type': self.type,
+                'activities': self.activites
              }
         if with_ltlg == False and photos == True and reviews == True:
             return {
@@ -55,6 +61,9 @@ class Spot(db.Model):
                 'city': self.city,
                 'state': self.state,
                 'country': self.country,
+                'amenities': self.amenities,
+                'type': self.type,
+                'activities': self.activites,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
@@ -68,6 +77,9 @@ class Spot(db.Model):
                 'city': self.city,
                 'state': self.state,
                 'country': self.country,
+                'amenities': self.amenities,
+                'type': self.type,
+                'activities': self.activites,
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
         if reviews == False and photos == True:
@@ -80,6 +92,9 @@ class Spot(db.Model):
                 'city': self.city,
                 'state': self.state,
                 'country': self.country,
+                'amenities': self.amenities,
+                'type': self.type,
+                'activities': self.activites,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
             }   
         else:
@@ -92,6 +107,9 @@ class Spot(db.Model):
                 'city': self.city,
                 'state': self.state,
                 'country': self.country,
+                'amenities': self.amenities,
+                'type': self.type,
+                'activities': self.activites,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews],
                 'lat': self.lat,

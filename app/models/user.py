@@ -22,8 +22,8 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.String(255), nullable=False, default=now_str)
 
-    spots = db.relationship('Spot', back_populates='user')
-    reviews = db.relationship('Review', back_populates='user')
+    spots = db.relationship('Spot', back_populates='user', cascade="all, delete-orphan")
+    reviews = db.relationship('Review', back_populates='user', cascade="all, delete-orphan")
 
 
     @property
