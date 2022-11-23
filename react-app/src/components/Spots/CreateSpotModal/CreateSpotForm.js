@@ -1,40 +1,19 @@
 // frontend/src/components/LoginFormModal/LoginForm.js
-import React, { useState, useEffect } from "react";
-import * as sessionActions from "../../store/session";
+import React, { useState, useEffect, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { createSpot } from '../../../store/spot'
 import { useHistory } from "react-router-dom";
+import { useSpotContext } from "../../../context/SpotContext";
 import CreateNameComponent from "./CreateName";
 import CreateDescriptionComponent from "./CreateDescription";
 import CreatePriceComponent from "./CreatePrice";
+import CreateLocationComponent from './CreateLocation'
 
 function CreateSpotForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("")
-  const [city, setCity] = useState("")
-  const [state, setState] = useState("")
-  const [country, setcountry] = useState("")
-  const [amenities, setAmenities] = useState("")
-  const [type, setType] = useState("")
-  const [count, setCount] = useState(0)
-  const [activities, setActivities] = useState("")
-  const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-
-    
-  useEffect(()=> {
-    let validationErrors = []
-    if(!city) validationErrors.push('You must enter a city.')
-    if(!state) validationErrors.push('You must enter a state.')
-    if(!country) validationErrors.push('You must enter a country.')
-    if(!amenities) validationErrors.push('You must select amenities or choose none option.')
-    if(!type) validationErrors.push('You must select Lodging or Campsite.')
-    if(!activities) validationErrors.push('You must select activities or choose none option.')
-    setErrors(validationErrors)
-  }, [errors, name, description, price, city, state, country, amenities, tpye, amenities])
+  const {count, setCount, errors, setErrors, name, setName, description, setDescription, price, setPrice, city, setCity, state, setState, country, setCountry, amenities, setAmenities, type, setType, activities, setActivities} = useSpotContext()
 
 
   const handleSubmit = async(e) => {
@@ -67,7 +46,7 @@ function CreateSpotForm() {
             setPrice("")
             setCity("")
             setState("")
-            setcountry("")
+            setCountry("")
             setAmenities("")
             setType("")
             setActivities("")
@@ -81,31 +60,22 @@ function CreateSpotForm() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <CreateNameComponent 
-            name={name} 
-            setName={setName} 
-            errors={errors} 
-            setErrors={setErrors} 
-            count={count}
-            setCount={setCount}/>
-        <CreateDescriptionComponent
-            description={description} 
-            setDescription={setDescription} 
-            errors={errors} 
-            setErrors={setErrors} 
-            count={count} 
-            setCount={setCount}/>
-        <CreatePriceComponent
-            price={price}
-            setPrice={setPrice}
-            errors={errors}
-            setErrors={setErrors}
-            count={count}
-            setCount={setCount}/>
+        {count === 0 && (
+          <CreateNameComponent/>
+        )}
+        {count === 1 && (
+          <CreateDescriptionComponent/>
+        )}
+        {count === 2 && (
+          <CreatePriceComponent/>
+        )}
+        {count === 3 && (
+          <CreateLocationComponent/>
+        )}
 
-        { validationErrors && submitted && (
+        { errors?.length >= 1 && submitted && (
             <ul className='create-event-errors'>
-                {validationErrors.map((error, idx) => (
+                {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
             </ul>

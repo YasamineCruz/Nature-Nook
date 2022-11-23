@@ -1,25 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
+import { useSpotContext } from "../../../context/SpotContext"
 
-export default function CreateDescriptionComponent(description, setDescription, errors, setErrors, count, setCount) {
-    const [length, setLength] = useState(0)
+export default function CreateDescriptionComponent() {
+    const { description, setDescription, errors, setErrors} = useSpotContext()
 
     useEffect(()=> {
-        let validationErrors = [...errors]
+        let validationErrors = []
         if(description.length < 300)  validationErrors.push("You must enter a description between 300 and 500 characters.")
         setErrors(validationErrors)
-        },[description])
+        },[description, errors, setErrors])
 
     return (
         <div className='spot-description-container'>
             <label>Description:</label>
             <input type='textArea'
-             onChange={(e) => {
-                let val = e.target.value
-                setDescription(e.target.value)
-                setLength(val.length)
-             }}
+             onChange={(e) => setDescription(e.target.value)}
              value={description}
              placeholder='Add a Description'
              required
@@ -36,8 +33,8 @@ export default function CreateDescriptionComponent(description, setDescription, 
             )}
 
             <div className='Button-Container-Create-Spot'>
-                <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <BackButton/>
+                <NextButton/>
             </div>
         </div>
     )  

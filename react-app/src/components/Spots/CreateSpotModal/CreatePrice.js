@@ -1,14 +1,16 @@
 import { useEffect } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
+import { useSpotContext } from "../../../context/SpotContext"
 
-export default function CreatePriceComponent(price, setPrice, errors, setErrors, count, setCount) {
+export default function CreatePriceComponent() {
+    const {price, setPrice, errors, setErrors} = useSpotContext()
     
     useEffect(()=> {
-        let validationErrors = [...errors]
+        let validationErrors = []
         if(!price) validationErrors.push('You must enter a price.')
         setErrors(validationErrors)
-        },[price])
+        },[price, errors, setErrors])
 
     const checkNumber = (e) => {
         if(isNaN(e.target.value)) return false
@@ -20,7 +22,7 @@ export default function CreatePriceComponent(price, setPrice, errors, setErrors,
             <label>Price:</label>
             <input type='text'
              onKeyPress={checkNumber}
-             onChange={(e) => setName(e.target.value)}
+             onChange={(e) => setPrice(e.target.value)}
              value={price}
              placeholder='[XX]'
              required
@@ -29,8 +31,8 @@ export default function CreatePriceComponent(price, setPrice, errors, setErrors,
             />
 
             <div className='Button-Container-Create-Spot'>
-                <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <BackButton/>
+                <NextButton/>
             </div>
         </div>
     )  
