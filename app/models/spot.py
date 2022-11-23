@@ -24,7 +24,7 @@ class Spot(db.Model):
     country = db.Column(db.String(255), nullable=False)
     amenities = db.Column(db.String(255), nullable=False)
     type = db.Column(db.String(255), nullable = False)
-    activites = db.Column(db.String(255), nullable = False)
+    activities = db.Column(db.String(255), nullable = False)
     lat = db.Column(db.Integer, nullable=False, default=lat_val)
     lng = db.Column(db.Integer, nullable=False, default=lng_val)
     created_at = db.Column(db.String(255), nullable=False, default=now_str)
@@ -49,7 +49,7 @@ class Spot(db.Model):
                 'country': self.country,
                 'amenities': self.amenities,
                 'type': self.type,
-                'activities': self.activites
+                'activities': self.activities
              }
         if with_ltlg == False and photos == True and reviews == True:
             return {
@@ -63,7 +63,7 @@ class Spot(db.Model):
                 'country': self.country,
                 'amenities': self.amenities,
                 'type': self.type,
-                'activities': self.activites,
+                'activities': self.activities,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
@@ -79,7 +79,7 @@ class Spot(db.Model):
                 'country': self.country,
                 'amenities': self.amenities,
                 'type': self.type,
-                'activities': self.activites,
+                'activities': self.activities,
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
         if reviews == False and photos == True:
@@ -94,7 +94,7 @@ class Spot(db.Model):
                 'country': self.country,
                 'amenities': self.amenities,
                 'type': self.type,
-                'activities': self.activites,
+                'activities': self.activities,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
             }   
         else:
@@ -109,7 +109,7 @@ class Spot(db.Model):
                 'country': self.country,
                 'amenities': self.amenities,
                 'type': self.type,
-                'activities': self.activites,
+                'activities': self.activities,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews],
                 'lat': self.lat,

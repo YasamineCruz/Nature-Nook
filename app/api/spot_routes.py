@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Spot, db, SpotImage
-from app.forms import SpotForm, SpotImageForm
+from app.forms import SpotImageForm, SpotForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
 spot_routes = Blueprint('spots', __name__)
@@ -12,8 +12,7 @@ def spots():
     Query for all spots by created_at time and return them in a list of dictionaries
     """
     spots = Spot.query.order_by(Spot.created_at.desc()).all
-    
-    return jsonify({'Spots': [spot.to_dict(False, False, True, True) for spot in spots]})
+    return jsonify({ 'Spots': { spot['id'] : spot.to_dict() for spot in spots} })
 
 @spot_routes.route('/', methods=["POST"])
 @login_required
@@ -134,3 +133,13 @@ def add_image(spot_id):
     
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+
+@spot_routes.route('/current')
+@login_required
+def user_spots():
+    """
+    Get all the current_users spots and return them in a dictionary.
+    """
+    spots = current_user.spots
+
+    return jsonify({ 'UserSpots': { spot['id'] : spot.to_dict() for spot in spots} })
