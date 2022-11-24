@@ -76,14 +76,13 @@ export const getSpot = (spotId) => async (dispatch) => {
   const response = await fetch(`/api/spots/${spotId}`);
   if (response.ok) {
     const spot = await response.json();
-    console.log(spot)
     dispatch(getASpot(spot));
     return spot;
   }
 };
 
 export const updateSpot = (spotInfo, spotId) => async (dispatch) => {
-    const response = await fetch(`/api/photos/${spotId}`, {
+    const response = await fetch(`/api/spots/${spotId}`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(spotInfo),

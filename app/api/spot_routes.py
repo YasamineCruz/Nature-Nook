@@ -55,14 +55,6 @@ def add_spot():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@spot_routes.route('/<int:id>')
-def spot(id):
-    """
-    Query for a spot and return it in a dictionary
-    """
-    spot = Spot.query.get(id)
-
-    return jsonify(spot.to_dict(False, False, True, True))
 
 @spot_routes.route('/<int:id>', methods=["PUT"])
 @login_required
@@ -72,9 +64,14 @@ def edit_spot(id):
     """
     spot = Spot.query.get(id)
     form = SpotForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    print('--------------THIS IS FORM--------------',form)
+    print('-------------------THIS IS FORM ERRORS---------------------', form.errors)
 
     if form.validate_on_submit():
         data = form.data
+        print('--------------------HITTTTTTTTTT-----------------------')
 
         spot.name = data['name']
         spot.description = data['description']
@@ -100,8 +97,18 @@ def edit_spot(id):
             spot_image.preview = True
             db.session.commit()
             return jsonify(spot.to_dict(False, False, True, True))
-    
+    print({'errors': validation_errors_to_error_messages(form.errors)})
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@spot_routes.route('/<int:id>')
+def spot(id):
+    """
+    Query for a spot and return it in a dictionary
+    """
+    spot = Spot.query.get(id)
+
+    return jsonify(spot.to_dict(False, False, True, True))
 
 @spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
@@ -121,6 +128,7 @@ def add_image(spot_id):
     Create an image for a spot or multiple images
     """
     form = SpotImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         data = form.data

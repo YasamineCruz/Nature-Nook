@@ -45,9 +45,9 @@ function CreateSpotForm({setShowModal}) {
         city,
         state,
         country,
-        amenities: amenities.join(""),
+        amenities: amenities.join(" "),
         type,
-        activities: activities.join(""),
+        activities: activities.join(" "),
         url
     }
 

@@ -28,7 +28,6 @@ export default function EditSpot({setShowModal, spot, spotId}) {
     const [errors, setErrors] = useState([]);
     const [url, setUrl] = useState(spot.Photos[0]?.url)
 
-    console.log(amenities)
     
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -44,11 +43,14 @@ export default function EditSpot({setShowModal, spot, spotId}) {
             city,
             state,
             country,
-            amenities: amenities.join(""),
+            amenities: amenities.join(" "),
             type,
-            activities: activities.join(""),
+            activities: activities.join(" "),
             url
         }
+
+        console.log('THIS IS SPOT INFO', spotInfo)
+
     
         if(errors.length <= 0){
             await dispatch(updateSpot(spotInfo, spotId))
