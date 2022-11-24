@@ -1,38 +1,37 @@
 import { useEffect } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
-import { useSpotContext } from "../../../context/SpotContext"
 
-export default function CreatePriceComponent() {
-    const {price, setPrice, errors, setErrors} = useSpotContext()
-    
+export default function CreatePriceComponent({price, setPrice, setErrors, setCount, count}) {
+ 
     useEffect(()=> {
         let validationErrors = []
         if(!price) validationErrors.push('You must enter a price.')
         setErrors(validationErrors)
-        },[price, errors, setErrors])
+        },[price, setErrors])
 
-    const checkNumber = (e) => {
-        if(isNaN(e.target.value)) return false
-        return true
-    }
 
     return (
-        <div className='spot-price-container'>
-            <label>Price:</label>
-            <input type='text'
-             onKeyPress={checkNumber}
-             onChange={(e) => setPrice(e.target.value)}
-             value={price}
-             placeholder='[XX]'
-             required
-             minLength={1}
-             maxLength={6}
-            />
+        <div className='spot-modal-container'>
+            <form>
+             <label>Price:</label>
+                <input 
+                type='text'
+                onChange={(e) => {
+                    let regex = /^[.0-9\b]+$/
+                    if(e.target.value === '') setPrice(e.target.value)
+                    if(regex.test(e.target.value)) setPrice(e.target.value)
+                }}
+                value={price}
+                placeholder='[XX]'
+                required
+                />   
+            </form>
+            
 
             <div className='Button-Container-Create-Spot'>
-                <BackButton/>
-                <NextButton/>
+                <BackButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount}/>
             </div>
         </div>
     )  

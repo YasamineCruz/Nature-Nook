@@ -1,31 +1,42 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getASpot } from "../../../store/spot";
-
-
+import { getSpot } from "../../../store/spot";
+import DeleteSpotModal from "../DeleteSpot";
+import EditSpotModal from "../EditASpot";
 
 
 export default function GetASpot(){
     const dispatch = useDispatch()
     const params = useParams()
     const { spotId } = params
-    const spot = useSelector((state) => state.spot.spot)
+    const spot = useSelector((state) => state.spot.singleSpot)
+    const user = useSelector((state) => state.session.user)
+
 
     useEffect(()=>{
-        dispatch(getASpot(spotId))
+        dispatch(getSpot(spotId))
     },[dispatch])
 
     return (
         <div className='a-spot-container'>
-            {spot && (
+            {spot && user && (
                 <div className='a-spot-wrapper'>
                     <div className='a-spot-img-container'>
-                        <img src={spot.Photos[0]?.url}/>
+                        {spot.Photos && (
+                          <img src={spot.Photos[0]?.url}/>  
+                        )}       
                     </div>
 
                     <div className='a-spot-info-container'>
-                        <div></div>
+                        <h1>{spot.name}</h1>
+                        <p>{spot.description}</p>
+                        {user?.id === spot?.owner?.id && (
+                            <div>
+                            <DeleteSpotModal spotId={spotId} spot={spot}/>
+                            <EditSpotModal spotId={spotId} spot={spot}/>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

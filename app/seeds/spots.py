@@ -6,9 +6,9 @@ import random
 
 name_list = ['Tree', 'House', 'Barn', "Cute", 'Secluded', 'Beautiful', 'Sunrise', 'Lazy', 'Day', 'RiverBend', 'Campground', 'Glamping', 'Sandpiper', 'Site', 'Columbia', 'View', 'Shaded', 'Private', 'Camp', 'Alpacas', 'Road', 'Sun', 'To', 'Cabin', 'Peaceful', 'Harvest', 'Devils', 'Lake', 'Moonlight']
 state_list = ['OR', 'WA', 'MD', 'VA', 'WA', 'OH', 'ID', 'TX', 'CA', 'AR', 'NV', 'MI', 'AL', 'KA', 'TN', 'HI', 'NM', 'FL', 'UT']
-amenities_list = ['picnic table', 'trash cans', 'showers', 'wifi', 'kitchen', 'drinking water', 'laundry', 'toilet', 'hot tub', 'campfires allowed', 'pets allowed']
+amenities_list = ['picnic-table', 'trash-cans', 'showers', 'wifi', 'kitchen', 'drinking-water', 'laundry', 'toilet', 'hot-tub', 'campfires-allowed', 'pets-allowed']
 type_list = ['campsite', 'lodging']
-activities_list = ['boating', 'fishing', 'hiking', 'climbing', 'surfing', 'swimming', 'horseback', 'snow', 'whitewater paddling', 'paddling', 'wind sports', 'wildlife watching']
+activities_list = ['boating', 'fishing', 'hiking', 'climbing', 'surfing', 'swimming', 'horseback', 'snow', 'whitewater-paddling', 'paddling', 'wind-sports', 'wildlife-watching']
 
 amenities=fake.sentence(nb_words=5, ext_word_list=amenities_list), 
 type=fake.word(ext_word_list=type_list)

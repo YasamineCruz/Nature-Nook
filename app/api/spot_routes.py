@@ -11,8 +11,9 @@ def spots():
     """
     Query for all spots by created_at time and return them in a list of dictionaries
     """
-    spots = Spot.query.order_by(Spot.created_at.desc()).all
-    return jsonify({ 'Spots': { spot['id'] : spot.to_dict() for spot in spots} })
+    spots = Spot.query.order_by(Spot.created_at.asc()).all()
+
+    return jsonify({ 'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
 
 @spot_routes.route('/', methods=["POST"])
 @login_required
@@ -25,6 +26,7 @@ def add_spot():
 
     if form.validate_on_submit():
         data = form.data
+        print(data)
         
         new_spot = Spot(
             owner_id = current_user.id,

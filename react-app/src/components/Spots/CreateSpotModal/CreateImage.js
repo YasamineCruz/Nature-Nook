@@ -1,33 +1,35 @@
 import { useEffect } from "react"
 import NextButton from "./NextButton"
+import BackButton from "./BackButton"
 
+export default function CreateImageComponent({url, setUrl, setErrors, setCount, count}) {
 
-export default function CreateNameComponent({name, setName, setErrors, setCount, count}) {
-
+    
     useEffect(()=> {
         let validationErrors = []
-        if(!name) validationErrors.push("You must enter a name between 3 and 50 characters.")
+        if(!url) validationErrors.push("You must enter a valid url")
         setErrors(validationErrors)
-        },[name, setErrors])
+        },[url, setErrors])
     
 
     return (
         <div className='spot-modal-container'>
             <form>
-               <label>Name:</label>
+               <label>Image url:</label>
                 <input 
                 type='text'
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                placeholder='Name'
+                onChange={(e) => setUrl(e.target.value)}
+                value={url}
+                placeholder='Enter a url'
                 required
-                minLength={3}
-                maxLength={50}
+                minLength={1}
+                maxLength={500}
                 ></input> 
             </form>
             
 
             <div className='Button-Container-Create-Spot'>
+                <BackButton count={count} setCount={setCount}/>
                 <NextButton count={count} setCount={setCount}/>
             </div>
         </div>

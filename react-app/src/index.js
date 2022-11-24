@@ -5,19 +5,22 @@ import { Modal, ModalProvider } from "./context/Modal";
 import './index.css';
 import App from './App';
 import configureStore from './store';
-import { SpotProvider } from './context/SpotContext';
+import { DeleteModalProvider } from './context/DeleteModal';
+import { EditModalProvider } from './context/EditModal';
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <SpotProvider>
     <ModalProvider>
+    <DeleteModalProvider>
+    <EditModalProvider>
     <Provider store={store}>
         <App />
       </Provider>
+      </EditModalProvider>
+      </DeleteModalProvider>
     </ModalProvider>
-    </SpotProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

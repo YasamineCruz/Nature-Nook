@@ -1,3 +1,5 @@
+import { normalizeArray } from "../component-resources";
+
 const CREATE_SPOT = "spots/CREATE_A_SPOT";
 const GET_SPOTS = "spots/GET_ALL_SPOTS";
 const GET_USER_SPOTS = "spots/GET_ALL_USER_SPOTS";
@@ -39,7 +41,7 @@ export const deleteASpot = (spotId) => ({
 
 export const createSpot = (spotInfo) => async (dispatch) => {
     const response = await fetch(`/api/spots/`, {
-      method: "POST",
+      method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(spotInfo),
     })
@@ -74,6 +76,7 @@ export const getSpot = (spotId) => async (dispatch) => {
   const response = await fetch(`/api/spots/${spotId}`);
   if (response.ok) {
     const spot = await response.json();
+    console.log(spot)
     dispatch(getASpot(spot));
     return spot;
   }
@@ -100,8 +103,9 @@ export const deleteSpot = (spotId) => async (dispatch) => {
       }
     );
     if (response.ok) {
+      const res = response.json()
       dispatch(deleteASpot(spotId));
-      return;
+      return res;
     }
   };
 
@@ -116,7 +120,7 @@ export default function reducer(state = initialState, action) {
     
     case GET_SPOTS:
         newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
-        newState.allSpots = action.payload
+        newState.allSpots = normalizeArray(action.payload)
         return newState
     case GET_USER_SPOTS:
         newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
@@ -138,10 +142,10 @@ export default function reducer(state = initialState, action) {
         return newState
     case DELETE_SPOT:
         newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
-        delete newState.allSpots[action.payload.id];
-        delete newState.userSpots[action.payload.id];
+        delete newState.allSpots[action.payload];
+        delete newState.userSpots[action.payload];
         newState.singleSpot = {}
-        return
+        return newState
     default:
       return state;
   }

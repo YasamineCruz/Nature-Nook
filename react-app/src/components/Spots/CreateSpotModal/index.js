@@ -4,7 +4,7 @@ import { Modal } from '../../../context/Modal';
 import CreateSpotForm from './CreateSpotForm';
 
 function CreateSpotModal() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
 
   return (
@@ -14,7 +14,7 @@ function CreateSpotModal() {
       }}>Create Spot</div>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateSpotForm />
+          <CreateSpotForm showModal={showModal} setShowModal={setShowModal}/>
         </Modal>
       )}
     </>
