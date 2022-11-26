@@ -4,13 +4,13 @@ import { useEffect } from "react";
 
 let activities_list = ['boating', 'fishing', 'hiking', 'climbing', 'surfing', 'swimming', 'horseback', 'snow', 'whitewater-paddling', 'paddling', 'wind-sports', 'wildlife-watching', 'none']
 
-export default function CreateActivitiesComponent({ activities, setActivities, setErrors, setCount, count}) {
+export default function CreateActivitiesComponent({ activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
     
 
 
     useEffect(()=>{
         let validationErrors = []
-        if(!activities) validationErrors.push('You must select activities or choose none.')
+        if(activities.length < 1) validationErrors.push('You must select activities or choose none.')
         setErrors(validationErrors)
     },[activities, setErrors])
 
@@ -39,7 +39,7 @@ export default function CreateActivitiesComponent({ activities, setActivities, s
            
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
             </div>
         </div>
     )

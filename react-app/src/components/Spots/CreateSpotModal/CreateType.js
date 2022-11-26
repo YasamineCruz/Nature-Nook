@@ -2,8 +2,8 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { useEffect } from "react";
 
-export default function CreateTypeComponent({type, setType, setErrors, setCount, count}) {
-
+export default function CreateTypeComponent({type, setType, setErrors, setCount, count, setSubmitted, errors}) {
+    console.log(type)
     useEffect(()=>{
         let validationErrors = []
         if(!type) validationErrors.push('You must select Lodging or Campsite.')
@@ -32,7 +32,7 @@ export default function CreateTypeComponent({type, setType, setErrors, setCount,
             
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
             </div>
         </div>
     )

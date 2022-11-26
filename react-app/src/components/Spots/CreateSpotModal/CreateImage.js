@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
 
-export default function CreateImageComponent({url, setUrl, setErrors, setCount, count}) {
+export default function CreateImageComponent({url, setUrl, setErrors, setCount, count, setSubmitted, errors}) {
 
     
     useEffect(()=> {
@@ -30,7 +30,7 @@ export default function CreateImageComponent({url, setUrl, setErrors, setCount, 
 
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
             </div>
         </div>
     )  

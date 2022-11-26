@@ -11,6 +11,7 @@ import CreateAmenitiesComponent from "./CreateAmenities";
 import CreateTypeComponent from "./CreateType";
 import CreateActivitiesComponent from "./CreateActivities";
 import CreateImageComponent from "./CreateImage";
+import '../../../context/Modal.css'
 
 function CreateSpotForm({setShowModal}) {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function CreateSpotForm({setShowModal}) {
   const [state, setState] = useState("")
   const [country, setCountry] = useState("")
   const [amenities, setAmenities] = useState([])
-  const [type, setType] = useState([])
+  const [type, setType] = useState("")
   const [count, setCount] = useState(0)
   const [activities, setActivities] = useState([])
   const [errors, setErrors] = useState([]);
@@ -52,7 +53,7 @@ function CreateSpotForm({setShowModal}) {
     }
 
     if(errors.length <= 0){
-        await dispatch(createSpot(spotInfo))
+        let spot = await dispatch(createSpot(spotInfo))
         .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) {
@@ -71,7 +72,7 @@ function CreateSpotForm({setShowModal}) {
             setAmenities("")
             setType("")
             setActivities("")
-            history.push(`/`)
+            history.push(`/spots/${spot.id}`)
         }
     }
     
@@ -79,31 +80,31 @@ function CreateSpotForm({setShowModal}) {
   
 
   return (
-    <div>
+    <div className='create-modal-container'>
       <form onSubmit={handleSubmit}>
         {count === 0 && (
-          <CreateNameComponent name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreateNameComponent name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 1 && (
-          <CreateDescriptionComponent description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreateDescriptionComponent description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 2 && (
-          <CreatePriceComponent price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreatePriceComponent price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 3 && (
-          <CreateLocationComponent city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreateLocationComponent city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 4 && (
-          <CreateTypeComponent type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreateTypeComponent type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 5 && (
-          <CreateAmenitiesComponent amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreateAmenitiesComponent amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 6 && (
-          <CreateActivitiesComponent activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreateActivitiesComponent activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 7 && (
-          <CreateImageComponent url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount}/>
+          <CreateImageComponent url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 8 && (
           <div className='spot-modal-container'>

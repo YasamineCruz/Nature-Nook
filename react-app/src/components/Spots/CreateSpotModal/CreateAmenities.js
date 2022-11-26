@@ -4,12 +4,12 @@ import { useEffect } from "react";
 
 let amenities_list = ['picnic-table', 'trash-cans', 'showers', 'wifi', 'kitchen', 'drinking-water', 'laundry', 'toilet', 'hot-tub', 'campfires-allowed', 'pets-allowed', 'none']
 
-export default function CreateAmenitiesComponent({amenities, setAmenities, setErrors, setCount, count}) {
+export default function CreateAmenitiesComponent({amenities, setAmenities, setErrors, setCount, count, setSubmitted, errors}) {
     console.log(amenities)
 
     useEffect(()=>{
         let validationErrors = []
-        if(!amenities) validationErrors.push('You must select amenities or choose none.')
+        if(amenities.length < 1) validationErrors.push('You must select amenities or choose none.')
         setErrors(validationErrors)
     },[amenities, setErrors])
 
@@ -38,7 +38,7 @@ export default function CreateAmenitiesComponent({amenities, setAmenities, setEr
 
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
             </div>
         </div>
     )

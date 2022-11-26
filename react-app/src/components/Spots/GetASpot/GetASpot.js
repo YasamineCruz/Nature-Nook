@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { getImg } from "../../../component-resources";
 import { getSpot } from "../../../store/spot";
 import DeleteSpotModal from "../DeleteSpot";
 import EditSpotModal from "../EditASpot";
@@ -24,7 +25,7 @@ export default function GetASpot(){
                 <div className='a-spot-wrapper'>
                     <div className='a-spot-img-container'>
                         {spot.Photos && (
-                          <img src={spot.Photos[0]?.url}/>  
+                          <img src={getImg(spot.Photos)}/>  
                         )}       
                     </div>
 

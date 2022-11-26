@@ -22,12 +22,40 @@
   #modal-content {
     position: absolute;
     background-color:white;
-    border-radius: 6px;
+    border-radius: 25px;
     justify-content: center;
     max-height: 1000px;
-    width: 475px;
+    width: 525px;
     margin-top: 2%;
     margin-bottom: 2%;
     margin-left: 1%;
-    min-height: 825px;
+    min-height: 700px;
   }
+
+
+.create-modal-container {
+    display: flex;
+    padding: 2%;
+}
+
+.spot-modal-container {
+    display: flex;
+    flex-direction: column;
+    margin: 25%;
+}
+
+.create-modal-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 500px;
+}
+
+.create-modal-text {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  width: 300px;
+}

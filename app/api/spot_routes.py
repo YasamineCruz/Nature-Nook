@@ -66,12 +66,8 @@ def edit_spot(id):
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print('--------------THIS IS FORM--------------',form)
-    print('-------------------THIS IS FORM ERRORS---------------------', form.errors)
-
     if form.validate_on_submit():
         data = form.data
-        print('--------------------HITTTTTTTTTT-----------------------')
 
         spot.name = data['name']
         spot.description = data['description']
@@ -83,7 +79,15 @@ def edit_spot(id):
         spot.type = data['type']
         spot.activities = data['activities']
 
-        spot_image = SpotImage.query.filter(SpotImage.id == id and SpotImage.url == data['url']).first()
+        spot_image = SpotImage.query.filter(SpotImage.spot_id == id, SpotImage.url == data['url']).first()
+
+        currentImages = SpotImage.query.filter(SpotImage.spot_id == id).all()
+
+        for photo in currentImages:
+            photo.preview = False
+            db.session.commit()
+
+
         if not spot_image:
             new_spotimage = SpotImage(
                 spot_id = id,
@@ -97,7 +101,6 @@ def edit_spot(id):
             spot_image.preview = True
             db.session.commit()
             return jsonify(spot.to_dict(False, False, True, True))
-    print({'errors': validation_errors_to_error_messages(form.errors)})
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

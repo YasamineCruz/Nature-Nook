@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import NextButton from "./NextButton"
 
 
-export default function CreateNameComponent({name, setName, setErrors, setCount, count}) {
+export default function CreateNameComponent({name, setName, setErrors, setCount, count, setSubmitted, errors}) {
 
     useEffect(()=> {
         let validationErrors = []
@@ -13,9 +13,10 @@ export default function CreateNameComponent({name, setName, setErrors, setCount,
 
     return (
         <div className='spot-modal-container'>
-            <form>
-               <label>Name:</label>
-                <input 
+            <form className='create-modal-form'>
+               <label className='create-modal-text'>Name your listing</label>
+                <input
+                className='create-modal-input' 
                 type='text'
                 onChange={(e) => setName(e.target.value)}
                 value={name}
@@ -28,7 +29,7 @@ export default function CreateNameComponent({name, setName, setErrors, setCount,
             
 
             <div className='Button-Container-Create-Spot'>
-                <NextButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
             </div>
         </div>
     )  

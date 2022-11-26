@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
 
-export default function CreateDescriptionComponent({ description, setDescription, setErrors, setCount, count}) {
+export default function CreateDescriptionComponent({ description, setDescription, setErrors, setCount, count, setSubmitted, errors}) {
 
     useEffect(()=> {
         let validationErrors = []
@@ -35,7 +35,7 @@ export default function CreateDescriptionComponent({ description, setDescription
 
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
             </div>
         </div>
     )  

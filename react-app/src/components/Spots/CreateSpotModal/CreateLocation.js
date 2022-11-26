@@ -3,7 +3,7 @@ import NextButton from "./NextButton";
 
 import { useEffect } from "react";
 
-export default function CreateLocationComponent({setCount, count, city, setCity, state, setState, country, setCountry, setErrors}) {
+export default function CreateLocationComponent({errors, setCount, count, city, setCity, state, setState, country, setCountry, setErrors, setSubmitted}) {
 
 
     useEffect(()=> {
@@ -48,7 +48,7 @@ export default function CreateLocationComponent({setCount, count, city, setCity,
 
         <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>
-                <NextButton count={count} setCount={setCount}/>
+                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         </div>
         </div>
     )
