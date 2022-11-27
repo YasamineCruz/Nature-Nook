@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
 
-export default function CreateImageComponent({url, setUrl, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateImageComponent({submitted, url, setUrl, setErrors, setCount, count, setSubmitted, errors}) {
 
     
     useEffect(()=> {
@@ -25,8 +25,16 @@ export default function CreateImageComponent({url, setUrl, setErrors, setCount, 
                 minLength={1}
                 maxLength={500}
                 ></input> 
+                { errors?.length >= 1 && submitted && (
+                    <div className='create-event-errors'>
+                        {errors.map((error, idx) => (
+                            <div key={idx}>{error}</div>
+                         ))}
+                    </div>
+                )}
             </form>
             
+      
 
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>

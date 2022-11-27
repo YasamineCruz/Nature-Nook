@@ -3,22 +3,26 @@ import NextButton from "./NextButton";
 
 import { useEffect } from "react";
 
-export default function CreateLocationComponent({errors, setCount, count, city, setCity, state, setState, country, setCountry, setErrors, setSubmitted}) {
+export default function CreateLocationComponent({submitted, errors, setCount, count, city, setCity, state, setState, country, setCountry, setErrors, setSubmitted}) {
 
 
     useEffect(()=> {
         let validationErrors = []
+        if(!city) validationErrors.push('You must enter a city.')
         if(!state) validationErrors.push('You must enter a state.')
-        if(!city) validationErrors.push('You must enter a city')
-        if(!country) validationErrors.push('YOu must enter a country')
+        if(!country) validationErrors.push('You must enter a country.')
         setErrors(validationErrors)
         },[city, state, country, setErrors])
 
     return (
         <div className='spot-modal-container'>
-            <form>
-                <label>City</label>
+            <form className='create-modal-form'>
+                <label className='create-modal-text'>
+                <i className="fa-solid fa-circle circle fa-2xs"></i>
+                    Where is your property located?</label>
+                <label className='create-modal-text'>City</label>
                 <input
+                className='create-modal-input'
                 type='text'
                 onChange={(e)=> setCity(e.target.value)}
                 value={city}
@@ -26,8 +30,9 @@ export default function CreateLocationComponent({errors, setCount, count, city, 
                 required
                 />
 
-                <label>State</label>
+                <label className='create-modal-text' >State</label>
                 <input
+                className='create-modal-input'
                 type='text'
                 onChange={(e)=> setState(e.target.value)}
                 value={state}
@@ -35,16 +40,25 @@ export default function CreateLocationComponent({errors, setCount, count, city, 
                 required
                 />
 
-                <label>Country</label>
+                <label className='create-modal-text'>Country</label>
                 <input
+                className='create-modal-input'
                 type='text'
                 onChange={(e)=> setCountry(e.target.value)}
                 value={country}
                 placeholder='Enter a Country'
                 required
                 />  
+                { errors?.length >= 1 && submitted && (
+                    <div className='create-event-errors'>
+                        {errors.map((error, idx) => (
+                            <div key={idx}>{error}</div>
+                         ))}
+                    </div>
+                )}
             </form>
-            
+        
+
 
         <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>

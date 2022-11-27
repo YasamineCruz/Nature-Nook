@@ -37,6 +37,14 @@ export default function EditSpot({setShowModal, spot, spotId}) {
         setShowModal(false)
         setCount(0)
         
+        let pArr = url.split("")
+        if(pArr.find(e => e === '$')){
+        let i = pArr.findIndex(e => e === '$')
+        pArr.splice(i,1)
+        }
+        let p = pArr.join("")
+        setUrl(p)
+
         let spotInfo = {
             name,
             description,

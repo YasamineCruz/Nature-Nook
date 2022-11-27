@@ -28,34 +28,178 @@
     width: 525px;
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-left: 1%;
     min-height: 700px;
   }
 
 
 .create-modal-container {
     display: flex;
-    padding: 2%;
 }
 
 .spot-modal-container {
     display: flex;
     flex-direction: column;
-    margin: 25%;
 }
 
 .create-modal-form {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 450px;
   height: 500px;
+  margin: 8%;
 }
 
 .create-modal-text {
   display: flex;
   flex-direction: row;
+  justify-content: left;
+  align-items: center;
   margin-bottom: 2%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 20px;
-  width: 300px;
+  width: 475px;
+  margin-top: 20px;
+}
+
+.circle {
+  color: red;
+  padding-right: 5%;
+  height: 2.5px;
+  width: 2.5px;
+}
+
+.extra-text-modal {
+  padding: 2%;
+  color: rgb(112, 110, 110);
+  font-size: 14px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.create-modal-input {
+  border-radius: 25px;
+  border-style: solid;
+  border: 1px solid rgb(229, 226, 226);
+  margin-top: 20px;
+  font-size: 14px;
+  height: 45px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+}
+
+.NextButton {
+  border-radius: 25px;
+  height: 35px;
+  width: 200px;
+  font-size: 15px;
+  color: #FFFF;
+  background-color: #00c585;
+  border-color: #00c585;
+  border-style: solid;
+  margin-right: 5%;
+}
+
+.NextButton:hover {
+  color: #00c585;
+  background-color: white;
+  border-color: #00c585;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.BackButton {
+  border-radius: 25px;
+  height: 35px;
+  width: 200px;
+  font-size: 15px;
+  border-style: none;
+  background-color: white;
+  color: #00c585;
+  margin-left: 5%;
+}
+
+.BackButton:hover {
+  background-color: lightgray;
+}
+
+.Button-Container-Create-Spot {
+  display: flex;
+  flex-direction: row;
+  width: 525px;
+  justify-content: space-between;
+}
+
+.empty-space {
+  height: 35px;
+  width: 200px;
+}
+
+.describe-count {
+  margin-top: 5%;
+  color: red;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 12px;
+}
+
+
+.create-modal-large-input {
+  border-radius: 25px;
+  border-style: solid;
+  border: 1px solid rgb(229, 226, 226);
+  height: 250px;
+  line-height: 1.5;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-line;
+  word-wrap: break-word;
+  padding: 5%;;
+  resize: none
+}
+
+textarea:focus {
+  outline: none;
+  border: 1px solid rgb(229, 226, 226);
+  box-shadow: 0px 1px 1px 0px rgba(111, 111, 114, 0.2);
+  resize: none
+}
+
+
+input:focus {
+  outline: none;
+  border: 1px solid rgb(229, 226, 226);
+  box-shadow: 0px 1px 1px 0px rgba(111, 111, 114, 0.2);
+}
+
+.create-event-errors {
+  margin-top: 5%;
+  color: red;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 12px;
+}
+
+.create-modal-text-smaller {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 18px;
+  margin-top: 3%;
+}
+
+.radio-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.create-modal-radio {
+  margin-top: 2%;
+  width: 20px;
+  height: 20px;
+  margin-right: 2%;
 }

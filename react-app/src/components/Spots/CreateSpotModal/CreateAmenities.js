@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 let amenities_list = ['picnic-table', 'trash-cans', 'showers', 'wifi', 'kitchen', 'drinking-water', 'laundry', 'toilet', 'hot-tub', 'campfires-allowed', 'pets-allowed', 'none']
 
-export default function CreateAmenitiesComponent({amenities, setAmenities, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateAmenitiesComponent({submitted, amenities, setAmenities, setErrors, setCount, count, setSubmitted, errors}) {
     console.log(amenities)
 
     useEffect(()=>{
@@ -33,8 +33,16 @@ export default function CreateAmenitiesComponent({amenities, setAmenities, setEr
                     }} 
                     />
                 ))}
+                { errors?.length >= 1 && submitted && (
+                    <div className='create-event-errors'>
+                        {errors.map((error, idx) => (
+                            <div key={idx}>{error}</div>
+                         ))}
+                    </div>
+                )}
             </form>
             
+
 
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>

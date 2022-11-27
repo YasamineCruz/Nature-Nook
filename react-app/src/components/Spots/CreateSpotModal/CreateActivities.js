@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 let activities_list = ['boating', 'fishing', 'hiking', 'climbing', 'surfing', 'swimming', 'horseback', 'snow', 'whitewater-paddling', 'paddling', 'wind-sports', 'wildlife-watching', 'none']
 
-export default function CreateActivitiesComponent({ activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateActivitiesComponent({submitted, activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
     
 
 
@@ -34,8 +34,17 @@ export default function CreateActivitiesComponent({ activities, setActivities, s
                     }} 
                     />
                 ))}
+
+                { errors?.length >= 1 && submitted && (
+                    <div className='create-event-errors'>
+                        {errors.map((error, idx) => (
+                            <div key={idx}>{error}</div>
+                         ))}
+                    </div>
+                )}
   
             </form>
+
            
             <div className='Button-Container-Create-Spot'>
                 <BackButton count={count} setCount={setCount}/>

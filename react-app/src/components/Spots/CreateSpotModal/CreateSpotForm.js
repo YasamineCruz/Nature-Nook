@@ -38,6 +38,14 @@ function CreateSpotForm({setShowModal}) {
     setSubmitted(true)
     setShowModal(false)
     setCount(0)
+
+    let pArr = url.split("")
+    if(pArr.find(e => e === '$')){
+      let i = pArr.findIndex(e => e === '$')
+      pArr.splice(i,1)
+      }
+    let p = pArr.join("")
+    setUrl(p)
     
     let spotInfo = {
         name,
@@ -83,42 +91,34 @@ function CreateSpotForm({setShowModal}) {
     <div className='create-modal-container'>
       <form onSubmit={handleSubmit}>
         {count === 0 && (
-          <CreateNameComponent name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateNameComponent submitted={submitted} name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 1 && (
-          <CreateDescriptionComponent description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateDescriptionComponent submitted={submitted} description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 2 && (
-          <CreatePriceComponent price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreatePriceComponent submitted={submitted} price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 3 && (
-          <CreateLocationComponent city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateLocationComponent submitted={submitted} city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 4 && (
-          <CreateTypeComponent type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateTypeComponent submitted={submitted} type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 5 && (
-          <CreateAmenitiesComponent amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateAmenitiesComponent submitted={submitted} amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 6 && (
-          <CreateActivitiesComponent activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateActivitiesComponent submitted={submitted} activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 7 && (
-          <CreateImageComponent url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateImageComponent submitted={submitted} url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 8 && (
           <div className='spot-modal-container'>
             <h3>By clicking the create spot button this spot will be added for others to view</h3>
             <button type='submit' className='submit-button'>Create Spot</button>
           </div>
-        )}
-
-        { errors?.length >= 1 && submitted && (
-            <ul className='create-event-errors'>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
         )}
       </form>  
     </div>
