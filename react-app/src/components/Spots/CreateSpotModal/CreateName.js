@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import NextButton from "./NextButton"
 
 
-export default function CreateNameComponent({submitted, name, setName, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateNameComponent({setShowModal, submitted, name, setName, setErrors, setCount, count, setSubmitted, errors}) {
 
     useEffect(()=> {
         let validationErrors = []
@@ -13,8 +13,17 @@ export default function CreateNameComponent({submitted, name, setName, setErrors
 
     return (
         <div className='spot-modal-container'>
+            <div className='top-container'>
+                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <i class="fa-solid fa-xmark"></i>
+                </button>
+              <div className='create-modal-progress-bar'>
+                <div className='progress-bar-1'></div>
+                <i class="fa-solid fa-circle-check pro"></i>
+              </div>
+            </div>
+             
             <form className='create-modal-form'>
-               
                <label className='create-modal-text'>
                     <i className="fa-solid fa-circle circle fa-2xs"></i>
                     Name your listing
@@ -29,7 +38,7 @@ export default function CreateNameComponent({submitted, name, setName, setErrors
                 required
                 minLength={3}
                 maxLength={50}
-                ></input>
+                />
 
                 { errors?.length >= 1 && submitted && (
                     <div className='create-event-errors'>

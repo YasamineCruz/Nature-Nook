@@ -2,7 +2,7 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { useEffect } from "react";
 
-export default function CreateTypeComponent({submitted, type, setType, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateTypeComponent({setShowModal, submitted, type, setType, setErrors, setCount, count, setSubmitted, errors}) {
     console.log(type)
     useEffect(()=>{
         let validationErrors = []
@@ -12,6 +12,15 @@ export default function CreateTypeComponent({submitted, type, setType, setErrors
 
     return (
         <div className='spot-modal-container'>
+            <div className='top-container'>
+                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div className='create-modal-progress-bar'>
+                    <div className='progress-bar-5'></div>
+                    <i class="fa-solid fa-circle-check pro"></i>
+                </div>
+            </div>
             <form className='create-modal-form'>
             <label className='create-modal-text'>
                 <i className="fa-solid fa-circle circle fa-2xs"></i>

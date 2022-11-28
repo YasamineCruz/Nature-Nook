@@ -21,7 +21,7 @@ export default function GetASpot(){
 
     return (
         <div className='a-spot-container'>
-            {spot && user && (
+            {spot && (
                 <div className='a-spot-wrapper'>
                     <div className='a-spot-img-container'>
                         {spot.Photos && (

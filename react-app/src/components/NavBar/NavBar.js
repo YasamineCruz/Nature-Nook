@@ -29,6 +29,11 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to='/spots' exact={true} activeClassName='active'>
+            Spots
+          </NavLink>
+        </li>
+        <li>
           <CreateSpotModal />
         </li>
         <li>

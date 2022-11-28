@@ -9,10 +9,8 @@ export function normalizeArray(ele) {
 
     if( typeof ele === 'object'){
         let elValues = Object.values(ele)
-        console.log('Hit is object', ele)
-        // let elKeys = Object.keys(ele)
         elValues.forEach((ell, i) => {
-            console.log(ell)
+
             if(Array.isArray(ell)) {
                 obj[ell.id] = normalizeArray(ell)
             }
@@ -26,7 +24,6 @@ export function normalizeArray(ele) {
 
 export function getImg(arr) {
     let url
-    console.log(arr)
     arr.forEach(photo => {
         if(photo.preview === true) url = photo.url
     })

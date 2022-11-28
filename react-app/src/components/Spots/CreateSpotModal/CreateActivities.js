@@ -2,9 +2,9 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { useEffect } from "react";
 
-let activities_list = ['boating', 'fishing', 'hiking', 'climbing', 'surfing', 'swimming', 'horseback', 'snow', 'whitewater-paddling', 'paddling', 'wind-sports', 'wildlife-watching', 'none']
+let activitiesList = ['Boating', 'Fishing', 'Hiking', 'Climbing', 'Surfing', 'Swimming', 'Horseback', 'Snow', 'Whitewater-paddling', 'Paddling', 'Wind-sports', 'Wildlife-watching']
 
-export default function CreateActivitiesComponent({submitted, activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateActivitiesComponent({setShowModal, submitted, activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
     
 
 
@@ -16,24 +16,43 @@ export default function CreateActivitiesComponent({submitted, activities, setAct
 
     return (
         <div className='spot-modal-container'>
-            <form>
-               <label>Activities</label>
-                { activities_list.map(activity => (
-                    <input
-                    type='checkbox'
-                    checked={activities.find(e => e.toLowerCase() === activity.toLowerCase())}
-                    onChange={()=>{
-                        let copyActivites = [...activities]
-                        if (copyActivites.find(e => e.toLowerCase() === activity.toLowerCase())) {
-                            let i = copyActivites.findIndex(e => e.toLowerCase() === activity.toLowerCase())
-                            copyActivites.splice(i, 1)
-                        } else {
-                            copyActivites.push(activity)
-                        }
-                        setActivities(copyActivites)
-                    }} 
-                    />
+            <div className='top-container'>
+                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <i class="fa-solid fa-xmark"></i>
+                </button>
+             <div className='create-modal-progress-bar'>
+                <div className='progress-bar-7'></div>
+                <i class="fa-solid fa-circle-check pro"></i>
+              </div>
+            </div>
+            <form className='create-modal-form'>
+               <div className='little-text'>ACTIVITIES</div>
+               <label className='create-modal-text'>
+               <i className="fa-solid fa-circle circle fa-2xs"></i>
+               What activities are accessible on or near your property?
+                </label>
+                <div className='activities-div'>
+                { activitiesList.map(activity => (
+                    <div className='activity-container'>
+                        <input
+                        className='activity-checkbox'
+                        type='checkbox'
+                        checked={activities.find(e => e.toLowerCase() === activity.toLowerCase())}
+                        onChange={()=>{
+                            let copyActivites = [...activities]
+                            if (copyActivites.find(e => e.toLowerCase() === activity.toLowerCase())) {
+                                let i = copyActivites.findIndex(e => e.toLowerCase() === activity.toLowerCase())
+                                copyActivites.splice(i, 1)
+                            } else {
+                                copyActivites.push(activity)
+                            }
+                            setActivities(copyActivites)
+                        }} 
+                        />
+                        <label className='create-modal-text'>{activity.split("-").join(" ")}</label>
+                    </div>
                 ))}
+                </div>
 
                 { errors?.length >= 1 && submitted && (
                     <div className='create-event-errors'>

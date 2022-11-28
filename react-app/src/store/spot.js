@@ -40,6 +40,7 @@ export const deleteASpot = (spotId) => ({
 
 
 export const createSpot = (spotInfo) => async (dispatch) => {
+  console.log('spot info you\'re sending', spotInfo)
     const response = await fetch(`/api/spots/`, {
       method: "post",
       headers: { "Content-Type": "application/json" },

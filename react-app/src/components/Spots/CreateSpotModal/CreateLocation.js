@@ -3,7 +3,7 @@ import NextButton from "./NextButton";
 
 import { useEffect } from "react";
 
-export default function CreateLocationComponent({submitted, errors, setCount, count, city, setCity, state, setState, country, setCountry, setErrors, setSubmitted}) {
+export default function CreateLocationComponent({setShowModal, submitted, errors, setCount, count, city, setCity, state, setState, country, setCountry, setErrors, setSubmitted}) {
 
 
     useEffect(()=> {
@@ -16,6 +16,15 @@ export default function CreateLocationComponent({submitted, errors, setCount, co
 
     return (
         <div className='spot-modal-container'>
+            <div className='top-container'>
+                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div className='create-modal-progress-bar'>
+                    <div className='progress-bar-4'></div>
+                    <i class="fa-solid fa-circle-check pro"></i>
+                </div>
+            </div>
             <form className='create-modal-form'>
                 <label className='create-modal-text'>
                 <i className="fa-solid fa-circle circle fa-2xs"></i>
@@ -56,6 +65,9 @@ export default function CreateLocationComponent({submitted, errors, setCount, co
                          ))}
                     </div>
                 )}
+                <div className='extra-text'>
+                Your privacy is important to us. Your address is only shared with verified Hipcampers who have confirmed bookings with you.
+                </div>
             </form>
         
 

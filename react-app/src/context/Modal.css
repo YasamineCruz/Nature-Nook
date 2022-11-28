@@ -12,6 +12,7 @@
   
   #modal-background {
     position: fixed;
+    display: flex;
     top: 0;
     right: 0;
     left: 0;
@@ -20,17 +21,38 @@
   }
   
   #modal-content {
-    position: absolute;
+    display: flex;
+    position: fixed;
     background-color:white;
     border-radius: 25px;
     justify-content: center;
-    max-height: 1000px;
     width: 525px;
     margin-top: 2%;
     margin-bottom: 2%;
-    min-height: 700px;
   }
 
+
+.little-text {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  color: rgb(151, 151, 151);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.7px;
+}
+
+.extra-text {
+  margin-top: 1%;
+  padding: 2%;
+  color: rgb(112, 110, 110);
+  font-size: 16px;
+  line-height: 28px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.activities-div {
+  margin-bottom: 8%;
+}
 
 .create-modal-container {
     display: flex;
@@ -39,14 +61,15 @@
 .spot-modal-container {
     display: flex;
     flex-direction: column;
+    min-height: 250px;
 }
 
 .create-modal-form {
   display: flex;
   flex-direction: column;
   width: 450px;
-  height: 500px;
-  margin: 8%;
+  min-height: 550px;
+  margin: 0% 5% 5% 5%;
 }
 
 .create-modal-text {
@@ -111,12 +134,11 @@
 .BackButton {
   border-radius: 25px;
   height: 35px;
-  width: 200px;
+  width: 100px;
   font-size: 15px;
   border-style: none;
   background-color: white;
   color: #00c585;
-  margin-left: 5%;
 }
 
 .BackButton:hover {
@@ -126,8 +148,9 @@
 .Button-Container-Create-Spot {
   display: flex;
   flex-direction: row;
-  width: 525px;
+  width: 500px;
   justify-content: space-between;
+  min-height: 60px;
 }
 
 .empty-space {
@@ -202,4 +225,182 @@ input:focus {
   width: 20px;
   height: 20px;
   margin-right: 2%;
+}
+
+.amenities-button-container {
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.amenity-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background-color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 18px;
+  margin: 0px 12px 12px 0px;
+  padding: 1px 12px;
+  height: 36px;
+  border-color: rgb(222, 222, 222);
+  border-style: solid;
+}
+
+.amenity-button-checked {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  background-color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 18px;
+  margin: 0px 12px 12px 0px;
+  padding: 1px 12px;
+  height: 36px;
+  border-color: rgb(0, 0, 0);
+  border-style: solid;
+}
+
+.check-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.space {
+  height: 10px;
+  width: 10px;
+}
+
+.activity-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.activity-checkbox {
+  margin-top: 3%;
+  margin-right: 2%;
+}
+
+.create-modal-img {
+  height: 325px;
+  width: 442.5px;
+  margin-top: 5%;
+}
+
+.create-modal-progress-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10%;
+    background-color: rgb(135, 227, 195);
+    width: 100%;
+    height: 9px;
+    border-radius: 25px;
+    margin: 5% 0% 5% 2%;
+}
+
+.create-modal-progress-bar-done {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.5%;
+  background-color: rgb(0, 197, 133);
+  width: 100%;
+  height: 9px;
+  border-radius: 25px;
+  margin: 5% 0% 5% 2%;
+}
+
+.progress-bar-1 {
+  width: 11.11%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+.progress-bar-2 {
+  width: 22.22%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+.progress-bar-3 {
+  width: 33.33%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+.progress-bar-4 {
+  width: 44.44%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+.progress-bar-5 {
+  width: 55.55%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+.progress-bar-6 {
+  width: 66.66%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+.progress-bar-7 {
+  width: 77.77%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+.progress-bar-8 {
+  width: 88.88%;
+  background-color: rgb(0, 197, 133);
+  height: 9px;
+  border-radius: 25px;;
+}
+
+
+.done {
+  border-radius: 25px;
+  background-color: white;
+  color:rgb(0, 197, 133);
+  padding-left: 1%;
+}
+
+.pro {
+  border-radius: 25px;
+  background-color: white;
+  color: rgb(135, 227, 195);
+  padding-left: 1%;
+}
+
+.exit-button {
+  border-style: none;
+  background-color: transparent;
+  margin-bottom: 2%;
+}
+
+.top-container {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
 }

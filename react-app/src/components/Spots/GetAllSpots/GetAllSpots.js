@@ -16,6 +16,7 @@ export default function GetAllSpots(){
         <div className='all-spots-container'>
             {spots?.length >= 1 && (
                 spots.map(spot => {
+                    console.log(spot)
                     return (
                     <Link className='spot-wrapper' to={`/spots/${spot.id}`}>
                         <div className='spot-img-container'>
@@ -23,8 +24,19 @@ export default function GetAllSpots(){
                         </div>
 
                         <div className='spot-info-container'>
-                            <h1 className='spot-name'>{spot.name}</h1>
-                            <p className='spot-text'>{spot.description}</p>
+                            <div className='name-container'>
+                                <h1 className='spot-name'>{spot.name}</h1>
+                                <i class="fa-solid fa-circle-check ind"></i>
+                            </div>
+                            <p className='spot-text'>{spot.city} {spot.state} {spot.country}</p>
+                            <div className='price-container'>
+                                <div className='reviews-info-container'>
+                                    <i class="fa-solid fa-thumbs-up green"></i>
+                                    100%
+                                    <div className='reviews-info'></div>
+                                </div>
+                                <div className='ind-price'>${spot.price}/night</div>
+                            </div>
                         </div> 
                     </Link>
                  )

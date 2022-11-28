@@ -12,6 +12,20 @@ import CreateTypeComponent from "./CreateType";
 import CreateActivitiesComponent from "./CreateActivities";
 import CreateImageComponent from "./CreateImage";
 import '../../../context/Modal.css'
+import BackButton from "./BackButton";
+
+
+export function resetPrice(price){
+  let priceCheck = price
+  let pArr = priceCheck.split("")
+  if(pArr.find(e => e === '$')){
+    let i = pArr.findIndex(e => e === '$')
+    pArr.splice(i,1)
+    }
+  let p = pArr.join("")
+  p = Number(p)
+  return p
+}
 
 function CreateSpotForm({setShowModal}) {
   const dispatch = useDispatch();
@@ -39,18 +53,12 @@ function CreateSpotForm({setShowModal}) {
     setShowModal(false)
     setCount(0)
 
-    let pArr = url.split("")
-    if(pArr.find(e => e === '$')){
-      let i = pArr.findIndex(e => e === '$')
-      pArr.splice(i,1)
-      }
-    let p = pArr.join("")
-    setUrl(p)
-    
+
+  
     let spotInfo = {
         name,
         description,
-        price: Number(price),
+        price: resetPrice(price),
         city,
         state,
         country,
@@ -70,6 +78,7 @@ function CreateSpotForm({setShowModal}) {
             };
             setErrors(validationErrors)
           });
+          console.log(spot)
         if(validationErrors.length <= 0){
             setName("")
             setDescription("")
@@ -80,7 +89,7 @@ function CreateSpotForm({setShowModal}) {
             setAmenities("")
             setType("")
             setActivities("")
-            history.push(`/spots/${spot.id}`)
+            history.push(`/spots`)
         }
     }
     
@@ -91,34 +100,47 @@ function CreateSpotForm({setShowModal}) {
     <div className='create-modal-container'>
       <form onSubmit={handleSubmit}>
         {count === 0 && (
-          <CreateNameComponent submitted={submitted} name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateNameComponent setShowModal={setShowModal} submitted={submitted} name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 1 && (
-          <CreateDescriptionComponent submitted={submitted} description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateDescriptionComponent setShowModal={setShowModal} submitted={submitted} description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 2 && (
-          <CreatePriceComponent submitted={submitted} price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreatePriceComponent setShowModal={setShowModal} submitted={submitted} price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 3 && (
-          <CreateLocationComponent submitted={submitted} city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateLocationComponent setShowModal={setShowModal} submitted={submitted} city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 4 && (
-          <CreateTypeComponent submitted={submitted} type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateTypeComponent setShowModal={setShowModal} submitted={submitted} type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 5 && (
-          <CreateAmenitiesComponent submitted={submitted} amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateAmenitiesComponent setShowModal={setShowModal} submitted={submitted} amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 6 && (
-          <CreateActivitiesComponent submitted={submitted} activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateActivitiesComponent setShowModal={setShowModal} submitted={submitted} activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 7 && (
-          <CreateImageComponent submitted={submitted} url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateImageComponent setShowModal={setShowModal} submitted={submitted} url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 8 && (
-          <div className='spot-modal-container'>
-            <h3>By clicking the create spot button this spot will be added for others to view</h3>
-            <button type='submit' className='submit-button'>Create Spot</button>
+          <div>
+            <div className='top-container'>
+                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div className='create-modal-progress-bar-done'>
+                  <i class="fa-solid fa-circle-check done"></i>
+                </div>
+            </div>
+          <div className='create-modal-form'>
+            <h3 className='create-modal-text'>By clicking the create spot button this listing will be available for others to view</h3>
           </div>
+            <div className='Button-Container-Create-Spot'>
+              <BackButton count={count} setCount={setCount}/>
+              <button type='submit' className='NextButton'>Create Spot</button>
+            </div>
+            </div>
         )}
       </form>  
     </div>

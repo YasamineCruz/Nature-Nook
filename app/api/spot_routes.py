@@ -23,7 +23,7 @@ def add_spot():
     """
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    print('---------form-----------', form)
     if form.validate_on_submit():
         data = form.data
         print(data)

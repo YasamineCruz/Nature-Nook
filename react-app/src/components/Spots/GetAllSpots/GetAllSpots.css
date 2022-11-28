@@ -7,47 +7,86 @@
 
 .spot-wrapper {
     display: flex;
-    flex-direction: row;
-    height: 400px;
-    width: 500px;
-    border: 1px solid lightblue;
-    border-radius: .5rem;
+    flex-direction: column;
+    height: 300px;
+    width: 380px;
+    border: 1px solid rgb(111, 111, 114, 0.4);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0px 2px 2px 0px rgba(166, 166, 167, 0.4);
+    margin: 1%;
+    text-decoration: none;
 }
 
 .spot-img-container {
     display: flex;
-    padding: 2%;
+    border-radius: 4px 4px 0 0;
 }
 
 .small-spot-img {
     display: flex;
-    height: 300px;
-    width: 325px;
+    height: 200px;
+    width: 380px;
+    border-radius: 4px 4px 0 0;
 }
 
 .spot-info-container {
     display: flex;
-    flex-wrap: wrap;
-    height: 200px;
-    width: 200px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 2%;
+    flex-direction: column;
+    height: 100px;
+    width: 380px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0% 1% 0% 1%;
 }
 
 .spot-name {
     overflow: hidden;
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 500;
     word-break: break-word;
 }
 
 .spot-text {
+    max-width: 370px;
+    overflow: hidden;
     word-break: break-word;
     color: black;
     font-size: 12px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.ind {
+    color: rgb(0, 162, 255);
+    background-color: white;
+    margin-left: 5px;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-right: 1%;
+    max-height: 30px;
+}
+
+.green {
+    color: #40D9AC;
+    margin-right: 5px;
+}
+
+.price-container {
+    width: 95%;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    justify-content: space-between;
+}
+
+.reviews-info-container {
+    color: #40D9AC
 }
