@@ -36,19 +36,27 @@
     width: 380px;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 0% 1% 0% 1%;
+    padding: 0% 2% 0% 2%;
 }
 
 .spot-name {
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 20px;
     font-weight: 500;
     word-break: break-word;
+    max-width: 300px;
+    margin-bottom: 25px;
+    margin-top: 15px;
 }
 
 .spot-text {
+    height: 30px;
+    margin-top: 5px;
+    height: 13px;
     max-width: 370px;
     overflow: hidden;
     word-break: break-word;
@@ -61,15 +69,25 @@
     color: rgb(0, 162, 255);
     background-color: white;
     margin-left: 5px;
+    margin-bottom: 4%;
 }
 
 .name-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.name-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     padding-right: 1%;
-    max-height: 30px;
+    max-height: 40px;
+    margin-top: 10px;
+    min-width: 325px;
 }
 
 .green {
@@ -85,8 +103,27 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 12px;
     justify-content: space-between;
+    margin-top: 2.5%;
 }
 
 .reviews-info-container {
     color: #40D9AC
+}
+
+.type-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 15px;
+    margin-right: 5%;
+}
+
+.type {
+    color: black
+}
+
+.ind-price {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
 }

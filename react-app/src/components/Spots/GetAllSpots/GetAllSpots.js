@@ -25,10 +25,15 @@ export default function GetAllSpots(){
 
                         <div className='spot-info-container'>
                             <div className='name-container'>
-                                <h1 className='spot-name'>{spot.name}</h1>
-                                <i class="fa-solid fa-circle-check ind"></i>
+                                <div className='name-wrapper'>
+                                   <h1 className='spot-name'>{spot.name}</h1>
+                                    <i class="fa-solid fa-circle-check ind"></i> 
+                                </div>
+                                <div className='type-container'>
+                                <i class={spot.type === 'lodging' ? "fa-solid fa-house type" : "fa-sharp fa-solid fa-campground type"}></i>
+                                </div>
                             </div>
-                            <p className='spot-text'>{spot.city} {spot.state} {spot.country}</p>
+                            <div className='spot-text'>{spot.city} {spot.state} {spot.country}</div>
                             <div className='price-container'>
                                 <div className='reviews-info-container'>
                                     <i class="fa-solid fa-thumbs-up green"></i>
