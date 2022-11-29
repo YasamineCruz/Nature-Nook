@@ -129,13 +129,6 @@ export default function EditSpot({setShowModal, spot, spotId}) {
                </div>
             )}
     
-            { errors?.length >= 1 && submitted && (
-                <ul className='create-event-errors'>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
-            )}
           </form>  
         </div>
         

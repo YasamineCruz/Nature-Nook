@@ -15,15 +15,17 @@ export function DeleteSpot({spotId, spot, setShowModal}){
     }
 
     return (
-        <div className='delete-container'>
-            <form onSubmit={onSubmit}>
-                <div>Are you sure you want to delete {spot.name}?</div>
+        <div className='create-modal-container delete-spot'>
+        <div className='spot-modal-container delete-spot'>
+            <form className='create-modal-form'onSubmit={onSubmit}>
+                <div className='create-modal-text'>Are you sure you want to delete {spot.name}?</div>
 
-                <div className='button-container'>
-                    <button onClick={()=> setShowModal(false)} type='button'>Cancel</button>
-                    <button type='submit'>Yes Delete {spot.name}</button>
+                <div className='Button-Container-Create-Spot add-padding edit-for-delete'>
+                    <button className='BackButton' onClick={()=> setShowModal(false)} type='button'>Cancel</button>
+                    <button className='NextButton add-margin'type='submit'>Yes Delete {spot.name}</button>
                 </div>
             </form>
+        </div>
         </div>
     )
 }

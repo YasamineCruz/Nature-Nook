@@ -43,6 +43,7 @@
     flex-direction: row;
     max-width: 800px;
     max-height: 400px;
+    min-width: 750px;
 }
 
 .single-loc-wrapper {
@@ -95,7 +96,10 @@
 
 .spot-single-desc {
     padding-left: 10px;
-    padding-top: 15px;
+    padding-top: 10px;
+    max-width: 500px;
+    max-height: 500px;
+    line-height: 28px;
 }
 
 .owner-info-wrapper {
@@ -175,7 +179,7 @@
     max-width: 300px;
     min-height: 400px;
     min-width: 200px;
-    margin: 0 10px 20px 10px;
+    margin: 10px 10px 20px 10px;
     border: 1px solid #ebebeb;
     padding: 15px 5px 15px 15px;
     flex-wrap: wrap;
@@ -192,8 +196,50 @@
 .lil-amenity-wrapper {
     display: flex;
     flex-direction: row;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .lil-amenity {
-    margin-left: 5px;
+    margin-left: 6px;
+}
+
+.icon {
+    max-height: 20px;
+    max-width: 20px;
+}
+
+.no-padding {
+    padding: 0px;
+}
+
+.middle-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.price-single-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    max-height: 200px;
+    max-width: 300px;
+    min-height: 100px;
+    min-width: 200px;
+    margin: 10px 10px 20px 10px;
+    border: 1px solid #ebebeb;
+    padding: 15px 5px 15px 15px;
+    flex-wrap: wrap;
+    line-height: 1.4;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.per-text {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgb(146, 143, 143)
 }
