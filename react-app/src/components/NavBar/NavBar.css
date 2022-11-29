@@ -85,9 +85,7 @@
       }
 } */
 
-html {
-    background-color: rgb(243, 242, 239);
-}
+
 
 .logged-out-nav {
     display: flex;

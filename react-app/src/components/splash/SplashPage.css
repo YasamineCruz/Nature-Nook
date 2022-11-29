@@ -45,3 +45,8 @@
     max-height: 500px;
     min-height: 500px;
 }
+
+html {
+    background-color: rgb(243, 242, 239);
+}
+
