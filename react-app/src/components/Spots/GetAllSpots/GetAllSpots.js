@@ -16,7 +16,6 @@ export default function GetAllSpots(){
         <div className='all-spots-container'>
             {spots?.length >= 1 && (
                 spots.map(spot => {
-                    console.log(spot)
                     return (
                     <Link className='spot-wrapper' to={`/spots/${spot.id}`}>
                         <div className='spot-img-container'>

@@ -29,3 +29,11 @@ export function getImg(arr) {
     })
     return url
 }
+
+// let item = 4.9;
+
+// let itemQty = 1;
+
+// const formatting_options = { style: 'currency', currency: 'USD', minimumFractionDigits: 2, }; const dollarFormatter = new Intl.NumberFormat("en-US", formatting_options); 
+
+// {dollarFormatter.format(item[1][0].price * itemQty[item[1][0].id])} 

@@ -2,7 +2,7 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { useEffect } from "react";
 
-let amenitiesList = ['Picnic-table', 'Trash-cans', 'Showers', 'Wifi', 'Kitchen', 'Drinking-water', 'Laundry', 'Toilet', 'Hot-Tub', 'Campfires-allowed', 'Pets-allowed', 'I-have-none-of-these']
+export const amenitiesList = ['Picnic-table', 'Trash-cans', 'Showers', 'Wifi', 'Kitchen', 'Drinking-water', 'Laundry', 'Toilet', 'Hot-Tub', 'Campfires-allowed', 'Pets-allowed', 'I-have-none-of-these']
 
 export default function CreateAmenitiesComponent({setShowModal, submitted, amenities, setAmenities, setErrors, setCount, count, setSubmitted, errors}) {
 

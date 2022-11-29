@@ -9,7 +9,7 @@ function CreateSpotModal() {
 
   return (
     <>
-      <div onClick={() => {
+      <div className='dropdown-link create-spot' onClick={() => {
         setShowModal(true);
       }}>Create Spot</div>
       {showModal && (
