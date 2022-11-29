@@ -1,0 +1,153 @@
+.signup-page-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.splash-pump-img {
+    max-width:fit-content;
+    min-width: 600px;
+    max-height: 375px;
+    margin-top: 0%;
+}
+
+.splash-long-img {
+    max-height: 900px;
+    min-height: 600px;
+    min-width: 400px;
+    max-width: 400px;
+}
+
+.splash-third-img {
+    max-height: 200px;
+    max-width: 400px;
+    min-width: 400px;
+}
+
+.splash-fourth-img {
+    max-height: 300px;
+    max-width: 400px;
+    min-width: 400px;
+    margin-top: 1%;
+}
+
+.col-1 {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    height: 100%;
+}
+
+.col-2 {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin-left: .25%;
+    margin-right: 5.25%;
+    height: 100%;
+}
+
+.col-3 {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin-left: .5%;
+    height: 100%;
+}
+
+.col-4 {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin-left: .25%;
+    height: 100%;
+}
+
+
+.col-1-bot {
+    display: flex;
+    flex-direction: row;
+}
+
+.col-1-bot-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.col-1-bot-2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.splash-an {
+    max-height: 200px;
+    max-width: 300px;
+    margin-top: 1%;
+}
+
+.splash-of {
+    /* min-width: 600px; */
+    max-width: 300px;
+    margin-top: 1%;
+    max-height: 400px;
+    min-height: 299px;
+}
+
+.splash-ugh {
+    margin-top: 1%;
+    max-height: 250px;
+    max-width: 299px;
+    margin-left: 1%;
+    min-height: 250px;
+}
+
+.splash-oof {
+    max-height: 250px;
+    margin-left: 1%;
+    max-width: 299px;
+    min-height: 250px;
+    margin-top: 1%;
+}
+
+.splash-j {
+    margin-top: 1%;
+    max-height: 141px;
+    margin-left: 1%;
+    max-width: 200px;
+}
+
+.splash-k {
+    margin-top: 1%;
+    max-height: 147px;
+    margin-left: 1%;
+    max-width: 200px;
+}
+
+.splash-how {
+    max-width: 200px;
+    margin-top: 1%;
+    max-height: 128px;
+}
+
+.splash-why {
+    margin-top: 1%;
+    max-width: 200px;
+}
+
+.splash-alm {
+    max-width: 400px;
+    max-height: 500px;
+    margin-top: 1%;
+    min-height: 407px;
+}
+
+.splash-so {
+    max-width: 405px;
+    min-height: 350px;
+}
+
+.splash-done {
+    max-width: 405px;
+    min-height: 527px;
+    margin-top: 1%;
+}
