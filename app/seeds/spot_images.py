@@ -61,8 +61,8 @@ url_list = [
 
 # Adds a demo user, you can add other users here if you want
 def seed_spot_images():
-    i = 0
-    while i < 51:
+    i = 1
+    while i < 52:
         new_spotimage = SpotImage(
             spot_id = i,
             url = url_list[i],
