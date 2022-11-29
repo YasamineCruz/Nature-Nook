@@ -2,7 +2,7 @@ import './SignupPage.css'
 
 export default function SignUpPage() {
     return (
-        <div className='signup-page-container'>
+        <div className='signup-page-container' >
             <div className='col-1'>
                 <img className='splash-pump-img' src='https://baumanshf.com/wp-content/uploads/2020/08/pumpkin-patch-bauman.jpg' alt=''/>
                 <div className='col-1-bot'>

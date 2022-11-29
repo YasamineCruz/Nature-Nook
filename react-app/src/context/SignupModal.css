@@ -37,6 +37,7 @@
     margin-top: 20px;
     max-width: 250px;
     min-height: 80px;
+    margin-left: 5px;
 }
 
 .signup-form {
@@ -96,4 +97,22 @@
     font-size: 15px;
     font-weight: 600;
     text-align: center;
+}
+
+.signup-error {
+    height: 10px;
+    width: 270px;
+    margin: 15px 0px 30px 0px;
+    color: #c44841;
+    border-radius: 1px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.switch-margin {
+    margin-bottom: 10px;
+}
+.switch-login {
+    margin-top: 10px;;
 }

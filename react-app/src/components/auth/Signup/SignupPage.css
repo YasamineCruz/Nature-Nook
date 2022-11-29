@@ -41,16 +41,16 @@
 .col-2 {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
+    max-width: 315px;
     margin-left: .25%;
-    margin-right: 5.25%;
+    margin-right: 4.5%;
     height: 100%;
 }
 
 .col-3 {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 450px;
     margin-left: .5%;
     height: 100%;
 }
@@ -90,7 +90,7 @@
     max-width: 300px;
     margin-top: 1%;
     max-height: 400px;
-    min-height: 299px;
+    min-height: 325px;
 }
 
 .splash-ugh {
@@ -105,20 +105,21 @@
     max-height: 250px;
     margin-left: 1%;
     max-width: 299px;
-    min-height: 250px;
+    min-height: 278px;
     margin-top: 1%;
 }
 
 .splash-j {
     margin-top: 1%;
-    max-height: 141px;
-    margin-left: 1%;
+    max-height: 126px;
+    margin-left: 2%;
     max-width: 200px;
+    min-width: 198px;
 }
 
 .splash-k {
     margin-top: 1%;
-    max-height: 147px;
+    max-height: 180px;
     margin-left: 1%;
     max-width: 200px;
 }
@@ -126,7 +127,8 @@
 .splash-how {
     max-width: 200px;
     margin-top: 1%;
-    max-height: 128px;
+    max-height: 160px;
+    min-height: 155px
 }
 
 .splash-why {
@@ -136,18 +138,19 @@
 
 .splash-alm {
     max-width: 400px;
-    max-height: 500px;
+    max-height: 600px;
     margin-top: 1%;
-    min-height: 407px;
+    min-height: 435px;
 }
 
 .splash-so {
-    max-width: 405px;
+    max-width: 418px;
     min-height: 350px;
 }
 
 .splash-done {
-    max-width: 405px;
-    min-height: 527px;
+    max-width: 418px;
+    min-height: 556px;
     margin-top: 1%;
 }
+

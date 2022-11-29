@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../../store/session';
 import './LoginForm.css'
+import NavBar from '../../NavBar/NavBar';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -13,9 +14,11 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+    let validationErrors = []
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      validationErrors.push(data[0].split(':')[1])
+      setErrors(validationErrors);
     }
   };
 
@@ -31,14 +34,16 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
 
+
+
   return (
-    <div className='login-container'>
+    <div id='page1' className='login-container'>
     <form className='login-form' onSubmit={onLogin}>
       <h1 className='login-lg-text'>Welcome back!</h1>
       <h3 className='login-sml-text'>Let's get you outside.</h3>
-      <div>
+      <div className='login-errors'>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='login-error' key={ind}>{error}</div>
         ))}
       </div>
       <div className='login-input-container'>
