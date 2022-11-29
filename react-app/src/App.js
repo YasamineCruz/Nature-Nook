@@ -10,6 +10,7 @@ import User from './components/User/User';
 import { authenticate } from './store/session';
 import GetAllSpots from './components/Spots/GetAllSpots/GetAllSpots';
 import GetASpot from './components/Spots/GetASpot/GetASpot';
+import SplashPage from './components/splash';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,7 +44,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <SplashPage />
         </Route>
         <Route path='/spots' exact={true}>
           <GetAllSpots />
