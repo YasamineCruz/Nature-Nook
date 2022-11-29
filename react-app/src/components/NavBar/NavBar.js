@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../auth/Login/LogoutButton';
 import CreateSpotModal from '../Spots/CreateSpotModal';
 import logo from '../../assets/logo/logo-no-background.png'
 import './NavBar.css'

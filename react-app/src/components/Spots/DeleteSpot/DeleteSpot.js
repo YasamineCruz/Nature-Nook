@@ -22,7 +22,7 @@ export function DeleteSpot({spotId, spot, setShowModal}){
 
                 <div className='Button-Container-Create-Spot add-padding edit-for-delete'>
                     <button className='BackButton' onClick={()=> setShowModal(false)} type='button'>Cancel</button>
-                    <button className='NextButton add-margin'type='submit'>Yes Delete {spot.name}</button>
+                    <button className='NextButton add-margin'type='submit'>Delete</button>
                 </div>
             </form>
         </div>

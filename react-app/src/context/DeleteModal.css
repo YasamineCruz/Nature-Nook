@@ -43,9 +43,11 @@
 
 .add-margin {
   margin-right: 5%;
+  margin-bottom: 10px;
 }
 
 .edit-for-delete {
-  margin-top: 20%;
+  margin-top: 15%;
   max-width: 460px;
+  margin-bottom: 10px;
 }
