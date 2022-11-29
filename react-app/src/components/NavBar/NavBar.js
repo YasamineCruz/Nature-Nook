@@ -19,45 +19,46 @@ const NavBar = () => {
           <img className='navbar-logo' src={logo} alt=''/>
         </NavLink>
       </div>
-      <div className='dropdown-and-icon-container' onMouseLeave={()=> setShowDropdown(false)}>
+      {!sessionUser && (
+        <div className='logged-out-nav'>
+          <button className='log-in-button'>
+            <NavLink className='logged-out-dropdown-link1'to='/login' exact={true} activeClassName='active'>
+              Log in
+            </NavLink>
+          </button>
+          <button className='sign-up-button'>
+            <NavLink className='logged-out-dropdown-link2' to='/sign-up' exact={true} activeClassName='active'>
+              Sign Up
+            </NavLink>
+          </button>
+
+        </div>
+      )}
+      {sessionUser && (
+         <div className='dropdown-and-icon-container' onMouseLeave={()=> setShowDropdown(false)}>
          <img src={fav} alt='' className='dropdown-fav' onMouseEnter={() => setShowDropdown(true)} />
         {showDropdown && (
           <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={()=> setShowDropdown(false)}>
-          {!sessionUser && (
-            <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <NavLink className='dropdown-link' onMouseOver={() => setShowDropdown(true)} to='/login' exact={true} activeClassName='active'>
-              Login
-            </NavLink>
-          </div>
-          )}
-          {!sessionUser && (
-            <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <NavLink className='dropdown-link' onMouseOver={() => setShowDropdown(true)} to='/sign-up' exact={true} activeClassName='active'>
-              Sign Up
-            </NavLink>
-          </div>
-          )}
-          {sessionUser && (
+        
             <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
             <NavLink className='dropdown-link' onMouseOver={() => setShowDropdown(true)} to='/spots' exact={true} activeClassName='active'>
               Spots
             </NavLink>
           </div>
-            )}
-          
-          {sessionUser && (
-            <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
+
+          <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
             <CreateSpotModal />
           </div>
-          )}
-          {sessionUser && (
-              <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
+
+          <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
             <LogoutButton />
           </div> 
-          )}
+
         </div>
         )}
       </div>
+      )}
+     
     </nav>
   );
 }
