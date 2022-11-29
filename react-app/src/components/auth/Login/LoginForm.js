@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
+import { Link, Redirect } from 'react-router-dom';
+import { login } from '../../../store/session';
+import './LoginForm.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -31,34 +32,42 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <div className='login-container'>
+    <form className='login-form' onSubmit={onLogin}>
+      <h1 className='login-lg-text'>Welcome back!</h1>
+      <h3 className='login-sml-text'>Let's get you outside.</h3>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className='login-input-container'>
         <input
+          className='login-input'
           name='email'
           type='text'
-          placeholder='Email'
+          placeholder='Email address...'
           value={email}
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className='login-input-container2'>
         <input
+          className='login-input'
           name='password'
           type='password'
-          placeholder='Password'
+          placeholder='Password...'
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
       </div>
+        <button className='login-form-button' type='submit'>Log in</button>
+        <div className='switch-signup'>
+          Don't have a NatureNook?
+          <Link className='sign-up-link' to='/sign-up' exact='true'> Sign up!</Link>
+        </div>
     </form>
+    </div>
   );
 };
 

@@ -1,0 +1,132 @@
+.all-spots-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 4%;
+    max-width: 1500px;
+    margin-left: 8.5%;
+}
+
+.spot-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 380px;
+    border: 1px solid rgb(111, 111, 114, 0.4);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0px 2px 2px 0px rgba(166, 166, 167, 0.4);
+    margin: 1.5%;
+    text-decoration: none;
+}
+
+.spot-img-container {
+    display: flex;
+    border-radius: 4px 4px 0 0;
+}
+
+.small-spot-img {
+    display: flex;
+    height: 200px;
+    width: 380px;
+    border-radius: 4px 4px 0 0;
+}
+
+.spot-info-container {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 380px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0% 2% 0% 2%;
+}
+
+.spot-name {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    word-break: break-word;
+    max-width: 300px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+.spot-text {
+    height: 30px;
+    margin-top: 5px;
+    height: 13px;
+    max-width: 370px;
+    overflow: hidden;
+    word-break: break-word;
+    color: black;
+    font-size: 12px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.ind {
+    color: rgb(0, 162, 255);
+    background-color: rgb(243, 242, 239);
+    margin-left: 5px;
+    margin-bottom: 4%;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.name-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 1%;
+    max-height: 40px;
+    margin-top: 10px;
+    min-width: 325px;
+}
+
+.green {
+    color: #40D9AC;
+    margin-right: 5px;
+}
+
+.price-container {
+    width: 95%;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    justify-content: space-between;
+    margin-top: 2.5%;
+}
+
+.reviews-info-container {
+    color: #40D9AC
+}
+
+.type-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 15px;
+    margin-right: 5%;
+}
+
+.type {
+    color: black
+}
+
+.ind-price {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}

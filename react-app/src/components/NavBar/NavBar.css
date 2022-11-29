@@ -1,0 +1,155 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding: 5px;
+    min-height: 50px;
+}
+
+.navbar-logo {
+    display: flex;
+    flex-direction: row;
+    max-height: 50px;
+    max-width: 200px;
+}
+
+.dropdown-and-icon-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    max-width: 150px;
+    margin-right: 16.5%;
+    min-height: 60px;
+}
+
+.dropdown-fav {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.NatureNook-logo {
+    margin-left: 16.5%;
+}
+
+.dropdown-wrapper {
+    display: block;
+    position: absolute;
+    min-height: 100px;
+    min-width: 210px;
+    top: 7%;
+    background-color: white;
+    border-radius: 6px;
+    padding: 25px;
+    right: 16.5%;
+    /* animation: fadein 1.2s both; */
+}
+
+.dropdown-link-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+}
+
+.dropdown-link {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: black;
+    line-height: 20px;
+    letter-spacing: 0.7px;
+    text-decoration: none;
+    border-bottom: 1px solid rgb(160, 159, 159);
+}
+
+.create-spot {
+    border-bottom: none;
+}
+
+.logout-button {
+    padding: 0%;
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: none;
+    background-color: transparent;
+}
+
+/* @keyframes fadein {
+    from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+} */
+
+html {
+    background-color: rgb(243, 242, 239);
+}
+
+.logged-out-nav {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 10px 0px 10px;
+    max-height: 60px;
+    margin-right: 16.5%;
+}
+
+.logged-out-dropdown-link1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    color: black;
+    line-height: 16px;
+    letter-spacing: 0.7px;
+    text-decoration: none;
+}
+
+.logged-out-dropdown-link2 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    color: white;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    text-decoration: none;
+}
+
+.log-in-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: none;
+    margin-right: 20px;
+    min-width: 60px;
+}
+
+.sign-up-button {
+    margin-top: 5px;
+    border-radius: 25px;
+    max-height: 35px;
+    min-width: 90px;
+    font-size: 15px;
+    color: #FFFF;
+    background-color: #00c585;
+    border-color: #00c585;
+    border-style: solid;
+}
+
+
+.sign-up-button:hover .logged-out-dropdown-link2{
+    color: #00c585;
+    background-color: white;
+    cursor: pointer;
+}
+
+.sign-up-button:hover {
+    color: #00c585;
+    background-color: white;
+    border-color: #00c585;
+    border-style: solid;
+    cursor: pointer; 
+}
