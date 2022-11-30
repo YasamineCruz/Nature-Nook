@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getImg } from "../../../component-resources";
-import { getSpot } from "../../../store/spot";
+import { getSpot, updateReview } from "../../../store/spot";
 import DeleteSpotModal from "../DeleteSpot";
 import EditSpotModal from "../EditASpot";
 import './GetASpot.css'
@@ -13,6 +13,8 @@ import picnic from '../../../assets/logo/picnic.png'
 import laundry from '../../../assets/logo/laundry.png'
 import toilet from '../../../assets/logo/toilet.png'
 import fire from '../../../assets/logo/fire.png'
+import Review from "../../Reviews/Review";
+import CreateReview from "../../Reviews/CreateReview";
 
 export default function GetASpot(){
     const dispatch = useDispatch()
@@ -20,7 +22,6 @@ export default function GetASpot(){
     const { spotId } = params
     const spot = useSelector((state) => state.spot.singleSpot)
     const user = useSelector((state) => state.session.user)
-    console.log(spot)
 
     useEffect(()=>{
         dispatch(getSpot(spotId))
@@ -225,6 +226,8 @@ export default function GetASpot(){
                             })}
                         </div>
                     </div>
+                    <Review reviews={spot?.Reviews}/>
+                    <CreateReview spotId={spotId}/>
                 </div>
             )}
         </div>

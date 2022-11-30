@@ -7,6 +7,11 @@ const GET_SPOT = "spots/GET_A_SPOT";
 const EDIT_SPOT = 'spots/UPDATE_SPOT'
 const DELETE_SPOT = 'spots/DELETE_A_SPOT'
 
+const UPDATE_REVIEW = "spots/UPDATE_REVIEW";
+const CREATE_REVIEW = "spots/CREATE_REVIEW";
+const DELETE_REVIEW = "spots/DELETE_REVIEW";
+
+/**** Actions for Spots****/
 
 export const createASpot = (newSpot) => ({
   type: CREATE_SPOT,
@@ -38,9 +43,27 @@ export const deleteASpot = (spotId) => ({
   payload: spotId,
 });
 
+/**** Actions for Reviews*****/
+
+export const updateAReview = (updatedReview) => ({
+  type: UPDATE_REVIEW,
+  payload: updatedReview
+})
+
+export const createAReview = (review) => ({
+  type: CREATE_REVIEW,
+  payload: review
+})
+
+export const deleteAReview = (reviewId, spotId) => ({
+  type: DELETE_REVIEW,
+  payload: {reviewId, spotId}
+})
+
+/**** Thunks for Reviews ****/
 
 export const createSpot = (spotInfo) => async (dispatch) => {
-  console.log('spot info you\'re sending', spotInfo)
+  
     const response = await fetch(`/api/spots/`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -109,6 +132,55 @@ export const deleteSpot = (spotId) => async (dispatch) => {
     }
   };
 
+/**** Thunks for Reviews****/
+
+export const createReview = (spotId, reviewInfo) => async (dispatch) => {
+    console.log(spotId)
+    console.log(reviewInfo)
+    const response = await fetch(`/api/spots/${spotId}/reviews`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reviewInfo),
+    })
+    
+    if (response.ok) {
+      const newReview = await response.json();
+      dispatch(createAReview(newReview));
+      return newReview;
+    }
+  }
+
+
+export const updateReview = (reviewInfo, reviewId) => async (dispatch) => {
+  console.log(reviewInfo)
+  const response = await fetch(`/api/reviews/${reviewId}`, {
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(reviewInfo),
+  });
+  if (response.ok) {
+    const updatedReview = await response.json();
+    dispatch(updateASpot(updatedReview));
+    return updatedReview;
+  }
+};
+
+
+export const deleteReview = (reviewId, spotId) => async (dispatch) => {
+  const response = await fetch(`/api/spots/${reviewId}`,
+    {
+      method: "DELETE",
+    }
+  );
+  if (response.ok) {
+    const res = response.json()
+    dispatch(deleteAReview(reviewId, spotId));
+    return res;
+  }
+};
+
+
+
 
 const initialState = { allSpots: {}, userSpots: {}, singleSpot: {}};
 
@@ -146,6 +218,31 @@ export default function reducer(state = initialState, action) {
         delete newState.userSpots[action.payload];
         newState.singleSpot = {}
         return newState
+    case UPDATE_REVIEW:
+      newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
+      newState.allSpots[action.payload.spot.id].Reviews[action.payload.id] = action.payload
+      let reviews = newState.singleSpot.Reviews
+      for(let i = 0; i < reviews.length; i++){
+        let review = reviews[i];
+        if(review.id === action.payload.id) review = action.payload
+      }
+      newState.singleSpot.Reviews = reviews
+      return newState
+    case CREATE_REVIEW:
+      newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
+      newState.allSpots[action.payload.spot.id].Reviews.append(action.payload)
+      newState.singleSpot.Reviews.append(action.payload)
+      return newState
+    case DELETE_REVIEW:
+      newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
+      delete newState.allSpots[action.payload.spotId].Reviews[action.payload.reviewId]
+      let reviewsArr = newState.singleSpot.Reviews
+      for(let i = 0; i < reviewsArr.length; i++){
+        let review = reviewsArr[i];
+        if(review.id === action.payload.id) reviewsArr.splice(i, 1)
+      }
+      newState.singleSpot.Reviews = reviewsArr
+      return newState
     default:
       return state;
   }

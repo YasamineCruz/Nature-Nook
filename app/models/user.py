@@ -37,7 +37,16 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self, with_spots=False, with_reviews=False):
+    def to_dict(self, with_spots=False, with_reviews=False, plain=False):
+        if plain == True:
+            return {
+                'id': self.id,
+                'username': self.username,
+                'email': self.email,
+                'firstName': self.first_name,
+                'lastName': self.last_name,
+                'join_date': self.created_at,
+            }
         if with_spots == False and with_reviews == True:
             return {
                 'id': self.id,

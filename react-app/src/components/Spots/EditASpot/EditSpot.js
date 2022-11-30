@@ -32,8 +32,9 @@ export default function EditSpot({setShowModal, spot, spotId}) {
     const [activities, setActivities] = useState(spot.activities.split(' '))
     const [errors, setErrors] = useState([]);
     const [url, setUrl] = useState(getImg(spot.Photos))
+    const [stop, setStop] = useState(false)
+    const [showDropdown, setShowDropdown] = useState(false)
 
-    
     const handleSubmit = async(e) => {
         e.preventDefault();
         let validationErrors = []
@@ -53,9 +54,6 @@ export default function EditSpot({setShowModal, spot, spotId}) {
             activities: activities.join(" "),
             url
         }
-
-  
-
     
         if(errors.length <= 0){
             await dispatch(updateSpot(spotInfo, spotId))
@@ -86,28 +84,28 @@ export default function EditSpot({setShowModal, spot, spotId}) {
         <div className='create-modal-container'>
           <form onSubmit={handleSubmit}>
           {count === 0 && (
-          <CreateNameComponent setShowModal={setShowModal} submitted={submitted} name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateNameComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} name={name} setName={setName} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 1 && (
-          <CreateDescriptionComponent setShowModal={setShowModal} submitted={submitted} description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateDescriptionComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} description={description} setDescription={setDescription} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 2 && (
-          <CreatePriceComponent setShowModal={setShowModal} submitted={submitted} price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreatePriceComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} price={price} setPrice={setPrice} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 3 && (
-          <CreateLocationComponent setShowModal={setShowModal} submitted={submitted} city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateLocationComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} city={city} setCity={setCity} state={state} setState={setState} country={country} setCountry={setCountry} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 4 && (
-          <CreateTypeComponent setShowModal={setShowModal} submitted={submitted} type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateTypeComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} type={type} setType={setType} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 5 && (
-          <CreateAmenitiesComponent setShowModal={setShowModal} submitted={submitted} amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateAmenitiesComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} amenities={amenities} setAmenities={setAmenities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 6 && (
-          <CreateActivitiesComponent setShowModal={setShowModal} submitted={submitted} activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateActivitiesComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
         {count === 7 && (
-          <CreateImageComponent setShowModal={setShowModal} submitted={submitted} url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+          <CreateImageComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
             {count === 8 && (
              <div>

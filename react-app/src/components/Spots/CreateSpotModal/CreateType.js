@@ -2,8 +2,8 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { useEffect } from "react";
 
-export default function CreateTypeComponent({setShowModal, submitted, type, setType, setErrors, setCount, count, setSubmitted, errors}) {
-    console.log(type)
+export default function CreateTypeComponent({setShowDropdown, setStop, setShowModal, submitted, type, setType, setErrors, setCount, count, setSubmitted, errors}) {
+
     useEffect(()=>{
         let validationErrors = []
         if(!type) validationErrors.push('You must select Lodging or Campsite.')
@@ -13,7 +13,7 @@ export default function CreateTypeComponent({setShowModal, submitted, type, setT
     return (
         <div className='spot-modal-container'>
             <div className='top-container'>
-                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>
                 <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div className='create-modal-progress-bar'>

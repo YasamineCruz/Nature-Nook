@@ -31,23 +31,33 @@
   margin-bottom: 2%;
   }
 
-.delete-spot {
-  margin-left: 0%;
-  margin-right: 5%;
-  max-height: 200px;
+.delete-spot-container {
+  max-width: 500px;
+  max-height: 225px;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.add-padding {
-  padding-right: 55px;
+.delete-spot-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  word-break: break-all;
+  padding: 10px;
 }
 
 .add-margin {
-  margin-right: 5%;
-  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
+.add-padding {
+  padding: 10px;
 }
 
 .edit-for-delete {
+  margin-left: 10px;
   margin-top: 15%;
   max-width: 460px;
-  margin-bottom: 10px;
 }

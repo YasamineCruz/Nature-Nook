@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 let activitiesList = ['Boating', 'Fishing', 'Hiking', 'Climbing', 'Surfing', 'Swimming', 'Horseback', 'Snow', 'Whitewater-paddling', 'Paddling', 'Wind-sports', 'Wildlife-watching']
 
-export default function CreateActivitiesComponent({setShowModal, submitted, activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateActivitiesComponent({setShowDropdown, setStop, setShowModal, submitted, activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
     
 
 
@@ -17,7 +17,7 @@ export default function CreateActivitiesComponent({setShowModal, submitted, acti
     return (
         <div className='spot-modal-container'>
             <div className='top-container'>
-                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>
                 <i class="fa-solid fa-xmark"></i>
                 </button>
              <div className='create-modal-progress-bar'>
