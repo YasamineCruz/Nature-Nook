@@ -3,21 +3,22 @@ import React, { useState } from 'react';
 import { Modal } from '../../../context/Modal';
 import CreateSpotForm from './CreateSpotForm';
 
-function CreateSpotModal() {
+function CreateSpotModal({setStop, setShowDropdown}) {
   const [showModal, setShowModal] = useState(false)
 
 
   return (
-    <>
-      <div className='dropdown-link create-spot' onClick={() => {
+    <div>
+      <div className='dropdown-link create-spot' onClick={(e) => {
+        setStop(true)
         setShowModal(true);
       }}>Create Spot</div>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <CreateSpotForm showModal={showModal} setShowModal={setShowModal}/>
+        <Modal onClose={() => { setShowModal(false); setStop(false) ; setShowDropdown(false)}}>
+          <CreateSpotForm setShowDropdown={setShowDropdown} showModal={showModal} setShowModal={setShowModal} setStop={setStop}/>
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

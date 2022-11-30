@@ -40,7 +40,6 @@ class Spot(db.Model):
         if plain == True: 
              return {
                 'id': self.id,
-                'owner': self.user.to_dict(False, True),
                 'name': self.name,
                 'description': self.description,
                 'price': self.price,

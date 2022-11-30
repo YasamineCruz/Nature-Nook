@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
 
-export default function CreatePriceComponent({setShowModal, submitted, price, setPrice, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreatePriceComponent({setShowDropdown, setStop, setShowModal, submitted, price, setPrice, setErrors, setCount, count, setSubmitted, errors}) {
  
     useEffect(()=> {
         let validationErrors = []
@@ -14,7 +14,7 @@ export default function CreatePriceComponent({setShowModal, submitted, price, se
     return (
         <div className='spot-modal-container'>
             <div className='top-container'>
-                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>
                 <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div className='create-modal-progress-bar'>

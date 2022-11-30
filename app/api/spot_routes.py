@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Spot, db, SpotImage
-from app.forms import SpotImageForm, SpotForm
+from app.models import Spot, db, SpotImage, Review
+from app.forms import SpotImageForm, SpotForm, ReviewForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
 spot_routes = Blueprint('spots', __name__)
@@ -15,6 +15,7 @@ def spots():
 
     return jsonify({ 'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
 
+
 @spot_routes.route('/', methods=["POST"])
 @login_required
 def add_spot():
@@ -23,7 +24,7 @@ def add_spot():
     """
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('---------form-----------', form)
+
     if form.validate_on_submit():
         data = form.data
         print(data)
@@ -53,7 +54,6 @@ def add_spot():
         return jsonify(new_spot.to_dict(False, False, True, True))
     
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
 
 
 @spot_routes.route('/<int:id>', methods=["PUT"])
@@ -113,6 +113,7 @@ def spot(id):
 
     return jsonify(spot.to_dict(False, False, True, True))
 
+
 @spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_spot(id):
@@ -123,6 +124,7 @@ def delete_spot(id):
     db.session.delete(spot)
     db.session.commit()
     return jsonify('Spot Successfully Deleted')
+
 
 @spot_routes.route('/<int:spot_id>/images', methods=['POST'])
 @login_required
@@ -156,3 +158,41 @@ def user_spots():
     spots = current_user.spots
 
     return jsonify({ 'UserSpots': { spot['id'] : spot.to_dict() for spot in spots} })
+
+
+@spot_routes.route('/<int:spot_id>/reviews')
+def spot_reviews(spot_id):
+    """
+    Query for as spot and return all of it's reviews
+    """
+
+    spot = Spot.query.get(spot_id)
+    dic = spot.to_dict(False, False, False, True)
+    return jsonify(dic.Reviews)
+
+
+@spot_routes.route('/<int:spot_id>/reviews', methods=['POST'])
+@login_required
+def create_review(spot_id):
+    """
+    Create review
+    """
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        data = form.data
+        new_review = Review(
+                            spot_id = spot_id,
+                            user_id = current_user.id,
+                            review = data['review'],
+                            recommends = data['recommends']
+                            )
+        db.session.add(new_review)
+        db.session.commit()
+        return jsonify(new_review.to_dict())
+
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+

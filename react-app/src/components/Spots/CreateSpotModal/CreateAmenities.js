@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export const amenitiesList = ['Picnic-table', 'Trash-cans', 'Showers', 'Wifi', 'Kitchen', 'Drinking-water', 'Laundry', 'Toilet', 'Hot-Tub', 'Campfires-allowed', 'Pets-allowed', 'I-have-none-of-these']
 
-export default function CreateAmenitiesComponent({setShowModal, submitted, amenities, setAmenities, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateAmenitiesComponent({setShowDropdown, setStop, setShowModal, submitted, amenities, setAmenities, setErrors, setCount, count, setSubmitted, errors}) {
 
     useEffect(()=>{
         let validationErrors = []
@@ -15,7 +15,7 @@ export default function CreateAmenitiesComponent({setShowModal, submitted, ameni
     return (
         <div className='spot-modal-container'>
             <div className='top-container'>
-                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>
                 <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div className='create-modal-progress-bar'>

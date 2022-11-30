@@ -1,0 +1,32 @@
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgb(222, 222, 222);
+}
+
+.review-amount {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.review-wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.review {
+    display: flex;
+    flex-direction: row;
+    min-height: 200px;
+    max-height: 200px;
+    max-width: 500px;
+    min-width: 500px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 25px;
+}

@@ -11,13 +11,12 @@ export function DeleteSpot({spotId, spot, setShowModal}){
         e.preventDefault()
         dispatch(deleteSpot(spotId))
         setShowModal(false)
-        history.push('/')
+        history.push('/spots')
     }
 
     return (
-        <div className='create-modal-container delete-spot'>
-        <div className='spot-modal-container delete-spot'>
-            <form className='create-modal-form'onSubmit={onSubmit}>
+        <div className='delete-spot-container'>
+            <form className='delete-spot-wrapper' onSubmit={onSubmit}>
                 <div className='create-modal-text'>Are you sure you want to delete {spot.name}?</div>
 
                 <div className='Button-Container-Create-Spot add-padding edit-for-delete'>
@@ -25,7 +24,6 @@ export function DeleteSpot({spotId, spot, setShowModal}){
                     <button className='NextButton add-margin'type='submit'>Delete</button>
                 </div>
             </form>
-        </div>
         </div>
     )
 }

@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
+  const [stop, setStop] = useState(false)
 
   return (
     <nav className='navbar'>
@@ -35,23 +36,22 @@ const NavBar = () => {
         </div>
       )}
       {sessionUser && (
-         <div className='dropdown-and-icon-container' onMouseLeave={()=> setShowDropdown(false)}>
+         <div className='dropdown-and-icon-container'>
          <img src={fav} alt='' className='dropdown-fav' onMouseEnter={() => setShowDropdown(true)} />
         {showDropdown && (
-          <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={()=> setShowDropdown(false)}>
-        
-            <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <NavLink className='dropdown-link' onMouseOver={() => setShowDropdown(true)} to='/spots' exact={true} activeClassName='active'>
+          <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>
+            <div className='dropdown-link-wrapper'>
+            <NavLink className='dropdown-link' to='/spots' exact={true} activeClassName='active'>
               Spots
             </NavLink>
           </div>
 
-          <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <CreateSpotModal />
+          <div className='dropdown-link-wrapper'>
+            <CreateSpotModal setStop={setStop} setShowDropdown={setShowDropdown}/>
           </div>
 
-          <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <LogoutButton />
+          <div className='dropdown-link-wrapper'>
+            <LogoutButton/>
           </div> 
 
         </div>
