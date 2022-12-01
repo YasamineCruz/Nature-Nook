@@ -9,7 +9,7 @@ function UpdateReviewModal({review}) {
 
   return (
     <>
-      <div className='update-review-text' onClick={() => {
+      <div className='update-review-text edit-only' onClick={() => {
         setShowModal(true);
       }}>Edit Review</div>
       {showModal && (

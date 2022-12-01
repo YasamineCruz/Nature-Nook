@@ -26,11 +26,30 @@
     background-color:white;
     border-radius: 25px;
     justify-content: center;
-    width: 525px;
+    align-content: center;
+    width: 625px;
+    height: 350px;
     margin-top: 2%;
     margin-bottom: 2%;
     }
 
 .update-review-text {
     cursor: pointer;
+}
+
+.update-review-container {
+    height: 300px;
+    margin-top: 50px;
+}
+
+.update-review-textarea {
+    padding: 10px;
+}
+
+.update-review-textarea:focus {
+    border-color: #00eea3;
+}
+
+.edit-review {
+    margin-bottom: 10px;
 }

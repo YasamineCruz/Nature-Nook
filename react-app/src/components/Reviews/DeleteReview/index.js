@@ -11,7 +11,7 @@ export default function DeleteReview({reviewId, spotId}){
 
     return (
         <div>
-            <button type='submit' onClick={deleteAReview}>Delete Review</button>
+            <button className='delete-review-button' type='submit' onClick={deleteAReview}>Delete Review</button>
         </div>
     )
 }

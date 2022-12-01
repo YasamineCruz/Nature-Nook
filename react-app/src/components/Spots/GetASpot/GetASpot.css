@@ -199,6 +199,7 @@
     padding: 15px 5px 15px 15px;
     flex-wrap: wrap;
     line-height: 1.4;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
 }
 
 .big-Amenities {
