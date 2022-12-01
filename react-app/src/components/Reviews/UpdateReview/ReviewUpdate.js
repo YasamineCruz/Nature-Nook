@@ -75,7 +75,7 @@ const onSubmit = async (e) => {
                     </label>
                 </div>
                 <div className='button-wrapper'>
-                    <button className ='add-review-button' type='submit'>Add Review</button>
+                    <button className ='add-review-button' type='submit'>Edit Review</button>
                 </div>
             </form>
         </div>
