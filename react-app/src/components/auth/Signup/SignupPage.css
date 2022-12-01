@@ -1,7 +1,9 @@
 .signup-page-container {
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-left: 5px;
 }
 
 .splash-pump-img {
