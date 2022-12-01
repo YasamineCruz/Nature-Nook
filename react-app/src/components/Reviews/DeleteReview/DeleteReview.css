@@ -1,0 +1,9 @@
+.delete-review-button {
+  color: #FDF0EF;
+  background-color: #C44841;
+  border-color: #C44841;
+  border-style: solid;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 2px;
+}

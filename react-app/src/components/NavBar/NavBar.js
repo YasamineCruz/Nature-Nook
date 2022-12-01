@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import LogoutButton from '../auth/Login/LogoutButton';
 import CreateSpotModal from '../Spots/CreateSpotModal';
 import logo from '../../assets/logo/logo-no-background.png'
@@ -11,6 +11,10 @@ import { useSelector } from 'react-redux';
 const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
+  const [stop, setStop] = useState(false)
+  const params = useParams()
+  let url = window.location.href
+  if(url === 'http://localhost:3000/sign-up') return null
 
   return (
     <nav className='navbar'>
@@ -21,8 +25,13 @@ const NavBar = () => {
       </div>
       {!sessionUser && (
         <div className='logged-out-nav'>
+            <div className='link-wrapper'>
+            <NavLink className='dropdown-link' to='/spots' exact={true} activeClassName='active'>
+              Spots
+            </NavLink>
+          </div>
           <button className='log-in-button'>
-            <NavLink className='logged-out-dropdown-link1'to='/login' exact={true} activeClassName='active'>
+            <NavLink className='logged-out-dropdown-link1' to='/login' exact={true} activeClassName='active'>
               Log in
             </NavLink>
           </button>
@@ -35,23 +44,22 @@ const NavBar = () => {
         </div>
       )}
       {sessionUser && (
-         <div className='dropdown-and-icon-container' onMouseLeave={()=> setShowDropdown(false)}>
+         <div className='dropdown-and-icon-container'>
          <img src={fav} alt='' className='dropdown-fav' onMouseEnter={() => setShowDropdown(true)} />
         {showDropdown && (
-          <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={()=> setShowDropdown(false)}>
-        
-            <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <NavLink className='dropdown-link' onMouseOver={() => setShowDropdown(true)} to='/spots' exact={true} activeClassName='active'>
+          <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>
+            <div className='dropdown-link-wrapper'>
+            <NavLink className='dropdown-link' to='/spots' exact={true} activeClassName='active'>
               Spots
             </NavLink>
           </div>
 
-          <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <CreateSpotModal />
+          <div className='dropdown-link-wrapper'>
+            <CreateSpotModal setStop={setStop} setShowDropdown={setShowDropdown}/>
           </div>
 
-          <div className='dropdown-link-wrapper' onMouseOver={() => setShowDropdown(true)}>
-            <LogoutButton />
+          <div className='dropdown-link-wrapper'>
+            <LogoutButton/>
           </div> 
 
         </div>

@@ -3,7 +3,7 @@ import NextButton from "./NextButton";
 
 import { useEffect } from "react";
 
-export default function CreateLocationComponent({setShowModal, submitted, errors, setCount, count, city, setCity, state, setState, country, setCountry, setErrors, setSubmitted}) {
+export default function CreateLocationComponent({setShowDropdown, setStop, setShowModal, submitted, errors, setCount, count, city, setCity, state, setState, country, setCountry, setErrors, setSubmitted}) {
 
 
     useEffect(()=> {
@@ -17,7 +17,7 @@ export default function CreateLocationComponent({setShowModal, submitted, errors
     return (
         <div className='spot-modal-container'>
             <div className='top-container'>
-                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>
                 <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div className='create-modal-progress-bar'>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import NextButton from "./NextButton"
 import BackButton from "./BackButton"
 
-export default function CreateImageComponent({setShowModal, submitted, url, setUrl, setErrors, setCount, count, setSubmitted, errors}) {
+export default function CreateImageComponent({setShowDropdown, setStop, setShowModal, submitted, url, setUrl, setErrors, setCount, count, setSubmitted, errors}) {
     const [checkUrl, setCheckUrl] = useState("");
 
     
@@ -23,7 +23,7 @@ export default function CreateImageComponent({setShowModal, submitted, url, setU
     return (
         <div className='spot-modal-container'>
             <div className='top-container'>
-                <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>
+                <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>
                 <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div className='create-modal-progress-bar'>

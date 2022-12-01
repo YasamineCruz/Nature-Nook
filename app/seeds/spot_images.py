@@ -54,7 +54,9 @@ url_list = [
         'https://www.mycustombarn.com/wp-content/uploads/2020/02/7737-e-fm-922-valley-view-tx-High-Res-6-1-1-scaled.jpg',
         'https://www.travelalaska.com/sites/default/files/2022-09/PlanYourTrip_Places%20to%20Stay_Camgrounds%20RV%20Parks_%28istockphoto%2C%20pkujiahe%29%20crop%20resize_0.jpg',
         'https://www.boston.com/wp-content/uploads/2021/02/airbnbjacksonnh-6022beb2a2eb2.jpg',
-        'https://ichef.bbci.co.uk/images/ic/1200x675/p04qmb0x.jpg'
+        'https://ichef.bbci.co.uk/images/ic/1200x675/p04qmb0x.jpg',
+        'https://lodgable.com/wp-content/uploads/2022/04/airbnb-camp-caitlin-900x600-1.jpg',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZEIWwiKBLC5wNbIjHvTWYzTyDc4MxduGCCg&usqp=CAU'
         ]
 
 
@@ -62,7 +64,7 @@ url_list = [
 # Adds a demo user, you can add other users here if you want
 def seed_spot_images():
     i = 1
-    while i < 51:
+    while i < 53:
         new_spotimage = SpotImage(
             spot_id = i,
             url = url_list[i],
@@ -82,6 +84,6 @@ def undo_spot_images():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute("DELETE FROM users")
+        db.session.execute("DELETE FROM spot_images")
         
     db.session.commit()

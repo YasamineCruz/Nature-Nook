@@ -1,0 +1,55 @@
+#review-update-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    }
+    
+  #review-update-modal-background {
+    position: fixed;
+    display: flex;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+  #review-update-modal-content {
+    display: flex;
+    position: fixed;
+    background-color:white;
+    border-radius: 25px;
+    justify-content: center;
+    align-content: center;
+    width: 625px;
+    height: 350px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    }
+
+.update-review-text {
+    cursor: pointer;
+}
+
+.update-review-container {
+    height: 300px;
+    margin-top: 50px;
+}
+
+.update-review-textarea {
+    padding: 10px;
+}
+
+.update-review-textarea:focus {
+    border-color: #00eea3;
+}
+
+.edit-review {
+    margin-bottom: 10px;
+}

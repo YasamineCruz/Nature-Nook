@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getImg } from "../../../component-resources";
-import { getSpot } from "../../../store/spot";
+import { getSpot, updateReview } from "../../../store/spot";
 import DeleteSpotModal from "../DeleteSpot";
 import EditSpotModal from "../EditASpot";
 import './GetASpot.css'
@@ -13,6 +13,19 @@ import picnic from '../../../assets/logo/picnic.png'
 import laundry from '../../../assets/logo/laundry.png'
 import toilet from '../../../assets/logo/toilet.png'
 import fire from '../../../assets/logo/fire.png'
+import Review from "../../Reviews/Review";
+import CreateReview from "../../Reviews/CreateReview";
+
+export const percentage = (reviewsArr) => {
+    if(reviewsArr.length <= 0) return 100
+    let length = reviewsArr.length
+    let count = 0
+    reviewsArr.forEach(review => {
+        if(review.recommends === true) count++ 
+    })
+    let percent = (count / length) * 100
+    return Number.parseFloat(percent).toFixed(0) 
+}
 
 export default function GetASpot(){
     const dispatch = useDispatch()
@@ -20,11 +33,20 @@ export default function GetASpot(){
     const { spotId } = params
     const spot = useSelector((state) => state.spot.singleSpot)
     const user = useSelector((state) => state.session.user)
+
     console.log(spot)
 
     useEffect(()=>{
         dispatch(getSpot(spotId))
     },[dispatch])
+
+    useEffect(() => {
+        document.body.classList.add('bg-white');
+
+        return function cleanup() {
+            document.body.classList.remove('bg-white');
+        }
+    }, [])
 
     
     return (
@@ -45,7 +67,7 @@ export default function GetASpot(){
                             <div className='loc-small-text'>{spot.country}</div>
                             <i class="fa-solid fa-angle-right fa-2xs mar"></i>
                             <div className='loc-small-text'>{spot.state}</div>
-                            <i class="fa-solid fa-angle-right fa-2xs mar"></i>
+                            <i className="fa-solid fa-angle-right fa-2xs mar"></i>
                             <div className='loc-small-text'>{spot.city}</div>
                         </div>
                         <div className='spot-name-wrapper'>
@@ -54,7 +76,9 @@ export default function GetASpot(){
                         </div>
                         <div className='reviews-info-container-single'>
                             <i class="fa-solid fa-thumbs-up green"></i>
-                            100%
+                            { spot?.Reviews && (
+                                <div>{percentage(spot?.Reviews)}%</div>
+                            )}
                             <div className='reviews-info'>Recommended</div>
                         </div>
                         <div className='bottom-container-single'>
@@ -225,6 +249,10 @@ export default function GetASpot(){
                             })}
                         </div>
                     </div>
+                    <Review reviews={spot?.Reviews}/>
+                    {user && (
+                        <CreateReview spotId={spotId}/>
+                    )}
                 </div>
             )}
         </div>
