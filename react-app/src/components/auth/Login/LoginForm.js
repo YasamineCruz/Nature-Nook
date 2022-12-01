@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../../store/session';
 import './LoginForm.css'
-import NavBar from '../../NavBar/NavBar';
+
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -34,6 +34,11 @@ const LoginForm = () => {
     return <Redirect to='/' />;
   }
 
+  const handleSubmitDemoUser = (e) => {
+    e.preventDefault()
+    setErrors([])
+    return dispatch(login('demo@aa.io', 'password'))
+  } 
 
 
   return (
@@ -46,6 +51,10 @@ const LoginForm = () => {
           <div className='login-error' key={ind}>{error}</div>
         ))}
       </div>
+      <div className='demo-user-container' onClick={(e) => handleSubmitDemoUser(e)}>
+        <i className="fas fa-user-circle fa-2x login-fa" />
+        <div className='demo-user-text'>Demo User</div>
+    </div>
       <div className='login-input-container'>
         <input
           className='login-input'
