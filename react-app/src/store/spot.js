@@ -152,7 +152,7 @@ export const createReview = (spotId, reviewInfo) => async (dispatch) => {
 
 
 export const updateReview = (reviewInfo, reviewId) => async (dispatch) => {
-  console.log(reviewInfo)
+
   const response = await fetch(`/api/reviews/${reviewId}`, {
     method: "put",
     headers: { "Content-Type": "application/json" },
@@ -160,14 +160,15 @@ export const updateReview = (reviewInfo, reviewId) => async (dispatch) => {
   });
   if (response.ok) {
     const updatedReview = await response.json();
-    dispatch(updateASpot(updatedReview));
+    console.log('THE UPDATED REVIEW',updatedReview)
+    dispatch(updateAReview(updatedReview));
     return updatedReview;
   }
 };
 
 
 export const deleteReview = (reviewId, spotId) => async (dispatch) => {
-  const response = await fetch(`/api/spots/${reviewId}`,
+  const response = await fetch(`/api/reviews/${reviewId}`,
     {
       method: "DELETE",
     }
@@ -219,27 +220,32 @@ export default function reducer(state = initialState, action) {
         newState.singleSpot = {}
         return newState
     case UPDATE_REVIEW:
+      console.log('Hitemmmmm')
       newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
-      newState.allSpots[action.payload.spot.id].Reviews[action.payload.id] = action.payload
-      let reviews = newState.singleSpot.Reviews
+      if(Object.values(newState.allSpots).length >= 1) newState.allSpots[action.payload.spotId].Reviews[action.payload.id] = action.payload
+      let reviews = [...newState.singleSpot.Reviews]
+      console.log('This is the action payload', action.payload)
       for(let i = 0; i < reviews.length; i++){
         let review = reviews[i];
-        if(review.id === action.payload.id) review = action.payload
+        if(review.id === action.payload.id) reviews[i] = action.payload
       }
+      console.log('This is reviews currently', reviews)
+      console.log(newState.singleSpot)
       newState.singleSpot.Reviews = reviews
       return newState
     case CREATE_REVIEW:
       newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
-      newState.allSpots[action.payload.spot.id].Reviews.append(action.payload)
-      newState.singleSpot.Reviews.append(action.payload)
+      let newReviews = [...newState.singleSpot.Reviews]
+      newReviews.push(action.payload)
+      newState.singleSpot.Reviews = newReviews
       return newState
     case DELETE_REVIEW:
       newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
-      delete newState.allSpots[action.payload.spotId].Reviews[action.payload.reviewId]
+      if(Object.values(newState.allSpots).length >= 1) delete newState.allSpots[action.payload.spotId].Reviews[action.payload.reviewId]
       let reviewsArr = newState.singleSpot.Reviews
       for(let i = 0; i < reviewsArr.length; i++){
         let review = reviewsArr[i];
-        if(review.id === action.payload.id) reviewsArr.splice(i, 1)
+        if(review.id === action.payload.reviewId) reviewsArr.splice(i, 1)
       }
       newState.singleSpot.Reviews = reviewsArr
       return newState

@@ -5,7 +5,7 @@ import { DeleteSpot } from './DeleteSpot';
 
 function DeleteSpotModal({spotId, spot}) {
   const [showModal, setShowModal] = useState(false)
-console.log(spot)
+
 
   return (
     <>

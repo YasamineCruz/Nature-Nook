@@ -8,6 +8,7 @@ import configureStore from './store';
 import { DeleteModalProvider } from './context/DeleteModal';
 import { EditModalProvider } from './context/EditModal';
 import { SignupModalProvider } from './context/SignupModal';
+import { ReviewUpdateModalProvider } from './context/ReviewUpdateModal';
 
 const store = configureStore();
 
@@ -17,9 +18,11 @@ ReactDOM.render(
     <SignupModalProvider>
     <DeleteModalProvider>
     <EditModalProvider>
+    <ReviewUpdateModalProvider>
     <Provider store={store}>
         <App />
       </Provider>
+      </ReviewUpdateModalProvider>
       </EditModalProvider>
       </DeleteModalProvider>
       </SignupModalProvider>
