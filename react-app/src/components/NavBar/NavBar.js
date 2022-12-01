@@ -14,7 +14,7 @@ const NavBar = () => {
   const [stop, setStop] = useState(false)
   const params = useParams()
   let url = window.location.href
-  if(url === 'http://localhost:3000/sign-up') return null
+  if(url === 'http://localhost:3000/sign-up' || url === 'https://nature-nook-deploy.onrender.com/sign-up') return null
 
   return (
     <nav className='navbar'>
