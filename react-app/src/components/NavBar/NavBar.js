@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import LogoutButton from '../auth/Login/LogoutButton';
 import CreateSpotModal from '../Spots/CreateSpotModal';
 import logo from '../../assets/logo/logo-no-background.png'
@@ -12,6 +12,9 @@ const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false)
   const sessionUser = useSelector(state => state.session.user)
   const [stop, setStop] = useState(false)
+  const params = useParams()
+  let url = window.location.href
+  if(url === 'http://localhost:3000/sign-up') return null
 
   return (
     <nav className='navbar'>
@@ -22,8 +25,13 @@ const NavBar = () => {
       </div>
       {!sessionUser && (
         <div className='logged-out-nav'>
+            <div className='link-wrapper'>
+            <NavLink className='dropdown-link' to='/spots' exact={true} activeClassName='active'>
+              Spots
+            </NavLink>
+          </div>
           <button className='log-in-button'>
-            <NavLink className='logged-out-dropdown-link1'to='/login' exact={true} activeClassName='active'>
+            <NavLink className='logged-out-dropdown-link1' to='/login' exact={true} activeClassName='active'>
               Log in
             </NavLink>
           </button>

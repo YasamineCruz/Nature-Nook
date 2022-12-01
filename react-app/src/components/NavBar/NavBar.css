@@ -102,6 +102,7 @@
     line-height: 16px;
     letter-spacing: 0.7px;
     text-decoration: none;
+    background-color: inherit;
 }
 
 .logged-out-dropdown-link2 {
@@ -121,8 +122,23 @@
     align-items: center;
     color: black;
     border: none;
+    border-radius: 25px;
+    margin-right: 20px;
+    max-height: 35px;
+    min-width: 90px;
+    margin-top: 5px;
+}
+
+.log-in-button-white {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: none;
     margin-right: 20px;
     min-width: 60px;
+    background-color: white;
 }
 
 .sign-up-button {
@@ -136,6 +152,18 @@
     border-color: #00c585;
     border-style: solid;
 }
+
+.link-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+    margin-top: 12.5px;
+    max-height: 35px;
+    font-size: 15px;
+    line-height: 20px;
+    margin-right: 20px;
+}
+
 
 
 .sign-up-button:hover .logged-out-dropdown-link2{

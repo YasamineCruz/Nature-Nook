@@ -47,7 +47,7 @@ export default function Review({reviews}){
                         <div className='review'>
                             {review.review}
                         </div>
-                        {currentUser.id === review.user.id && (
+                        {currentUser?.id === review.user.id && (
                             <div className='user-only'>
                             <DeleteReview reviewId={review.id} spotId={review.spotId}/>
                             <UpdateReviewModal review={review}/>
