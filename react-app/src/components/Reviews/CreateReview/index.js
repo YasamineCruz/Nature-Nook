@@ -39,35 +39,44 @@ export default function CreateReview({spotId}){
     }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <label>Review</label>
+        <div className='create-review-wrapper'>
+            <label className='add-review-bg-txt'>Add a review</label>
+            <form className='create-review-form' onSubmit={onSubmit}>
                 <textarea
+                className='review-textarea'
                 onChange={(e)=> setReview(e.target.value)}
                 value={review}
                 required
-                minLength={25}
+                minLength="25"
                 maxLength={500}
-                cols={40}
+                cols={60}
                 rows={10}
                 ></textarea>
-                <div>Would you recommend this spot?</div>
-                <label>Heck Ye my dude</label>
-                <input
-                type='radio'
-                name="user-radio" 
-                onClick={()=> setRecommends('yes')}
-                checked={recommends === 'yes'}
-                required
-                />
-                <label>Nah my Guy</label>
-                <input
-                type='radio'
-                name="user-radio" 
-                onClick={()=> setRecommends('no')}
-                checked={recommends === 'no'}
-                /> 
-                <button type='submit'>SUBMIT ME</button>
+                <div className='radio-container'>
+                    <div className='radio-text'>Would you recommend this spot?</div>
+                    <label className='review-radio-label'>Yes
+                    <input
+                    className='review-radio'
+                    type='radio'
+                    name="user-radio" 
+                    onClick={()=> setRecommends('yes')}
+                    checked={recommends === 'yes'}
+                    required
+                    />
+                    </label>
+                    <label className='review-radio-label'>No
+                    <input
+                    className='review-radio'
+                    type='radio'
+                    name="user-radio" 
+                    onClick={()=> setRecommends('no')}
+                    checked={recommends === 'no'}
+                    /> 
+                    </label>
+                </div>
+                <div className='button-wrapper'>
+                    <button className ='add-review-button' type='submit'>Add Review</button>
+                </div>
             </form>
             
         </div>
