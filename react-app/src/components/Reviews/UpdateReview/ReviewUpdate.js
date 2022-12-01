@@ -1,29 +1,28 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { createReview, getSpot } from '../../../store/spot';
-import './CreateReview.css'
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { createReview, updateReview } from "../../../store/spot"
+import { getSpot } from "../../../store/spot"
+import { recommendsCheck } from "../CreateReview"
+
+export default function UpdateReview({reviewInfo, setShowModal}) {
+    const [review, setReview] = useState(reviewInfo?.review)
+    const [recommends, setRecommends] = useState(reviewInfo.recommends === true ? 'yes' : 'no')
+    const [errors, setErrors] = useState([])
+    const dispatch = useDispatch()
 
 
-export const recommendsCheck = (el) => el === 'yes' ? true : false 
-
-export default function CreateReview({spotId}){
-    const [review, setReview] = useState('');
-    const [recommends, setRecommends] = useState('');
-    const [errors, setErrors] = useState([]);
-    const dispatch = useDispatch();
-
-    const onSubmit = (e) => {
+const onSubmit = async (e) => {
         e.preventDefault()
         let validationErrors = []
         if(!review) validationErrors.push('Please Enter a review')
         if(!recommends) validationErrors.push('Please recommend')
-        let reviewInfo = {
+        let reviewData = {
             review,
             recommends: recommendsCheck(recommends)
         }
         setErrors(validationErrors)
         if(validationErrors.length <= 0) {
-        dispatch(createReview(spotId, reviewInfo))
+        dispatch(updateReview(reviewData, reviewInfo.id))
         .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) {
@@ -32,6 +31,7 @@ export default function CreateReview({spotId}){
                 setErrors(validationErrors)
         });
         if(validationErrors.length <= 0){
+            setShowModal(false)
             setReview("")
             setRecommends("")
         }
@@ -41,8 +41,7 @@ export default function CreateReview({spotId}){
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <label>Review</label>
-                <textarea
+            <textarea
                 onChange={(e)=> setReview(e.target.value)}
                 value={review}
                 required
@@ -56,7 +55,7 @@ export default function CreateReview({spotId}){
                 <input
                 type='radio'
                 name="user-radio" 
-                onClick={()=> setRecommends('yes')}
+                onChange={()=> setRecommends('yes')}
                 checked={recommends === 'yes'}
                 required
                 />
@@ -64,12 +63,11 @@ export default function CreateReview({spotId}){
                 <input
                 type='radio'
                 name="user-radio" 
-                onClick={()=> setRecommends('no')}
+                onChange={()=> setRecommends('no')}
                 checked={recommends === 'no'}
                 /> 
                 <button type='submit'>SUBMIT ME</button>
             </form>
-            
         </div>
     )
 }

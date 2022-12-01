@@ -35,7 +35,6 @@ export default function CreateDescriptionComponent({setShowDropdown, setStop, se
                 required
                 minLength={300}
                 maxLength={500}
-                multiline={true}
                 cols={20}
                 rows={20}
                 ></textarea>

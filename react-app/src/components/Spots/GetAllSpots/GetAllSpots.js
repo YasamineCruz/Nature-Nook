@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getSpots } from "../../../store/spot";
+import { percentage } from "../GetASpot/GetASpot";
 import './GetAllSpots.css'
 
 export default function GetAllSpots(){
@@ -36,7 +37,7 @@ export default function GetAllSpots(){
                             <div className='price-container'>
                                 <div className='reviews-info-container'>
                                     <i class="fa-solid fa-thumbs-up green"></i>
-                                    100%
+                                    {percentage(Object.values(spot?.Reviews))}%
                                     <div className='reviews-info'></div>
                                 </div>
                                 <div className='ind-price'>${spot.price}/night</div>
