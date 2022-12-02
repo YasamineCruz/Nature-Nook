@@ -79,6 +79,7 @@
 }
 
 .login-error {
+    margin-top: 5px;
     background-color:  #f8bdb9;
     border: 1px solid #f8bdb9;
     height: 40px;
