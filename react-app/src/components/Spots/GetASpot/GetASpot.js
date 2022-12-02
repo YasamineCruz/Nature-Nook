@@ -86,6 +86,7 @@ export default function GetASpot(){
                             <div className='loc-small-text'>{spot.state}</div>
                             <i className="fa-solid fa-angle-right fa-2xs mar"></i>
                             <div className='loc-small-text'>{spot.city}</div>
+                            <i class={spot.type === 'lodging' ? "fa-solid fa-house type" : "fa-sharp fa-solid fa-campground type"}></i>
                         </div>
                         <div className='spot-name-wrapper'>
                            <h1 className='spot-single-name'>{spot.name}</h1>

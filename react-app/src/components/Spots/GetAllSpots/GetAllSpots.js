@@ -13,7 +13,7 @@ export default function GetAllSpots(){
 
 
     useEffect( () => {
-        let timer1 = setTimeout(() => setLoading(true), 2000);
+        let timer1 = setTimeout(() => setLoading(true), 1000);
         return () => clearTimeout(timer1);
       },[]);
 
@@ -45,7 +45,7 @@ export default function GetAllSpots(){
                                     <i class="fa-solid fa-circle-check ind pointer"></i> 
                                 </div>
                                 <div className='type-container pointer'>
-                                <i class={spot.type === 'lodging pointer' ? "fa-solid fa-house type pointer" : "fa-sharp fa-solid fa-campground type"}></i>
+                                <i class={spot.type === 'lodging' ? "fa-solid fa-house type pointer" : "fa-sharp fa-solid fa-campground type pointer"}></i>
                                 </div>
                             </div>
                             <div className='spot-text pointer'>{spot.city} {spot.state} {spot.country}</div>
