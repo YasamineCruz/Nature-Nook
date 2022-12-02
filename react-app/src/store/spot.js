@@ -160,7 +160,6 @@ export const updateReview = (reviewInfo, reviewId) => async (dispatch) => {
   });
   if (response.ok) {
     const updatedReview = await response.json();
-    console.log('THE UPDATED REVIEW',updatedReview)
     dispatch(updateAReview(updatedReview));
     return updatedReview;
   }

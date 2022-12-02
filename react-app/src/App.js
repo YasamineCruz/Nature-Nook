@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/Login/LoginForm';
 import SignUpForm from './components/auth/Signup/SignUpForm';
 import NavBar from './components/NavBar/NavBar';
@@ -19,6 +19,13 @@ import NotFound from './components/NotFound/NotFound';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const [spotCount, setSpotCount] = useState('')
+  const spots = useSelector(state => Object.values(state?.spot?.allSpots))
+
+
+  useEffect(()=>{
+    if(spots) setSpotCount(spots.length)
+  },[])
 
   useEffect(() => {
     (async() => {
@@ -50,7 +57,7 @@ function App() {
           <GetAllSpots />
         </Route>
         <Route path='/spots/:spotId' exact={true}>
-          <GetASpot />
+          <GetASpot spotCount={spotCount}/>
         </Route>
         <Route path='*'>
           <NotFound />
