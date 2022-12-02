@@ -2,7 +2,7 @@ import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 import { useEffect } from "react";
 
-let activitiesList = ['Boating', 'Fishing', 'Hiking', 'Climbing', 'Surfing', 'Swimming', 'Horseback', 'Snow', 'Whitewater-paddling', 'Paddling', 'Wind-sports', 'Wildlife-watching']
+export const activitiesList = ['Boating', 'Fishing', 'Hiking', 'Climbing', 'Surfing', 'Swimming', 'Horseback', 'Snow', 'Whitewater-rafting', 'Paddling', 'Wind-sports', 'Wildlife-watching']
 
 export default function CreateActivitiesComponent({setShowDropdown, setStop, setShowModal, submitted, activities, setActivities, setErrors, setCount, count, setSubmitted, errors}) {
     
@@ -40,6 +40,7 @@ export default function CreateActivitiesComponent({setShowDropdown, setStop, set
                         checked={activities.find(e => e.toLowerCase() === activity.toLowerCase())}
                         onChange={()=>{
                             let copyActivites = [...activities]
+                            console.log(copyActivites)
                             if (copyActivites.find(e => e.toLowerCase() === activity.toLowerCase())) {
                                 let i = copyActivites.findIndex(e => e.toLowerCase() === activity.toLowerCase())
                                 copyActivites.splice(i, 1)

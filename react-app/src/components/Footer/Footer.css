@@ -1,0 +1,33 @@
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 1px solid #28400C;
+    background: rgba(65, 189, 149, .2);
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+}
+
+.img-small {
+    max-width: 14px;
+    max-height: 14x;
+    margin-right: 3.5px;
+}
+
+
+.bottom-not-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+}
+
+.link {
+    cursor: pointer;
+}

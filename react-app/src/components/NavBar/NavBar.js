@@ -45,7 +45,7 @@ const NavBar = () => {
       )}
       {sessionUser && (
          <div className='dropdown-and-icon-container'>
-         <img src={fav} alt='' className='dropdown-fav' onMouseEnter={() => setShowDropdown(true)} />
+         <img src={fav} alt='' className='dropdown-fav pointer' onMouseEnter={() => setShowDropdown(true)} />
         {showDropdown && (
           <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>
             <div className='dropdown-link-wrapper'>

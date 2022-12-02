@@ -264,3 +264,9 @@
 .check2 {
     background-color: white;
 }
+
+.card-holder-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

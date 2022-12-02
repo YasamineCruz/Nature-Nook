@@ -9,7 +9,7 @@ function DeleteSpotModal({spotId, spot}) {
 
   return (
     <>
-      <div onClick={() => {
+      <div className='pointer' onClick={() => {
         setShowModal(true);
       }}>Delete Spot</div>
       {showModal && (
