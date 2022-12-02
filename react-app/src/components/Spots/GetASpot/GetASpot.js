@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getImg } from "../../../component-resources";
@@ -17,6 +17,7 @@ import Review from "../../Reviews/Review";
 import CreateReview from "../../Reviews/CreateReview";
 import AmenityCard from "./AmenitiesCard";
 import ActivityCard from "./ActivitiesCard";
+import loadingImg from '../../../assets/logo/loading.gif'
 
 export const percentage = (reviewsArr) => {
     if(reviewsArr.length <= 0) return 100
@@ -29,15 +30,22 @@ export const percentage = (reviewsArr) => {
     return Number.parseFloat(percent).toFixed(0) 
 }
 
+
+
 export default function GetASpot(){
     const dispatch = useDispatch()
     const params = useParams()
     const { spotId } = params
     const spot = useSelector((state) => state.spot.singleSpot)
     const user = useSelector((state) => state.session.user)
+    const [loading, setLoading] = useState(false)
 
-    console.log(spot)
 
+    useEffect( () => {
+          let timer1 = setTimeout(() => setLoading(true), 2000);
+          return () => clearTimeout(timer1);
+        },[]);
+    
     useEffect(()=>{
         dispatch(getSpot(spotId))
     },[dispatch])
@@ -52,6 +60,13 @@ export default function GetASpot(){
 
     
     return (
+        <div>
+             {!loading && (
+                <div className='bg-white2'>
+                    <img className='loading' src={loadingImg} alt=''/>
+                </div>
+            )}
+            {loading && (
         <div className='a-spot-container'>
             {spot && (
                 <div className='a-spot-wrapper'>
@@ -122,6 +137,9 @@ export default function GetASpot(){
                         <CreateReview spotId={spotId}/>
                     )}
                 </div>
+            )}
+        </div>
+
             )}
         </div>
     )
