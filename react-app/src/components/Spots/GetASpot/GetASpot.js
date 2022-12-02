@@ -18,6 +18,7 @@ import CreateReview from "../../Reviews/CreateReview";
 import AmenityCard from "./AmenitiesCard";
 import ActivityCard from "./ActivitiesCard";
 import loadingImg from '../../../assets/logo/loading.gif'
+import NotFound from "../../NotFound/NotFound";
 
 export const percentage = (reviewsArr) => {
     if(reviewsArr.length <= 0) return 100
@@ -32,32 +33,33 @@ export const percentage = (reviewsArr) => {
 
 
 
-export default function GetASpot(){
+export default function GetASpot({spotCount}){
     const dispatch = useDispatch()
     const params = useParams()
     const { spotId } = params
     const spot = useSelector((state) => state.spot.singleSpot)
     const user = useSelector((state) => state.session.user)
     const [loading, setLoading] = useState(false)
-
-
+    
+    
     useEffect( () => {
           let timer1 = setTimeout(() => setLoading(true), 2000);
           return () => clearTimeout(timer1);
         },[]);
     
-    useEffect(()=>{
-        dispatch(getSpot(spotId))
-    },[dispatch])
-
-    useEffect(() => {
-        document.body.classList.add('bg-white');
+        useEffect(()=>{
+            dispatch(getSpot(spotId))
+        },[dispatch])
+        
+        useEffect(() => {
+            document.body.classList.add('bg-white');
 
         return function cleanup() {
             document.body.classList.remove('bg-white');
         }
     }, [])
-
+ 
+    if(isNaN(spotId)) return (<NotFound />)
     
     return (
         <div>
@@ -90,7 +92,7 @@ export default function GetASpot(){
                         </div>
                         <div className='spot-name-wrapper'>
                            <h1 className='spot-single-name'>{spot.name}</h1>
-                            <i class="fa-solid fa-circle-check ind check2"></i>  
+                            <i class="fa-solid fa-circle-check check2"></i>  
                         </div>
                         <div className='reviews-info-container-single'>
                             <i class="fa-solid fa-thumbs-up green"></i>

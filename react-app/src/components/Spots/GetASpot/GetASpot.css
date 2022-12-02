@@ -263,6 +263,9 @@
 
 .check2 {
     background-color: white;
+    color: rgb(0, 162, 255);
+    margin-left: 5px;
+    margin-bottom: 4%;
 }
 
 .card-holder-container {
