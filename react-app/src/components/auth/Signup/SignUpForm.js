@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 import logo from '../../../assets/logo/logo-no-background.png'
+import eye from '../../../assets/logo/eye.png'
+import uneye from '../../../assets/logo/uneye.png'
+
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -11,15 +14,19 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('')
+  const [lastName, setLastName] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [passwordType, setPasswordType] = useState('password');
+  const [checked, setChecked] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+      
+  useEffect(()=> {
+    if(checked) setPasswordType('text')
+    else setPasswordType('password')
+  }, [passwordType, checked])
 
-
-
-
-  const onSignUp = async (e) => {
-    e.preventDefault();
+  useEffect(()=>{
     let validationErrors = [];
     if(password !== repeatPassword) validationErrors.push('Passwords do not match')
     if(!username || username.length < 3 || username.length > 20) validationErrors.push('Username must be between 3 and 20 characters')
@@ -28,7 +35,14 @@ const SignUpForm = () => {
     if(!password || password.length < 6) validationErrors.push('Password must be atleast 6 characters long')
     if(!email || !email.includes('@') || !email.includes('.') || email[0] === '.' || email[-1] === '.' || email.split('.').includes('')) validationErrors.push('Invalid email entered')
     setErrors(validationErrors)
-    if (password === repeatPassword && validationErrors.length <= 0) {
+  },[password, repeatPassword, username, firstName, lastName, email])
+
+
+
+  const onSignUp = async (e) => {
+    e.preventDefault();
+    setSubmitted(true)
+    if (password === repeatPassword && errors.length < 1) {
       const data = await dispatch(signUp(username, email, password, firstName, lastName));
       if (data) {
         setErrors([data[0].split(':')[1]])
@@ -75,11 +89,13 @@ const SignUpForm = () => {
         Everywhere you want to camp.
         </div>
         <br/>
-        <div>
+          {errors && submitted && (
+          <div>
              {errors.map((error, ind) => (
-          <div className='signup-error' key={ind}>{error}</div>
-            ))}
-        </div>
+               <div className='signup-error' key={ind}>{error}</div>
+             ))}
+          </div>
+          )}
       </div>
       <div className='full-name-div'>
         <input
@@ -125,7 +141,7 @@ const SignUpForm = () => {
       <div>
         <input
           className='sign-input'
-          type='password'
+          type={passwordType}
           name='password'
           onChange={updatePassword}
           value={password}
@@ -135,13 +151,22 @@ const SignUpForm = () => {
       <div>
         <input
           className='sign-input'
-          type='password'
+          type={passwordType}
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
           placeholder='Reenter password'
         ></input>
+      </div>
+      <div className='view-me'>
+        <label className='view-pass'>View password</label>
+        <img
+          className='view'
+          onClick={()=> setChecked(!checked)}
+          src={checked ? eye : uneye}
+          alt=''
+          />
       </div>
       <button className='sign-up-button2' type='submit'>Agree and join NatureNook</button>
       <div className={errors.length >= 1 ? 'switch-margin' : 'switch-login'}>
