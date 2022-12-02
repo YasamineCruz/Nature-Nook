@@ -1,19 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { getSpots } from "../../../store/spot";
 import { percentage } from "../GetASpot/GetASpot";
 import './GetAllSpots.css'
+import loadingImg from '../../../assets/logo/loading.gif'
 
 export default function GetAllSpots(){
     const dispatch = useDispatch()
     const spots = useSelector((state) => Object.values(state.spot.allSpots))
+    const [loading, setLoading] = useState(false)
+
+
+    useEffect( () => {
+        let timer1 = setTimeout(() => setLoading(true), 2000);
+        return () => clearTimeout(timer1);
+      },[]);
 
     useEffect(()=>{
         dispatch(getSpots())
     },[dispatch])
 
     return (
+        <div>
+        {!loading && (
+                <div className='bg-brown'>
+                    <img className='loading2' src={loadingImg} alt=''/>
+                </div>
+        )}
+        {loading && (
         <div className='all-spots-container'>
             {spots?.length >= 1 && (
                 spots.map(spot => {
@@ -46,6 +61,8 @@ export default function GetAllSpots(){
                  )
                 })
             )}
+        </div>
+        )}
         </div>
     )
 } 
