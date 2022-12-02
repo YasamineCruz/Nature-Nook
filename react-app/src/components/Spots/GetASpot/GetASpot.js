@@ -42,7 +42,7 @@ export default function GetASpot(){
 
 
     useEffect( () => {
-          let timer1 = setTimeout(() => setLoading(true), 1000);
+          let timer1 = setTimeout(() => setLoading(true), 2000);
           return () => clearTimeout(timer1);
         },[]);
     
