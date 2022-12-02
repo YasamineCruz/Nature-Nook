@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getImg } from "../../../component-resources";
-import { getSpot, updateReview } from "../../../store/spot";
+import { checkUrl, getImg } from "../../../component-resources";
+import { getSpot, getSpots} from "../../../store/spot";
 import DeleteSpotModal from "../DeleteSpot";
 import EditSpotModal from "../EditASpot";
 import './GetASpot.css'
@@ -38,16 +38,19 @@ export default function GetASpot({spotCount}){
     const params = useParams()
     const { spotId } = params
     const spot = useSelector((state) => state.spot.singleSpot)
+    const spots = useSelector((state)=> state.spot.allSpots)
     const user = useSelector((state) => state.session.user)
     const [loading, setLoading] = useState(false)
     
     
+
     useEffect( () => {
           let timer1 = setTimeout(() => setLoading(true), 2000);
           return () => clearTimeout(timer1);
         },[]);
     
         useEffect(()=>{
+            dispatch(getSpots())
             dispatch(getSpot(spotId))
         },[dispatch])
         
@@ -58,9 +61,11 @@ export default function GetASpot({spotCount}){
             document.body.classList.remove('bg-white');
         }
     }, [])
+
+    let notFound;
+    if(spots) notFound = checkUrl(spots, spotId)
+    if(notFound) return notFound
  
-    if(isNaN(spotId)) return (<NotFound />)
-    
     return (
         <div>
              {!loading && (
