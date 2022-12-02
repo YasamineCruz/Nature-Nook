@@ -8,7 +8,7 @@ function EditSpotModal({spotId, spot}) {
 
   return (
     <>
-      <div onClick={() => {
+      <div className='pointer' onClick={() => {
         setShowModal(true);
       }}>Edit Spot</div>
       {showModal && (

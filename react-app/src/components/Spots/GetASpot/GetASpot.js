@@ -15,6 +15,8 @@ import toilet from '../../../assets/logo/toilet.png'
 import fire from '../../../assets/logo/fire.png'
 import Review from "../../Reviews/Review";
 import CreateReview from "../../Reviews/CreateReview";
+import AmenityCard from "./AmenitiesCard";
+import ActivityCard from "./ActivitiesCard";
 
 export const percentage = (reviewsArr) => {
     if(reviewsArr.length <= 0) return 100
@@ -56,7 +58,7 @@ export default function GetASpot(){
                     {spot.Photos && (
                         <div className='a-spot-img-container'>
                           <img className='spot-single-img' src={getImg(spot.Photos)} alt=''/>
-                          <div className='add-container' type='button' onClick={() => window.location.href ='https://github.com/YasamineCruz'}>
+                          <div className='add-container' type='button' onClick={() => window.open('https://github.com/YasamineCruz', '_blank')}>
                             <img className='add' src={add} alt=''/> 
                           </div>
                         </div>
@@ -110,143 +112,9 @@ export default function GetASpot(){
                                 </div>
                             </div>
                         )}
-                        <div className='amenities-card-wrapper'>
-                            <div className='big-Amenities'>Amenities</div>
-                            {amenitiesList.map(amenity => {
-                                let og = amenity
-                                let amenities;
-                                if(spot.amenities) amenities = spot.amenities.split('.').join(" ").toLowerCase()
-                                amenity = amenity.split("-").join(" ")
-                                if(amenity === 'I have none of these') return null
-                                if(amenity === 'Drinking water') {
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                           <i className={amenities?.includes(og.toLowerCase()) ? "fa-sharp fa-solid fa-faucet icon" : "fa-regular fa-circle-xmark icon"}></i>
-                                            <div className='lil-amenity'> {amenities?.includes(og.toLowerCase()) ? `Portable water available` : `No Portable water`} </div>
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Trash cans') {
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                            <i className={amenities?.includes(og.toLowerCase()) ? "fa-solid fa-trash-can icon" : "fa-regular fa-circle-xmark icon"}></i>
-                                            <div className='lil-amenity'> {amenities?.includes(og.toLowerCase()) ? `${amenity} available` : `No ${amenity}`} </div>
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Kitchen') {
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                            <i className={amenities?.includes(og.toLowerCase()) ? "fa-solid fa-utensils icon" : "fa-regular fa-circle-xmark icon"}></i>
-                                            <div className='lil-amenity'> {amenities?.includes(og.toLowerCase()) ? `${amenity} available` : `No ${amenity}`} </div>
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Showers'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                            <i className={amenities?.includes(og.toLowerCase()) ? "fa-solid fa-bath icon" : "fa-regular fa-circle-xmark icon"}></i>
-                                            <div className='lil-amenity'> {amenities?.includes(og.toLowerCase()) ? `${amenity} available` : `No ${amenity}`} </div>
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Picnic table'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                        {amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <img className='icon' src={picnic} alt=''/>
-                                                <div className='lil-amenity'>{amenity}</div> 
-                                            </div>
-                                        )}
-                                        {!amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <i className='fa-regular fa-circle-xmark icon'></i>
-                                                <div className='lil-amenity'>No {amenity}</div>
-                                            </div>
-                                        )}
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Wifi'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                         <i className={amenities?.includes(og.toLowerCase()) ? "fa-solid fa-wifi icon": "fa-regular fa-circle-xmark icon"}></i>
-                                         <div className='lil-amenity'> {amenities?.includes(og.toLowerCase()) ? `${amenity} available` : `No ${amenity}`} </div>
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Laundry'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                        {amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <img className='icon' src={laundry} alt=''/>
-                                                <div className='lil-amenity'>{amenity}</div> 
-                                            </div>
-                                        )}
-                                        {!amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <i className='fa-regular fa-circle-xmark icon'></i>
-                                                <div className='lil-amenity'>No {amenity}</div>
-                                            </div>
-                                        )}
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Toilet'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                        {amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <img className='icon' src={toilet} alt=''/>
-                                                <div className='lil-amenity'>{amenity}</div> 
-                                            </div>
-                                        )}
-                                        {!amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <i className='fa-regular fa-circle-xmark icon'></i>
-                                                <div className='lil-amenity'>No {amenity}</div>
-                                            </div>
-                                        )}
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Hot Tub'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                            <i className={amenities?.includes(og.toLowerCase()) ? "fa-solid fa-hot-tub-person icon": "fa-regular fa-circle-xmark icon"}></i>
-                                            <div className='lil-amenity'> {amenities?.includes(og.toLowerCase()) ? `${amenity} available` : `No ${amenity}`} </div>
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Campfires allowed'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                        {amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <img className='icon' src={fire} alt=''/>
-                                                <div className='lil-amenity'>{amenity}</div> 
-                                            </div>
-                                        )}
-                                        {!amenities?.includes(og.toLowerCase()) && (
-                                            <div className='lil-amenity-wrapper no-padding'>
-                                                <i className='fa-regular fa-circle-xmark icon'></i>
-                                                <div className='lil-amenity'>No {amenity}</div>
-                                            </div>
-                                        )}
-                                        </div>
-                                    )
-                                }
-                                if(amenity === 'Pets allowed'){
-                                    return (
-                                        <div className='lil-amenity-wrapper'>
-                                            <i class={amenities?.includes(og.toLowerCase()) ? "fa-solid fa-paw": "fa-regular fa-circle-xmark icon"}></i>
-                                            <div className='lil-amenity'> {amenities?.includes(og.toLowerCase()) ? `${amenity} available` : `No ${amenity}`} </div>
-                                        </div>
-                                    )
-                                }
-                            })}
+                        <div className='card-holder-container'>
+                            <AmenityCard amenitiesList={amenitiesList} spot={spot} laundry={laundry} picnic={picnic} toilet={toilet} fire={fire}/>
+                            <ActivityCard spot={spot}/>
                         </div>
                     </div>
                     <Review reviews={spot?.Reviews}/>

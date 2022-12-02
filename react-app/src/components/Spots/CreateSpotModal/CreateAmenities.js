@@ -29,6 +29,7 @@ export default function CreateAmenitiesComponent({setShowDropdown, setStop, setS
                     Which amenities are available to NatureNookers?</label>
                     <div className='amenities-button-container'>
                 {amenitiesList.map((amenity) => {
+                        console.log(amenities)
                         if(amenity === 'I-have-none-of-these' && amenities.length >= 1 && amenities[0] !== 'I-have-none-of-these') return null
                         return (
                         <button

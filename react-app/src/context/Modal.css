@@ -50,6 +50,10 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.create-spot {
+  cursor: pointer;
+}
+
 .activities-div {
   margin-bottom: 8%;
 }

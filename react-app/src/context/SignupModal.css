@@ -116,3 +116,22 @@
 .switch-login {
     margin-top: 10px;;
 }
+
+.view-pass {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.view {
+    max-width: 20px;
+    max-height: 20px;
+    margin-left: 5px;
+}
+
+.view-me {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
