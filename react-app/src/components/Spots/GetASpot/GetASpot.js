@@ -18,7 +18,7 @@ import CreateReview from "../../Reviews/CreateReview";
 import AmenityCard from "./AmenitiesCard";
 import ActivityCard from "./ActivitiesCard";
 import loadingImg from '../../../assets/logo/loading.gif'
-import NotFound from "../../NotFound/NotFound";
+import { addZero } from "../../../component-resources";
 
 export const percentage = (reviewsArr) => {
     if(reviewsArr.length <= 0) return 100
@@ -33,7 +33,7 @@ export const percentage = (reviewsArr) => {
 
 
 
-export default function GetASpot({spotCount}){
+export default function GetASpot(){
     const dispatch = useDispatch()
     const params = useParams()
     const { spotId } = params
@@ -41,21 +41,29 @@ export default function GetASpot({spotCount}){
     const spots = useSelector((state)=> state.spot.allSpots)
     const user = useSelector((state) => state.session.user)
     const [loading, setLoading] = useState(false)
-    
-    
+    const [img, setImg] = useState('')
+
+    useEffect(()=>{
+        if(spot.Photos) {
+            console.log(spot.Photos)
+            if(spot.Photos.length > 0) setImg(getImg(spot.Photos))
+            if(spot.Photos.length < 1) setImg('https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=')
+        }
+    },[spot.Photos])
+
 
     useEffect( () => {
           let timer1 = setTimeout(() => setLoading(true), 2000);
           return () => clearTimeout(timer1);
         },[]);
     
-        useEffect(()=>{
-            dispatch(getSpots())
-            dispatch(getSpot(spotId))
-        },[dispatch])
+    useEffect(()=>{
+        dispatch(getSpots())
+        dispatch(getSpot(spotId))
+    },[dispatch])
         
-        useEffect(() => {
-            document.body.classList.add('bg-white');
+    useEffect(() => {
+        document.body.classList.add('bg-white');
 
         return function cleanup() {
             document.body.classList.remove('bg-white');
@@ -63,8 +71,9 @@ export default function GetASpot({spotCount}){
     }, [])
 
     let notFound;
-    if(spots) notFound = checkUrl(spots, spotId)
+    if(Object.values(spots).length >= 1) notFound = checkUrl(spots, spotId)
     if(notFound) return notFound
+    
  
     return (
         <div>
@@ -79,7 +88,7 @@ export default function GetASpot({spotCount}){
                 <div className='a-spot-wrapper'>
                     {spot.Photos && (
                         <div className='a-spot-img-container'>
-                          <img className='spot-single-img' src={getImg(spot.Photos)} alt=''/>
+                          <img className='spot-single-img' src={img} alt=''/>
                           <div className='add-container' type='button' onClick={() => window.open('https://github.com/YasamineCruz', '_blank')}>
                             <img className='add' src={add} alt=''/> 
                           </div>
@@ -120,7 +129,7 @@ export default function GetASpot({spotCount}){
                             <div className='middle-container'>
                                 <p className='spot-single-desc'>{spot.description}</p>
                                 <div className='price-single-card'>
-                                    <div>${spot.price}</div>
+                                    <div>${addZero(spot.price)}</div>
                                     <div className='per-text'>per night (2 guests)</div>
                                 </div>
                             </div>

@@ -50,7 +50,13 @@ const NavBar = () => {
           <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>
             <div className='dropdown-link-wrapper'>
             <NavLink className='dropdown-link' to='/spots' exact={true} activeClassName='active'>
-              Spots
+              All Spots
+            </NavLink>
+          </div>
+
+            <div className='dropdown-link-wrapper'>
+            <NavLink className='dropdown-link' to='/userSpots' exact={true} activeClassName='active'>
+              Your Spots
             </NavLink>
           </div>
 

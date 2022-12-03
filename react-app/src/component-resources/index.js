@@ -25,17 +25,24 @@ export function getImg(arr) {
     return url
 }
 
-
-export function checkUrl(obj, id){
-    if(isNaN(id)) return (<NotFound />)
-    if(!obj[id]) return (<NotFound />)
-    else return false
+export function getImgId(arr) {
+    let id
+    arr.forEach(photo => {
+        if(photo.preview === true) id = photo.id
+    })
+  
+    return id
 }
 
-// let item = 4.9;
+export const addZero = (number) => {
+    let str = number.toString()
+    if(str.split('.').length === 2){
+        console.log('THe String', str)
+        console.log('The String split', str.split('.'))
+        if(str.split('.')[1].length === 1) return `${str.split('.')[0]}.${str.split('.')[1]}0`
+        return number
+    }
+    return number
+} 
 
-// let itemQty = 1;
-
-// const formatting_options = { style: 'currency', currency: 'USD', minimumFractionDigits: 2, }; const dollarFormatter = new Intl.NumberFormat("en-US", formatting_options); 
-
-// {dollarFormatter.format(item[1][0].price * itemQty[item[1][0].id])} 
+export const checkUrl = (obj, id) => isNaN(id) || !obj[id] ? (<NotFound />) : false;

@@ -4,6 +4,7 @@ from .users import seed_users, undo_users
 from .spots import seed_spots, undo_spots
 from .spot_images import seed_spot_images, undo_spot_images
 from .reviews import seed_reviews, undo_reviews
+from .user_photos import seed_user_photos, undo_user_photos
 
 
 from app.models.db import db, environment, SCHEMA
@@ -24,8 +25,10 @@ def seed():
         undo_reviews()
         undo_spot_images()
         undo_spots()
+        undo_user_photos()
         undo_users()
     seed_users()
+    seed_user_photos()
     seed_spots()
     seed_spot_images()
     seed_reviews()
@@ -39,5 +42,6 @@ def undo():
    undo_reviews()
    undo_spot_images()
    undo_spots()
+   undo_user_photos()
    undo_users()
     # Add other undo functions here

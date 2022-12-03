@@ -91,6 +91,7 @@ export const getUserSpots = () => async (dispatch) => {
   const response = await fetch(`/api/spots/current`);
   if (response.ok) {
     const userSpots = await response.json();
+    console.log(userSpots)
     dispatch(getAUsersSpots(userSpots.UserSpots));
     return userSpots;
   }

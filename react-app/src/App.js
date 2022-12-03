@@ -15,6 +15,7 @@ import SignupUserModal from './components/auth/Signup';
 import SignUpPage from './components/auth/Signup/SignupPage';
 import Footer from './components/Footer/Footer';
 import NotFound from './components/NotFound/NotFound';
+import GetUserSpots from './components/Spots/GetUserSpots/UserSpots';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -53,12 +54,16 @@ function App() {
           <SplashPage />
           <Footer />
         </Route>
+        <Route path='/userSpots' exact={true}>
+          <GetUserSpots />
+        </Route>
         <Route path='/spots' exact={true}>
           <GetAllSpots />
         </Route>
         <Route path='/spots/:spotId' exact={true}>
           <GetASpot spotCount={spotCount}/>
         </Route>
+    
         <Route path='*'>
           <NotFound />
         </Route>

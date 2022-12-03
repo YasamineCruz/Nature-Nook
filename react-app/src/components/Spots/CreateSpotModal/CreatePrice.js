@@ -40,8 +40,14 @@ export default function CreatePriceComponent({setShowDropdown, setStop, setShowM
                         pArr.splice(i,1)
                     }
                     let p = pArr.join("")
+                    let testString = p.split('.')
+                    let pass = true
+                    if(testString.length >= 3) pass = false
+                    if(testString.length === 2){
+                        if(testString[1].length >= 3) pass = false
+                    }
                     if(p === '') setPrice(`${p}`)
-                    if(regex.test(p)) setPrice(`$${p}`)
+                    if(regex.test(p) && pass) setPrice(`$${p}`)
                 }}
                 value={price}
                 placeholder='[XX]'

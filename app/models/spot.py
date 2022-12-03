@@ -48,7 +48,8 @@ class Spot(db.Model):
                 'country': self.country,
                 'amenities': self.amenities,
                 'type': self.type,
-                'activities': self.activities
+                'activities': self.activities,
+                'createdAt': self.created_at
              }
         if with_ltlg == False and photos == True and reviews == True:
             return {
@@ -63,6 +64,7 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
@@ -79,6 +81,7 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
         if reviews == False and photos == True:
@@ -94,6 +97,7 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
             }   
         else:
@@ -109,6 +113,7 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews],
                 'lat': self.lat,

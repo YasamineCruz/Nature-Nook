@@ -15,10 +15,11 @@ import BackButton from "../CreateSpotModal/BackButton";
 import '../../../context/Modal.css'
 import '../../../context/EditModal.css'
 import { resetPrice } from "../CreateSpotModal/CreateSpotForm";
+import ReuploadPicture from "./EditImage";
+import { getImgId } from "../../../component-resources";
 
 export default function EditSpot({setShowModal, spot, spotId}) {
     const dispatch = useDispatch();
-    const history = useHistory();
     const [submitted, setSubmitted] = useState(false);
     const [name, setName] = useState(spot.name);
     const [description, setDescription] = useState(spot.description);
@@ -31,16 +32,16 @@ export default function EditSpot({setShowModal, spot, spotId}) {
     const [count, setCount] = useState(0)
     const [activities, setActivities] = useState(spot.activities.split(' '))
     const [errors, setErrors] = useState([]);
-    const [url, setUrl] = useState(getImg(spot.Photos))
     const [stop, setStop] = useState(false)
     const [showDropdown, setShowDropdown] = useState(false)
+    let id = getImgId(spot.Photos)
 
     const handleSubmit = async(e) => {
         e.preventDefault();
         let validationErrors = []
-        setSubmitted(true)
-        setShowModal(false)
-        setCount(0)
+        // setSubmitted(true)
+        // setShowModal(false)
+        setCount(8)
         
         let spotInfo = {
             name,
@@ -52,8 +53,8 @@ export default function EditSpot({setShowModal, spot, spotId}) {
             amenities: amenities.join(" "),
             type,
             activities: activities.join(" "),
-            url
         }
+        console.log('-----------spotInfo----------------', spotInfo)
     
         if(errors.length <= 0){
             await dispatch(updateSpot(spotInfo, spotId))
@@ -75,7 +76,6 @@ export default function EditSpot({setShowModal, spot, spotId}) {
                 setAmenities("")
                 setType("")
                 setActivities("")
-                history.push(`/spots/${spotId}`)
             }
         }
     }
@@ -104,10 +104,10 @@ export default function EditSpot({setShowModal, spot, spotId}) {
         {count === 6 && (
           <CreateActivitiesComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
-        {count === 7 && (
-          <CreateImageComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+        {count === 8 && (
+          <ReuploadPicture spotId={spotId} id={id} setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
-            {count === 8 && (
+            {count === 7 && (
              <div>
               <div className='top-container'>
                 <button className='exit-button' type='button' onClick={()=> setShowModal(false)}>

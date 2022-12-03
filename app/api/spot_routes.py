@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Spot, db, SpotImage, Review
 from app.forms import SpotImageForm, SpotForm, ReviewForm
 from app.api.auth_routes import validation_errors_to_error_messages
+from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename
 
 spot_routes = Blueprint('spots', __name__)
 
@@ -22,12 +23,12 @@ def add_spot():
     """
     Create a new spot and return it in a dictionary
     """
+    
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         data = form.data
-        print(data)
         
         new_spot = Spot(
             owner_id = current_user.id,
@@ -42,18 +43,41 @@ def add_spot():
             activities = data['activities']
         )
         db.session.add(new_spot)
-        db.session.flush()
         
-        new_spotimage = SpotImage(
-            spot_id = new_spot.id,
-            url = data['url'],
-            preview = True,
-        )        
-        db.session.add(new_spotimage)
         db.session.commit()
         return jsonify(new_spot.to_dict(False, False, True, True))
     
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@spot_routes.route("/<int:id>/spot_images", methods=["POST"])
+@login_required
+def upload_image(id):
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+ 
+    image = request.files["image"]
+    
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+    
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    # flask_login allows us to get the current user from the request
+    new_image = SpotImage(spot_id=id, url=url, preview=True)
+
+    db.session.add(new_image)
+    db.session.commit()
+    return {"url": url}
 
 
 @spot_routes.route('/<int:id>', methods=["PUT"])
@@ -68,6 +92,7 @@ def edit_spot(id):
 
     if form.validate_on_submit():
         data = form.data
+       
 
         spot.name = data['name']
         spot.description = data['description']
@@ -79,29 +104,47 @@ def edit_spot(id):
         spot.type = data['type']
         spot.activities = data['activities']
 
-        spot_image = SpotImage.query.filter(SpotImage.spot_id == id, SpotImage.url == data['url']).first()
-
-        currentImages = SpotImage.query.filter(SpotImage.spot_id == id).all()
-
-        for photo in currentImages:
-            photo.preview = False
-            db.session.commit()
-
-
-        if not spot_image:
-            new_spotimage = SpotImage(
-                spot_id = id,
-                url = data['url'],
-                preview = True,
-            )
-            db.session.add(new_spotimage)
-            db.session.commit()
-            return jsonify(spot.to_dict(False, False, True, True))
-        else:
-            spot_image.preview = True
-            db.session.commit()
-            return jsonify(spot.to_dict(False, False, True, True))
+        db.session.commit()
+        return jsonify(spot.to_dict(False, False, True, True))
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
+@spot_routes.route('/<int:id>/spot_images/<int:img_id>', methods=['POST'])
+@login_required
+def update_image(id, img_id):
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+   
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+    
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when we tried to upload
+        # so we send back that error message
+        return upload, 400
+
+    url = upload["url"]
+    image = SpotImage.query.get(img_id)
+    current_images = SpotImage.query.filter(SpotImage.spot_id == id).all()
+
+    for photo in current_images:
+        photo.preview = False
+        db.session.commit()
+
+    image.url = url
+    image.preview = True
+    db.session.commit()
+    return {"url": url}
+    
+    
 
 
 @spot_routes.route('/<int:id>')
@@ -157,7 +200,7 @@ def user_spots():
     """
     spots = current_user.spots
 
-    return jsonify({ 'UserSpots': { spot['id'] : spot.to_dict() for spot in spots} })
+    return jsonify({ 'UserSpots': [ spot.to_dict() for spot in spots ]})
 
 
 @spot_routes.route('/<int:spot_id>/reviews')
