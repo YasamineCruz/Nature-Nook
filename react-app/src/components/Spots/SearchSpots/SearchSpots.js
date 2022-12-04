@@ -13,7 +13,8 @@ export default function SearchSpots(){
     const [loading, setLoading] = useState(false)
     spots.sort((a, b) => b.id - a.id)
 
-
+    console.log('location', location)
+    console.log('location.search',location.search)
 
     useEffect( () => {
         let timer1 = setTimeout(() => setLoading(true), 1000);

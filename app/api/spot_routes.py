@@ -29,28 +29,21 @@ def search():
     print('sadasdfdfgfdgdfg')
 
     if form.validate_on_submit():
-        print('fjdfgkdjfgkjfdgkjfdgkdfgjdfkjgkdfjgkfdgkdfjgkfd')
         data = form.data
         field = data['field']
         search = data['search']
         if field == 'name':
-            print('hit')
             spots = Spot.query.filter(Spot.name.ilike(f"%{search}%")).all()
-            print('spots', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
         if field == 'type':
-            print('hit')
             spots = Spot.query.filter(Spot.type.ilike(f"%{search}%")).all()
-            print('spots', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
         if field == 'activity':
-            print('hit')
             spots = Spot.query.filter(Spot.activities.ilike(f"%{search}%")).all()
-            print('spots', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
