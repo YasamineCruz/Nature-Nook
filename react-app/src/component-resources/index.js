@@ -37,8 +37,6 @@ export function getImgId(arr) {
 export const addZero = (number) => {
     let str = number.toString()
     if(str.split('.').length === 2){
-        console.log('THe String', str)
-        console.log('The String split', str.split('.'))
         if(str.split('.')[1].length === 1) return `${str.split('.')[0]}.${str.split('.')[1]}0`
         return number
     }

@@ -54,7 +54,7 @@ export default function EditSpot({setShowModal, spot, spotId}) {
             type,
             activities: activities.join(" "),
         }
-        console.log('-----------spotInfo----------------', spotInfo)
+ 
     
         if(errors.length <= 0){
             await dispatch(updateSpot(spotInfo, spotId))
@@ -62,7 +62,7 @@ export default function EditSpot({setShowModal, spot, spotId}) {
                 const data = await res.json();
                 if (data && data.errors) {
                   validationErrors.push(data.errors)
-                  console.log(data)
+                
                 };
                 setErrors(validationErrors)
               });

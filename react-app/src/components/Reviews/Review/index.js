@@ -3,6 +3,7 @@ import DeleteReview from '../DeleteReview'
 import UpdateReviewModal from '../UpdateReview'
 import './Review.css'
 import fav from '../../../assets/logo/naturenook-favicon.png'
+import { Link } from 'react-router-dom'
 
 let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
@@ -26,12 +27,12 @@ export default function Review({reviews}){
                 <div className='review-wrapper'>
                    {reviews.map(review => {
                     return (
-                    <div className='review-info'>
+                    <div>
                         <div className='review-top-div'>
-                        <div className='fav-and-thumb'>
-                            <img className='fav'src={fav} alt=''/>
+                        <Link className='fav-and-thumb' to={`/user/${review.user.id}`}>
+                            <img className='fav'src={review?.user?.userPhotos[0]?.url ? review.user.userPhotos[0].url : fav} alt=''/>
                             <i class={review.recommends === true ? "fa-solid fa-thumbs-up green-review" : "fa-solid fa-thumbs-down red-review"}></i>
-                        </div>
+                        </Link>
                         <div className='date-recommends-wrapper'>
                             <div className='review-recommends'>
                                 <div className='owner-name2'>

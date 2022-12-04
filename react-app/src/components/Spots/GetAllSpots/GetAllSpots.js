@@ -11,11 +11,14 @@ export default function GetAllSpots(){
     const dispatch = useDispatch()
     const spots = useSelector((state) => Object.values(state.spot.allSpots))
     const [loading, setLoading] = useState(false)
+    spots.sort((a, b) => b.id - a.id)
+
 
     useEffect( () => {
         let timer1 = setTimeout(() => setLoading(true), 1000);
         return () => clearTimeout(timer1);
       },[]);
+
 
     useEffect(()=>{
         dispatch(getSpots())
@@ -32,7 +35,7 @@ export default function GetAllSpots(){
         <div className='all-spots-container'>
             {spots?.length >= 1 && (
                 spots.map(spot => {
-                    console.log(spot)
+                
                     return (
                     <Link className='spot-wrapper pointer' to={`/spots/${spot.id}`}>
                         <div className='spot-img-container pointer'>

@@ -9,12 +9,14 @@ import { DeleteModalProvider } from './context/DeleteModal';
 import { EditModalProvider } from './context/EditModal';
 import { SignupModalProvider } from './context/SignupModal';
 import { ReviewUpdateModalProvider } from './context/ReviewUpdateModal';
+import { UploadUserPhotoModalProvider } from './context/UploadUserPhotoModal';
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <ModalProvider>
+    <UploadUserPhotoModalProvider>
     <SignupModalProvider>
     <DeleteModalProvider>
     <EditModalProvider>
@@ -26,6 +28,7 @@ ReactDOM.render(
       </EditModalProvider>
       </DeleteModalProvider>
       </SignupModalProvider>
+      </UploadUserPhotoModalProvider>
     </ModalProvider>
   </React.StrictMode>,
   document.getElementById('root')

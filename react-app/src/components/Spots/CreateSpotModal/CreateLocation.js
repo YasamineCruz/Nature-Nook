@@ -36,6 +36,7 @@ export default function CreateLocationComponent({setShowDropdown, setStop, setSh
                 onChange={(e)=> setCity(e.target.value)}
                 value={city}
                 placeholder='Enter a City'
+                maxLength={25}
                 required
                 />
 
@@ -45,6 +46,7 @@ export default function CreateLocationComponent({setShowDropdown, setStop, setSh
                 type='text'
                 onChange={(e)=> setState(e.target.value)}
                 value={state}
+                maxLength={25}
                 placeholder='Enter a State'
                 required
                 />
@@ -55,9 +57,19 @@ export default function CreateLocationComponent({setShowDropdown, setStop, setSh
                 type='text'
                 onChange={(e)=> setCountry(e.target.value)}
                 value={country}
+                maxLength={25}
                 placeholder='Enter a Country'
                 required
-                />  
+                />
+                {city.length >= 25 && (
+                    <div className="create-event-errors">You've reached the max character length for a city. Congrats!</div>
+                )}
+                {state.length >= 25 && (
+                    <div className="create-event-errors">You've reached the max character length for a state. Congrats!</div>
+                )}
+                {country.length >= 25 && (
+                    <div className="create-event-errors">You've reached the max character length for a country. Congrats!</div>
+                )}        
                 { errors?.length >= 1 && submitted && (
                     <div className='create-event-errors'>
                         {errors.map((error, idx) => (

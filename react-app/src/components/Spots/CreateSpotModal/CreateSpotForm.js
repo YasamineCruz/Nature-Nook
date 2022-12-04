@@ -23,9 +23,9 @@ export function resetPrice(price){
     pArr.splice(i,1)
     }
     let p = pArr.join("")
-  console.log(p)
+  
   p = Number(p)
-  console.log('pNumber', p)
+
   return p
 }
 

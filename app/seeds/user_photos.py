@@ -29,7 +29,6 @@ def seed_user_photos():
       UserPhoto(user_id=24, url='https://cdn-icons-png.flaticon.com/512/219/219988.png'),
       UserPhoto(user_id=25, url='https://cdn-icons-png.flaticon.com/512/219/219989.png'),
       UserPhoto(user_id=26, url='https://cdn-icons-png.flaticon.com/512/219/219988.png'),
-      UserPhoto(user_id=27, url='https://cdn-icons-png.flaticon.com/512/219/219988.png'),
     ]
 
     db.session.add_all(user_photos)

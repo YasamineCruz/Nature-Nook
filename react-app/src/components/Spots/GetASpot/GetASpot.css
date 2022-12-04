@@ -38,7 +38,7 @@
 .add {
     display: flex;
     flex-direction: row;
-    max-width: 500px;
+    max-width: 550px;
     max-height: 400px;
     min-height: 400px;
     cursor: pointer;
@@ -47,9 +47,9 @@
 .spot-single-img {
     display: flex;
     flex-direction: row;
-    max-width: 800px;
+    max-width: 700px;
     max-height: 400px;
-    min-width: 750px;
+    min-width: 650px;
 }
 
 .single-loc-wrapper {
@@ -112,6 +112,7 @@
     max-width: 500px;
     max-height: 500px;
     line-height: 28px;
+    word-wrap: break-word;
     word-break: break-all;
     overflow: hidden;
 }
@@ -151,9 +152,14 @@
 .default-owner-img {
     display: flex;
     flex-direction: row;
-    padding-top: 15px;
+    margin-top: 10px;
     max-width: 80px;
     max-height: 80px;
+    min-height: 80px;
+    min-width: 80px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
 }
 
 .lil-name {

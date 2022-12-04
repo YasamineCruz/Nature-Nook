@@ -1,17 +1,13 @@
-import React, {useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getSpot } from "../../../store/spot";
 
-
-const ReuploadPicture = ({id, spotId, setShowDropdown, setStop, setShowModal, submitted, count, setCount, setSubmitted}) => {
+export default function UserModalPut({id, setShowModal, setUpdate}) {
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
     const dispatch = useDispatch()
-    const spot = useSelector(state => state.spot.singleSpot)
-    
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -20,21 +16,22 @@ const ReuploadPicture = ({id, spotId, setShowDropdown, setStop, setShowModal, su
         // some sort of loading message is a good idea
         setImageLoading(true);
 
-        const res = await fetch(`/api/spots/${spotId}/spot_images/${id}`, {
-            method: "POST",
+        const res = await fetch(`/api/user_photos/`, {
+            method: "PUT",
             body: formData,
         });
         if (res.ok) {
-
             await res.json();
             setImageLoading(false);
-            await dispatch(getSpot(spotId))
-            setShowModal(false)
+            setShowModal(false);
+            setUpdate(true)
+            history.push(`/user/${id}`);
         }
         else {
             setImageLoading(false);
             // a real app would probably use more advanced
             // error handling
+         
         }
     }
     
@@ -46,11 +43,8 @@ const ReuploadPicture = ({id, spotId, setShowDropdown, setStop, setShowModal, su
     return (
         <div className='edit-spot-container'>
         <div className='top-container'>
-            <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>
-                <i class="fa-solid fa-xmark"></i>
-            </button>
         </div>
-        <label className='edit-text'>Choose a image for your spot!</label>
+        <label className='edit-text'>Choose a Profile Picture!</label>
         <form className='edit-spot-wrapper'>
             <div className='upload-wrapper'>
             <input
@@ -70,5 +64,3 @@ const ReuploadPicture = ({id, spotId, setShowDropdown, setStop, setShowModal, su
         </div>
     )
 }
-
-export default ReuploadPicture;

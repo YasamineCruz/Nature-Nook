@@ -10,7 +10,7 @@ export default function CreateActivitiesComponent({setShowDropdown, setStop, set
 
     useEffect(()=>{
         let validationErrors = []
-        if(activities.length < 1) validationErrors.push('You must select activities or choose none.')
+        if(activities.length < 1) validationErrors.push('You must select activities.')
         setErrors(validationErrors)
     },[activities, setErrors])
 
@@ -35,12 +35,12 @@ export default function CreateActivitiesComponent({setShowDropdown, setStop, set
                 { activitiesList.map(activity => (
                     <div className='activity-container'>
                         <input
-                        className='activity-checkbox'
+                        className='activity-checkbox pointer'
                         type='checkbox'
                         checked={activities.find(e => e.toLowerCase() === activity.toLowerCase())}
                         onChange={()=>{
                             let copyActivites = [...activities]
-                            console.log(copyActivites)
+                         
                             if (copyActivites.find(e => e.toLowerCase() === activity.toLowerCase())) {
                                 let i = copyActivites.findIndex(e => e.toLowerCase() === activity.toLowerCase())
                                 copyActivites.splice(i, 1)

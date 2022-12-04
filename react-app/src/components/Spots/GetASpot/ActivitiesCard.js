@@ -13,7 +13,7 @@ export default function ActivityCard({spot}){
                 let activities;
                 if(spot.activities) activities = spot.activities.toLowerCase()
                 activity = activity.split("-").join(" ")
-                console.log(activities)
+                
 
                 if(activity === 'Boating' && activities?.includes(og.toLowerCase())) {
                     return (

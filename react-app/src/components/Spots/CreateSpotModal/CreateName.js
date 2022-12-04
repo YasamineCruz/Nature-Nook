@@ -9,7 +9,8 @@ export default function CreateNameComponent({setShowDropdown, setStop, setShowMo
         if(name.length < 3 || name.length > 50) validationErrors.push("You must enter a name between 3 and 50 characters.")
         setErrors(validationErrors)
         },[name, setErrors])
-    
+        
+
 
     return (
         <div className='spot-modal-container'>
@@ -39,6 +40,9 @@ export default function CreateNameComponent({setShowDropdown, setStop, setShowMo
                 minLength={3}
                 maxLength={50}
                 />
+                {name.length >= 50 && (
+                    <div className="create-event-errors">You've reached the max character length. Congrats!</div>
+                )}
 
                 { errors?.length >= 1 && submitted && (
                     <div className='create-event-errors'>

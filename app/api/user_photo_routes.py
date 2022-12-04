@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, UserPhoto
 from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename
@@ -70,3 +70,11 @@ def update_user_photo():
 
     db.session.commit()
     return {"url": url}
+
+@user_photo_routes.route('/', methods=['DELETE'])
+def delete_user_photo():
+    user_photo = UserPhoto.query.filter(UserPhoto.user_id == current_user.id).first()
+
+    db.session.delete(user_photo)
+    db.session.commit()
+    return jsonify('User Photo Successfully Deleted')

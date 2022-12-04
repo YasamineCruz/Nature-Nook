@@ -1,0 +1,38 @@
+#user-photo-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    }
+    
+  #user-photo-modal-background {
+    position: fixed;
+    display: flex;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+  #user-photo-modal-content {
+    display: flex;
+    position: fixed;
+    background-color:white;
+    border-radius: 25px;
+    justify-content: center;
+    width: 525px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    }
+  
+.upload-photo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

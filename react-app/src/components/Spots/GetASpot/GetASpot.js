@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { checkUrl, getImg } from "../../../component-resources";
 import { getSpot, getSpots} from "../../../store/spot";
 import DeleteSpotModal from "../DeleteSpot";
@@ -45,7 +45,7 @@ export default function GetASpot(){
 
     useEffect(()=>{
         if(spot.Photos) {
-            console.log(spot.Photos)
+            
             if(spot.Photos.length > 0) setImg(getImg(spot.Photos))
             if(spot.Photos.length < 1) setImg('https://media.istockphoto.com/id/1357365823/vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo.jpg?s=612x612&w=0&k=20&c=PM_optEhHBTZkuJQLlCjLz-v3zzxp-1mpNQZsdjrbns=')
         }
@@ -73,7 +73,7 @@ export default function GetASpot(){
     let notFound;
     if(Object.values(spots).length >= 1) notFound = checkUrl(spots, spotId)
     if(notFound) return notFound
-    
+
  
     return (
         <div>
@@ -89,7 +89,7 @@ export default function GetASpot(){
                     {spot.Photos && (
                         <div className='a-spot-img-container'>
                           <img className='spot-single-img' src={img} alt=''/>
-                          <div className='add-container' type='button' onClick={() => window.open('https://github.com/YasamineCruz', '_blank')}>
+                          <div className='add-container' type='button' onClick={() => window.open('https://www.linkedin.com/in/yasamine-cruz-7b6867256/', '_blank')}>
                             <img className='add' src={add} alt=''/> 
                           </div>
                         </div>
@@ -117,7 +117,9 @@ export default function GetASpot(){
                         </div>
                         <div className='bottom-container-single'>
                             <div className='owner-info-wrapper'>
-                                <img className='default-owner-img' src={fav} alt=''/>
+                                <Link className='default-owner-img' to={`/user/${spot.owner.id}`}>
+                                <img className='default-owner-img' src={spot?.owner?.userPhotos[0]?.url ? spot?.owner?.userPhotos[0]?.url : fav} alt=''/>
+                                </Link>
                                 <div className='owner-info'>
                                     <div className='lil-host'>Hosted by</div>
                                     <div className='owner-name'>

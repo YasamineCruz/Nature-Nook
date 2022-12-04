@@ -43,6 +43,7 @@ export default function CreatePriceComponent({setShowDropdown, setStop, setShowM
                     let testString = p.split('.')
                     let pass = true
                     if(testString.length >= 3) pass = false
+                    if(testString[0].length >= 10) pass = false
                     if(testString.length === 2){
                         if(testString[1].length >= 3) pass = false
                     }
@@ -59,6 +60,9 @@ export default function CreatePriceComponent({setShowDropdown, setStop, setShowM
                             <div key={idx}>{error}</div>
                          ))}
                     </div>
+                )}
+                {price.length > 9 && (
+                    <div className="create-event-errors">That's too expensive.</div>
                 )}
         
             </form>

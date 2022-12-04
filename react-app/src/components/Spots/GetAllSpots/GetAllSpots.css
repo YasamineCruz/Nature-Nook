@@ -36,10 +36,11 @@
     display: flex;
     flex-direction: column;
     height: 100px;
-    width: 380px;
+    width: 365px;
     justify-content: flex-start;
     align-items: flex-start;
     padding: 0% 2% 0% 2%;
+    background-color: white;
 }
 
 .spot-name {
@@ -70,7 +71,6 @@
 
 .ind {
     color: rgb(0, 162, 255);
-    background-color: rgb(243, 242, 239);
     margin-left: 5px;
     margin-bottom: 4%;
 }

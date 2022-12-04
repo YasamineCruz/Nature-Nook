@@ -43,7 +43,6 @@ const UploadPicture = ({setNotImage, spotId, setShowDropdown, setStop, setShowMo
             setImageLoading(false);
             // a real app would probably use more advanced
             // error handling
-            console.log("error");
         }
     }
     

@@ -1,32 +1,48 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, useHistory } from "react-router-dom";
-import { getUserSpots } from "../../../store/spot";
-import { percentage } from "../GetASpot/GetASpot";
-import './UserSpots.css'
-import loadingImg from '../../../assets/logo/loading.gif'
+import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 import { addZero } from "../../../component-resources";
+import { percentage } from "../GetASpot/GetASpot";
+import loadingImg from '../../../assets/logo/loading.gif'
 
-
-
-export default function GetUserSpots(){
-    const dispatch = useDispatch()
-    let spots = useSelector((state) => Object.values(state.spot.userSpots))
-    const user = useSelector((state) => state.session.user)
+export default function SearchSpots(){
+    const [search, setSearch] = useState('')
+    const [field, setField] = useState('')
+    const [spots, setSpots] = useState([])
+    const location = useLocation()
     const [loading, setLoading] = useState(false)
     spots.sort((a, b) => b.id - a.id)
-   
+
+
+
     useEffect( () => {
         let timer1 = setTimeout(() => setLoading(true), 1000);
         return () => clearTimeout(timer1);
-    },[]);
-    
-    useEffect(()=>{
-        dispatch(getUserSpots())
-    },[dispatch])
+      },[]);
 
-    if(!user) return <Redirect to='/' />;
-    
+
+    useEffect(()=>{
+        if(location.search) {
+            setSearch(location.search.split('=')[3])
+            setField(location.search.split('=')[1])
+        }
+    },[location])
+
+    useEffect(()=>{
+        if(search && field) {
+            (async () => {
+                const response = await fetch(`/api/spots/search`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({search, field}),
+                  });
+                const spots = await response.json();
+                if(Object.values(spots).length >= 1) setSpots(Object.values(spots.Spots));
+              })();
+        }
+    },[search, field])
+
+    console.log('spots', spots)
     return (
         <div>
         {!loading && (
@@ -36,11 +52,12 @@ export default function GetUserSpots(){
         )}
         {loading && (
         <div className='all-spots-container'>
-            {spots.length <= 0 && (
-                <h2 className='none'>You have no available listings.</h2>
+            {spots?.length <= 0 && (
+                <div>No Spots matched your search.</div>
             )}
             {spots?.length >= 1 && (
                 spots.map(spot => {
+                
                     return (
                     <Link className='spot-wrapper pointer' to={`/spots/${spot.id}`}>
                         <div className='spot-img-container pointer'>
@@ -74,4 +91,4 @@ export default function GetUserSpots(){
         )}
         </div>
     )
-} 
+}

@@ -1,0 +1,164 @@
+.user-page-left {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 140px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0px 2px 2px 0px rgba(166, 166, 167, 0.4);
+    padding: 15px;
+    background-color: white;
+}
+
+.left-bot {
+    margin-top: 15px;
+    width: 250px;
+    height: 60px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0px 2px 2px 0px rgba(166, 166, 167, 0.4);
+    padding: 15px;
+    background-color: white;
+}
+
+.nooker-2 {
+    margin-top: 10px;
+}
+
+.ind4 {
+    margin-right: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.nooker {
+    color: #757575;
+    font-size: 14px;
+    font-weight: 525;
+}
+
+.user-page-user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.trusted-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.user-img {
+    max-width: 90px;
+    max-height: 90px;
+    border-radius: 50%;
+}
+
+.a-user-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.ind3 {
+    margin-right: 5px;
+}
+
+.user-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.left-side {
+    margin-right: 60px;
+}
+
+.user-page-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 50px 325px 50px;
+}
+
+.user-spots-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 900px;
+    max-width: 900px;
+    margin: 0px 20px 0px;
+}
+
+.user-spot-wrapper {
+    margin: 10px;
+    text-decoration: none;
+    background-color: white;
+    max-width: 250px;
+    border: 1px solid #ebebeb;
+    box-shadow: 0px 2px 2px 0px rgba(166, 166, 167, 0.4);
+}
+
+.user-small-spot-img {
+    width: 250px;
+    max-width: 250px;
+    max-height: 100px;
+}
+
+.user-spot-info-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    flex-wrap: wrap;
+    padding: 2px;
+}
+
+.user2-name-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    width: 250px;
+}
+
+.ind2 {
+    color: rgb(0, 162, 255);
+}
+
+.user-spot-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    color: black;
+    max-width: 150px;
+    max-height: 20px;
+    overflow: hidden;
+    word-break: break-all;
+    margin-right: 2px;
+}
+
+.user-delete-photo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-edit-photo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

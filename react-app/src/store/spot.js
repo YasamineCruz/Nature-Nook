@@ -91,7 +91,7 @@ export const getUserSpots = () => async (dispatch) => {
   const response = await fetch(`/api/spots/current`);
   if (response.ok) {
     const userSpots = await response.json();
-    console.log(userSpots)
+
     dispatch(getAUsersSpots(userSpots.UserSpots));
     return userSpots;
   }
@@ -136,8 +136,7 @@ export const deleteSpot = (spotId) => async (dispatch) => {
 /**** Thunks for Reviews****/
 
 export const createReview = (spotId, reviewInfo) => async (dispatch) => {
-    console.log(spotId)
-    console.log(reviewInfo)
+
     const response = await fetch(`/api/spots/${spotId}/reviews`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -220,17 +219,16 @@ export default function reducer(state = initialState, action) {
         newState.singleSpot = {}
         return newState
     case UPDATE_REVIEW:
-      console.log('Hitemmmmm')
+      
       newState = { allSpots: {...state.allSpots}, userSpots: {...state.userSpots}, singleSpot: { ...state.singleSpot}}
       if(Object.values(newState.allSpots).length >= 1) newState.allSpots[action.payload.spotId].Reviews[action.payload.id] = action.payload
       let reviews = [...newState.singleSpot.Reviews]
-      console.log('This is the action payload', action.payload)
+   
       for(let i = 0; i < reviews.length; i++){
         let review = reviews[i];
         if(review.id === action.payload.id) reviews[i] = action.payload
       }
-      console.log('This is reviews currently', reviews)
-      console.log(newState.singleSpot)
+
       newState.singleSpot.Reviews = reviews
       return newState
     case CREATE_REVIEW:
