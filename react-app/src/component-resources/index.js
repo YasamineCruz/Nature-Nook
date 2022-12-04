@@ -1,3 +1,5 @@
+import NotFound from "../components/NotFound/NotFound";
+
 export function normalizeArray(ele) {
     let obj = {};
     if (Array.isArray(ele)) {
@@ -21,6 +23,13 @@ export function getImg(arr) {
     })
   
     return url
+}
+
+
+export function checkUrl(obj, id){
+    if(isNaN(id)) return (<NotFound />)
+    if(!obj[id]) return (<NotFound />)
+    else return false
 }
 
 // let item = 4.9;

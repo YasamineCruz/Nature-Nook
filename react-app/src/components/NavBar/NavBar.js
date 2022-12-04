@@ -17,8 +17,8 @@ const NavBar = () => {
   if(url === 'http://localhost:3000/sign-up' || url === 'https://nature-nook-deploy.onrender.com/sign-up') return null
 
   return (
-    <nav className='navbar'>
-      <div className='NatureNook-logo'>
+    <nav className='navbar' onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>
+      <div className='NatureNook-logo' >
         <NavLink to='/' exact={true}>
           <img className='navbar-logo' src={logo} alt=''/>
         </NavLink>
@@ -44,7 +44,7 @@ const NavBar = () => {
         </div>
       )}
       {sessionUser && (
-         <div className='dropdown-and-icon-container'>
+         <div className='dropdown-and-icon-container' onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>
          <img src={fav} alt='' className='dropdown-fav pointer' onMouseEnter={() => setShowDropdown(true)} />
         {showDropdown && (
           <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>

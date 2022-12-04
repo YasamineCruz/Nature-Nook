@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     border-top: 1px solid rgb(222, 222, 222);
-    max-width: fit-content
+
 }
 
 .review-info {
