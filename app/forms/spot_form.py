@@ -12,3 +12,4 @@ class SpotForm(FlaskForm):
     amenities = StringField('amenities', validators=[DataRequired()])
     type = StringField('type', validators=[DataRequired()])
     activities = StringField('activities', validators=[DataRequired()])
+    url = StringField('url', validators=[DataRequired()])

@@ -74,6 +74,7 @@ function CreateSpotForm({setShowModal, setStop, setShowDropdown}) {
             };
             setErrors(validationErrors)
           });
+        console.log(spot)
 
         if(validationErrors.length <= 0){
             setShowModal(false)
@@ -89,6 +90,7 @@ function CreateSpotForm({setShowModal, setStop, setShowDropdown}) {
             setAmenities("")
             setType("")
             setActivities("")
+            setUrl("")
             history.push(`/spots/${spot.id}`)
         }
     }

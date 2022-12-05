@@ -1,4 +1,4 @@
-ort BackButton from "./BackButton";
+import BackButton from "./BackButton";
 import NextButton from "./NextButton";
 
 import { useEffect } from "react";

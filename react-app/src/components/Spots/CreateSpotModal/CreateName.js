@@ -1,4 +1,5 @@
 import NextButton from "./NextButton"
+import { useEffect } from "react"
 
 export default function CreateNameComponent({setShowDropdown, setStop, setShowModal, submitted, name, setName, setErrors, setCount, count, setSubmitted, errors}) {
 
