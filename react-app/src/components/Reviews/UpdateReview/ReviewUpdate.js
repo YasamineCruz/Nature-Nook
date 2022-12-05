@@ -44,18 +44,19 @@ export default function UpdateReview({reviewInfo, setShowModal}) {
     }
 
     return (
+        
         <div className='update-review-container'>
         <div className='add-review-bg-txt edit-review'>Edit your review</div>
         {errors && submitted && (
-            <div className='review-error'>
-            {errors.map((error, ind) => (
-            <div id='rev-error' className='signup-error' key={ind}>{error}</div>
-            ))}
-            </div>
-        )}
-            <form className='create-review-form' onSubmit={onSubmit}>
+          <div className='review-error'>
+             {errors.map((error, ind) => (
+               <div  id='rev-error' className='signup-error' key={ind}>{error}</div>
+             ))}
+          </div>
+          )}
+            <form className='edit-review-form' onSubmit={onSubmit}>
                 <textarea
-                className='review-textarea'
+                className={submitted && errors.length >= 1 ? 'review-text-area' : 'review-textarea add-margin-review'}
                 onChange={(e)=> setReview(e.target.value)}
                 value={review}
                 required

@@ -22,13 +22,17 @@
     
   #review-update-modal-content {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     position: fixed;
     background-color:white;
     border-radius: 25px;
     justify-content: center;
     align-content: center;
     width: 625px;
-    height: 350px;
+    max-height: 600px;
+    min-height: fit-content;
+    height: fit-content;
     margin-top: 2%;
     margin-bottom: 2%;
     }
@@ -38,7 +42,10 @@
 }
 
 .update-review-container {
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    min-height: fit-content;
+    max-height: 350px;
     margin-top: 50px;
 }
 
@@ -52,4 +59,12 @@
 
 .edit-review {
     margin-bottom: 10px;
+}
+
+.edit-review-form {
+    min-height: 400px;
+}
+
+.add-margin-review {
+    margin-top: 30px;
 }
