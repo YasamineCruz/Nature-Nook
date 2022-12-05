@@ -1,3 +1,4 @@
+
 footer {
     display: flex;
     flex-direction: row;
@@ -12,22 +13,21 @@ footer {
     left: 0;
     bottom: 0;
     height: 60px;
-}
-
+    }
+    
 .img-small {
-    max-width: 14px;
-    max-height: 14x;
-    margin-right: 3.5px;
-}
-
-
+    max-width: 20px;
+    max-height: 20x;
+    margin-right: 5px;
+    }
+    
 .bottom-not-link {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 14px;
-}
-
+    font-size: 18px;
+    }
+    
 .link {
     cursor: pointer;
-}
+    }

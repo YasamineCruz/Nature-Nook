@@ -10,7 +10,7 @@ export default function CreateActivitiesComponent({setShowDropdown, setStop, set
 
     useEffect(()=>{
         let validationErrors = []
-        if(activities.length < 1) validationErrors.push('You must select activities or choose none.')
+        if(activities.length < 1) validationErrors.push('You must select activities.')
         setErrors(validationErrors)
     },[activities, setErrors])
 

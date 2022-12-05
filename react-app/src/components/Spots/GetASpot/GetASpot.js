@@ -49,12 +49,12 @@ export default function GetASpot({spotCount}){
           return () => clearTimeout(timer1);
         },[]);
     
-        useEffect(()=>{
+    useEffect(()=>{
             dispatch(getSpots())
             dispatch(getSpot(spotId))
         },[dispatch])
         
-        useEffect(() => {
+    useEffect(() => {
             document.body.classList.add('bg-white');
 
         return function cleanup() {
@@ -63,8 +63,9 @@ export default function GetASpot({spotCount}){
     }, [])
 
     let notFound;
-    if(spots) notFound = checkUrl(spots, spotId)
+    if(Object.values(spots).length >= 1) notFound = checkUrl(spots, spotId)
     if(notFound) return notFound
+        
  
     return (
         <div>
