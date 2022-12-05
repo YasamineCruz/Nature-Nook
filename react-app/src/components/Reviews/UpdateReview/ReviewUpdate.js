@@ -1,46 +1,58 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { createReview, updateReview } from "../../../store/spot"
-import { getSpot } from "../../../store/spot"
+import { updateReview } from "../../../store/spot"
 import { recommendsCheck } from "../CreateReview"
 
 export default function UpdateReview({reviewInfo, setShowModal}) {
-    const [review, setReview] = useState(reviewInfo?.review)
-    const [recommends, setRecommends] = useState(reviewInfo.recommends === true ? 'yes' : 'no')
-    const [errors, setErrors] = useState([])
-    const dispatch = useDispatch()
+    const [review, setReview] = useState(reviewInfo.review);
+    const [recommends, setRecommends] = useState(reviewInfo.recommends ? 'yes' : 'no');
+    const [errors, setErrors] = useState([]);
+    const [submitted, setSubmitted] = useState(false)
+    const dispatch = useDispatch();
 
+    useEffect(()=>{
+    let validationErrors = []
+    if(!review || review.length < 15) validationErrors.push('You must enter a review between 15 and 500 characters')
+    if(!recommends) validationErrors.push('Please recommend')
+    setErrors(validationErrors)
+    },[review, recommends])
 
-const onSubmit = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
         let validationErrors = []
-        if(!review) validationErrors.push('Please Enter a review')
-        if(!recommends) validationErrors.push('Please recommend')
+        setSubmitted(true)
         let reviewData = {
-            review,
-            recommends: recommendsCheck(recommends)
+                        review,
+                        recommends: recommendsCheck(recommends)
         }
-        setErrors(validationErrors)
-        if(validationErrors.length <= 0) {
-        dispatch(updateReview(reviewData, reviewInfo.id))
-        .catch(async (res) => {
+        
+        if(errors.length <= 0) {
+            dispatch(updateReview(reviewData, reviewInfo.id))
+            .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) {
-                  validationErrors.push(data.errors)
-                };
-                setErrors(validationErrors)
-        });
-        if(validationErrors.length <= 0){
+                validationErrors.push(data.errors)
+            };
+            setErrors(validationErrors)
+            });
+            if(validationErrors.length <= 0){
             setShowModal(false)
             setReview("")
             setRecommends("")
-        }
+            }
         }
     }
 
     return (
         <div className='update-review-container'>
         <div className='add-review-bg-txt edit-review'>Edit your review</div>
+        {errors && submitted && (
+            <div className='review-error'>
+            {errors.map((error, ind) => (
+            <div id='rev-error' className='signup-error' key={ind}>{error}</div>
+            ))}
+            </div>
+        )}
             <form className='create-review-form' onSubmit={onSubmit}>
                 <textarea
                 className='review-textarea'

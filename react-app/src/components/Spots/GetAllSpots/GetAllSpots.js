@@ -10,6 +10,8 @@ export default function GetAllSpots(){
     const dispatch = useDispatch()
     const spots = useSelector((state) => Object.values(state.spot.allSpots))
     const [loading, setLoading] = useState(false)
+    spots.sort((a, b) => b.id - a.id)
+
 
 
     useEffect( () => {
