@@ -28,7 +28,7 @@ export default function CreateTypeComponent({setShowDropdown, setStop, setShowMo
             <div className='extra-text-modal'>Want to offer more than one? Great! Choose which one to set up first.</div>
             <div className='radio-div'>
             <input
-            className='create-modal-radio'
+            className='create-modal-radio pointer'
             type='radio'
             onChange={(e)=> setType(e.target.value)}
             value='lodging'
@@ -38,7 +38,7 @@ export default function CreateTypeComponent({setShowDropdown, setStop, setShowMo
             </div>
             <div className='radio-div'>
              <input
-             className='create-modal-radio'
+             className='create-modal-radio pointer'
              type='radio'
              onChange={(e)=> setType(e.target.value)}
              value='campsite'

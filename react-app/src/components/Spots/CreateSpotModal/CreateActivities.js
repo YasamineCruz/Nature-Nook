@@ -35,7 +35,7 @@ export default function CreateActivitiesComponent({setShowDropdown, setStop, set
                 { activitiesList.map(activity => (
                     <div className='activity-container'>
                         <input
-                        className='activity-checkbox'
+                        className='activity-checkbox pointer'
                         type='checkbox'
                         checked={activities.find(e => e.toLowerCase() === activity.toLowerCase())}
                         onChange={()=>{
