@@ -1,77 +1,79 @@
+
+
 .a-spot-container {
     display: flex;
     flex-direction: column;
     margin-left: 15.5%;
     margin-right: 17.5%;
     margin-top: 2%;
-}
-
+    }
+    
 .bg-white {
     background-color: white;
     margin: 0;
     padding: 0;
-}
-
+    }
+    
 .spot-name-wrapper {
     display: flex;
     flex-direction: row;
-}
-
+    }
+    
 .check2 {
     margin-bottom: 0%;
     margin-top: 2.5%;
-}
-
+    }
+    
 .a-spot-img-container {
     display: flex;
     flex-direction: row;
-}
-
+    }
+    
 .add-container {
     display: flex;
     flex-direction: row;
     background-color: transparent;
     border: none;
     margin-left: 1%;
-}
-
+    }
+    
 .add {
     display: flex;
     flex-direction: row;
-    max-width: 500px;
+    max-width: 550px;
     max-height: 400px;
     min-height: 400px;
     cursor: pointer;
-}
-
+    }
+    
 .spot-single-img {
     display: flex;
     flex-direction: row;
-    max-width: 800px;
+    max-width: 700px;
     max-height: 400px;
-    min-width: 750px;
-}
-
+    min-width: 650px;
+    }
+    
 .single-loc-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     padding: 25px 0px 0px 0px;
-}
-
+    }
+    
 .mar {
     margin-right: 10px;
-}
-
+    }
+    
 .loc-small-text {
     display: flex;
     flex-direction: row;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-bottom: 1px solid rgb(160, 159, 159);
     margin-right: 10px;
-}
-
+    }
+    
 .spot-single-name {
     display: flex;
     flex-direction: row;
@@ -79,32 +81,32 @@
     font-weight: 600;
     font-size: 35px;
     overflow: hidden;
-}
-
+    }
+    
 .reviews-info {
     margin-left: 1%;
     color: black;
     font-weight: 500;
-}
-
+    }
+    
 .reviews-info-container-single {
     display: flex;
     flex-direction: row;
     color: #40D9AC;
     font-weight: bolder;
-}
-
+    }
+    
 .bottom-container-single {
     display: flex;
     flex-direction: row;
     border-top: 1px solid rgb(226, 226, 226);
     margin-top: 25px;
-}
-
+    }
+    
 .a-spot-info-container {
     max-height: 1200px;
-}
-
+    }
+    
 .spot-single-desc {
     display: flex;
     padding-left: 10px;
@@ -112,15 +114,16 @@
     max-width: 500px;
     max-height: 500px;
     line-height: 28px;
+    word-wrap: break-word;
     word-break: break-all;
     overflow: hidden;
-}
-
+    }
+    
 .owner-info-wrapper {
     display: flex;
     flex-direction: row;
-}
-
+    }
+    
 .owner-info {
     display: flex;
     flex-direction: column;
@@ -129,16 +132,16 @@
     padding-right: 15px;
     max-width: 80px;
     max-height: 80px;
-}
-
+    }
+    
 .lil-host {
     display: flex;
     flex-direction: row;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 600;
     font-size: 12px; 
-}
-
+    }
+    
 .owner-name {
     display: flex;
     flex-direction: column;
@@ -146,48 +149,53 @@
     font-weight: 500;
     font-size: 14px;
     min-width: 60px;
-}
-
+    }
+    
 .default-owner-img {
     display: flex;
     flex-direction: row;
-    padding-top: 15px;
+    margin-top: 10px;
     max-width: 80px;
     max-height: 80px;
-}
-
+    min-height: 80px;
+    min-width: 80px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    }
+    
 .lil-name {
     border-bottom: 1px solid rgb(226, 226, 226); 
     margin-top: 5px;
-}
-
+    }
+    
 .user-only-div {
     display: flex;
     flex-direction: row;
     padding: 25px 0px 25px 0px;
-}
-
+    }
+    
 .delete-only {
     margin-right: 10px;
     color: black;
     cursor: pointer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
+    }
+    
 .delete-only:hover {
     color: red;
-}
-
+    }
+    
 .edit-only {
     color: #40D9AC;
     cursor: pointer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
+    }
+    
 .edit-only:hover {
     color: #4af1bf;
-}
-
+    }
+    
 .amenities-card-wrapper {
     background-color: white;
     max-height: 500px;
@@ -200,42 +208,42 @@
     flex-wrap: wrap;
     line-height: 1.4;
     box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-}
-
+    }
+    
 .big-Amenities {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
     font-weight: 600;
     color: #333333;
-}
-
+    }
+    
 .lil-amenity-wrapper {
     display: flex;
     flex-direction: row;
     padding-top: 5px;
     padding-bottom: 5px;
-}
-
+    }
+    
 .lil-amenity {
     margin-left: 6px;
-}
-
+    }
+    
 .icon {
     max-height: 20px;
     max-width: 20px;
-}
-
+    }
+    
 .no-padding {
     padding: 0px;
-}
-
+    }
+    
 .middle-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-}
-
+    }
+    
 .price-single-card {
     display: flex;
     flex-direction: column;
@@ -253,23 +261,25 @@
     font-size: 20px;
     font-weight: 700;
     box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-}
-
+    }
+    
 .per-text {
     font-weight: 500;
     font-size: 16px;
     color: rgb(146, 143, 143)
-}
-
+    }
+    
 .check2 {
     background-color: white;
     color: rgb(0, 162, 255);
     margin-left: 5px;
     margin-bottom: 4%;
-}
-
+    }
+    
 .card-holder-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-}
+    }
+    
+    
