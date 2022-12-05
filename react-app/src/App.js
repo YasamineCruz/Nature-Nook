@@ -19,13 +19,9 @@ import NotFound from './components/NotFound/NotFound';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-  const [spotCount, setSpotCount] = useState('')
   const spots = useSelector(state => Object.values(state?.spot?.allSpots))
 
 
-  useEffect(()=>{
-    if(spots) setSpotCount(spots.length)
-  },[])
 
   useEffect(() => {
     (async() => {
@@ -57,7 +53,7 @@ function App() {
           <GetAllSpots />
         </Route>
         <Route path='/spots/:spotId' exact={true}>
-          <GetASpot spotCount={spotCount}/>
+          <GetASpot />
         </Route>
         <Route path='*'>
           <NotFound />

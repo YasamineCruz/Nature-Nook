@@ -33,7 +33,7 @@ export const percentage = (reviewsArr) => {
 
 
 
-export default function GetASpot({spotCount}){
+export default function GetASpot(){
     const dispatch = useDispatch()
     const params = useParams()
     const { spotId } = params
@@ -81,7 +81,7 @@ export default function GetASpot({spotCount}){
                     {spot.Photos && (
                         <div className='a-spot-img-container'>
                           <img className='spot-single-img' src={getImg(spot.Photos)} alt=''/>
-                          <div className='add-container' type='button' onClick={() => window.open('https://github.com/YasamineCruz', '_blank')}>
+                          <div className='add-container' type='button' onClick={() => window.open('https://www.linkedin.com/in/yasamine-cruz-7b6867256/', '_blank')}>
                             <img className='add' src={add} alt=''/> 
                           </div>
                         </div>
