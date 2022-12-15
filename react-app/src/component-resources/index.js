@@ -11,9 +11,8 @@ export function normalizeArray(ele) {
             }
         })
     };
-
     return obj;
-  };
+};
 
 
 export function getImg(arr) {
