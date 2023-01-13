@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Spot, db, SpotImage, Review
-from app.forms import SpotImageForm, SpotForm, ReviewForm, SearchForm
+from app.forms import SpotImageForm, SpotForm, ReviewForm, SearchForm, BookingForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename
 
@@ -22,11 +22,11 @@ def search():
     """
     Query for spots based on a search word
     """
-    print('HITTTINE')
+
     form = SearchForm()
-    print('DSADSDSADDS')
+
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('sadasdfdfgfdgdfg')
+
 
     if form.validate_on_submit():
         data = form.data
@@ -48,38 +48,29 @@ def search():
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
         if field == 'amenity':
-            print('hit')
+            amenities = search.split(' ')
             spots = Spot.query.filter(Spot.amenities.ilike(f"%{search}%")).all()
-            print('spots', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
         if field == 'city':
-            print('hit')
             spots = Spot.query.filter(Spot.city.ilike(f"%{search}%")).all()
-            print('spots', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
         if field == 'state':
-            print('hit')
             spots = Spot.query.filter(Spot.state.ilike(f"%{search}%")).all()
-            print('spots', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
         if field == 'country':
-            print('hit')
             spots = Spot.query.filter(Spot.country.ilike(f"%{search}%")).all()
-            print('spots', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
         if field == 'price':
             search = int(search)
-            print('----------------SEARCH------------', search)
             spots = Spot.query.filter(Spot.price <= search)
-            print('-------------__SPOTS------------', spots)
             if not spots:
                 return jsonify({})
             return jsonify({'Spots': [ spot.to_dict(False, False, True, True) for spot in spots ] })
@@ -310,3 +301,12 @@ def create_review(spot_id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+@spot_routes.route('/<int:spot_id>/bookings', methods=['GET'])
+@login_required
+def booking_by_spot(spot_id):
+    """
+    Get all Bookings by Spot
+    """
+    spot = Spot.query.get(spot_id)
+    dic = spot.to_dict(False, False, False, True)
+    return jsonify(dic.Bookings)

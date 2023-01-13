@@ -13,11 +13,18 @@ export default function SearchSpots(){
     const [loading, setLoading] = useState(false)
     spots.sort((a, b) => b.id - a.id)
 
-    console.log('location', location)
-    console.log('location.search',location.search)
 
     useEffect( () => {
         let timer1 = setTimeout(() => setLoading(true), 1000);
+        // (async () => {
+        //     const response = await fetch(`/api/spots/search`, {
+        //         method: "POST",
+        //         headers: { "Content-Type": "application/json" },
+        //         body: JSON.stringify({search: 'Hot-tub Wifi Showers', field: 'amenity'}),
+        //     });
+        //     const spots = await response.json();
+        //     if(Object.values(spots).length >= 1) setSpots(Object.values(spots.Spots));
+        // })();
         return () => clearTimeout(timer1);
       },[]);
 
@@ -43,7 +50,7 @@ export default function SearchSpots(){
         }
     },[search, field])
 
-    console.log('spots', spots)
+
     return (
         <div>
         {!loading && (

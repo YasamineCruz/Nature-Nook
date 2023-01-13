@@ -34,7 +34,7 @@ class Spot(db.Model):
     user = db.relationship('User', back_populates='spots')
     spot_images = db.relationship('SpotImage', back_populates='spot', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='spot', cascade="all, delete-orphan")
-
+    bookings = db.relationship('Booking', back_populates='spot', cascade="all, delete-orphan")
 
     def to_dict(self, plain = False, with_ltlg = False, photos = False, reviews = False):
         if plain == True: 

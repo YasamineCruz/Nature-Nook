@@ -11,14 +11,13 @@ export default function SearchBar() {
 
     useEffect(()=>{
         if(field) setErrors([])
+
     },[field])
 
     const onSubmit = (e) => {
         e.preventDefault()
         if(field === 'price') {
-            console.log(searchWord)
             let price = resetPrice(`${searchWord}`)
-            console.log(price)
             history.push(`/search?f=${field}=q=${price}`)
         }
         if(field !== 'price') history.push(`/search?f=${field}=q=${searchWord}`)
@@ -68,7 +67,7 @@ export default function SearchBar() {
                 )}
                  <div className='search-by-field'>
                     <div className='search-bar-text'>Choose a category to search by</div>
-                    <select onChange={(e) => setField(e.target.value)} id="field" name="field" required>
+                    <select onChange={(e) => { setField(e.target.value); setSearchWord('')}} id="field" name="field" required>
                         <option value="">Please Select</option>
                         <option value="name">Name</option>
                         <option value="price">Price</option>
@@ -130,7 +129,7 @@ export default function SearchBar() {
                         </select>               
                 )}
 
-                <button type='submit'>Submit</button>
+                <button className='sign-up-button' type='submit'>Submit</button>
             </form>
         </div>
     )
