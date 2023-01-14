@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import { BookingsDatesModal } from '../../../context/BookingDatesModal';
 import BookingDate from './BookingDates';
 
-function ViewDatesModal({setEndDate, setStartDate, endDate, startDate, side}) {
+function ViewDatesModal({setEndDate, setStartDate, endDate, startDate, side, spot, setSide}) {
   const [showModal, setShowModal] = useState(false)
 
   return (
     <>
-      <div className='select-text edit-only pointer' onClick={() => {
+      <div className='select-text pointer' onClick={() => {
         setShowModal(true);
       }}>SelectDate</div>
       {showModal && (
         <BookingsDatesModal onClose={() => setShowModal(false)}>
-          <BookingDate side={side} setStartDate={setStartDate} setEndDate={setEndDate} endDate={endDate} startDate={startDate} setShowModal={setShowModal}/>
+          <BookingDate spot={spot} side={side} setStartDate={setStartDate} setEndDate={setEndDate} endDate={endDate} startDate={startDate} setShowModal={setShowModal} setSide={setSide}/>
         </BookingsDatesModal>
       )}
     </>

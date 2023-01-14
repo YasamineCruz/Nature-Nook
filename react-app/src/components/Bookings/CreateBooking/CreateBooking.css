@@ -1,60 +1,4 @@
-#book-a-night {
-    display: flex;
-    width: 300px;
-    /* border: darkgray 1px solid; */
-    border-radius: 10px;
-    background-color: lightgray;
-    margin-top: 10px;
-}
 
-#checkin-label {
-    position: absolute;
-    font-weight: bold;
-    font-size: 9px;
-    color: #222222;
-    top: 760px;
-    right: 721px;
-    z-index: 10;
-}
-
-#checkout-label {
-    position: absolute;
-    font-weight: bold;
-    font-size: 9px;
-    color: #222222;
-    top: 760px;
-    right: 563px;
-    z-index: 10;
-}
-
-.form-field {
-    position: relative;
-    color: #222222;
-    font-family: 'Nunito';
-    padding-left: 10px;
-    padding-top: 10px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-}
-
-.form-field:hover {cursor: pointer;}
-
-#book-a-night-top-left{
-    width: 50%;
-    height: 50px;
-    border-top-left-radius: 10px;border-bottom-left-radius: 10px;
-    border: darkgray 1px solid;;
-}
-
-#book-a-night-top-right{
-    width: 49%;
-    height: 50px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border: darkgray 1px solid;;
-}
 
 .booking-button {
     display: flex;
@@ -69,52 +13,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-color: transparent;
 }
 
-#reserve:hover {
-    cursor: pointer;
-    user-select: none;
-    background: #46d4aa;
-    transition: 1s;
-}
-
-#added-cost {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 13px;
-}
-
-#added-cost div {
-    color: gray;
-}
-
-#added-cost-end div {
-    color: gray;
-}
-
-#added-cost-end {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 13px;
-    padding-bottom: 13px;
-    border-bottom: lightgray 1px solid;
-}
-
-#validations-bookings-box {
-    z-index: 999;
-    width: 400px;
-    position: absolute;
-    background-color: rgba(255, 103, 103, 0.7);
-    top: 580px;
-    right: 420px;
-    border: red 1px solid;
-    border-radius: 10px;
-}
-
 .date-holder {
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 70px;
     width: 100%;
+}
+
+.date-holder2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+    width: 99.9%;
 }
 
 .check-text {
@@ -139,6 +51,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 55px;
 }
 
+.no-margin {
+    margin-top: 0px;
+    font-size: 14px;
+}
+
+.check-wrapper2 {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ebebeb;
+    background-color: white;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    height: 100%;
+}
+
 .select-text {
     font-family: inherit;
     font-size: 14px;
@@ -154,11 +82,48 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 70px;
 }
 
+.price-nightly2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    padding-left: 10px;
+    border-bottom: 1px solid #ebebeb;
+    height: 60px;
+}
+
 .booking-button-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 5px;
+    margin-top: 10px;
+}
+
+.dark-background {
+    background-color: #f3f3f3;
+    fill: #f3f3f3;
+}
+
+.add-margin-check {
+    margin-left: 8px;
+}
+
+.top {
+    margin-top: 10px;
+}
+
+.per-text2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color:#757575;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.price-text2 {
+    font-size: 24px;
+    font-weight: bold;
     margin-top: 10px;
 }

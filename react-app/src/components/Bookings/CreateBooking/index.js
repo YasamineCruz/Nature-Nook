@@ -10,6 +10,7 @@ export default function CreateBooking({ spotId, spot }) {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
+    const [side, setSide] = useState('')
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -39,13 +40,13 @@ export default function CreateBooking({ spotId, spot }) {
                     <div className='per-text'>per night (2 guests)</div>
                 </div>
                 <div className='date-holder'>
-                    <div className='check-wrapper'>
+                    <div className='check-wrapper' onClick={()=> setSide('start')}>
                         <div className='check-text'>Check in</div>
-                        <ViewDatesModal setStartDate={setStartDate} startDate={startDate} side={'start'}/>
+                        <ViewDatesModal spot={spot} setStartDate={setStartDate} startDate={startDate} side={side} setSide={setSide}/>
                     </div>
-                    <div className='check-wrapper'>
+                    <div className='check-wrapper' onClick={() => setSide('end')}>
                         <div className='check-text'>Check out</div>
-                        <ViewDatesModal setEndDate={setEndDate} endDate={endDate} side={'end'}/>
+                        <ViewDatesModal spot={spot} setEndDate={setEndDate} endDate={endDate} side={side} setSide={setSide}/>
                     </div>
 
                 </div>
