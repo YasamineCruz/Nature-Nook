@@ -82,5 +82,6 @@ class User(db.Model, UserMixin):
                 'joinDate': self.created_at,
                 'userPhotos': [photo.to_dict() for photo in self.user_photos],
                 'Spots': [spot.to_dict() for spot in self.spots],
-                'Reviews': [review.to_dict() for review in self.reviews]
+                'Reviews': [review.to_dict() for review in self.reviews],
+                'Bookings': [booking.to_dict() for booking in self.bookings]
             }

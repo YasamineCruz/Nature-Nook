@@ -17,6 +17,7 @@ import Footer from './components/Footer/Footer';
 import NotFound from './components/NotFound/NotFound';
 import GetUserSpots from './components/Spots/GetUserSpots/UserSpots';
 import SearchSpots from './components/Spots/SearchSpots/SearchSpots';
+import 'react-calendar/dist/Calendar.css';
 
 function App() {
   const [loaded, setLoaded] = useState(false);

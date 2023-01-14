@@ -1,9 +1,11 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import Spot, db, SpotImage, Review
+from app.models import Spot, db, SpotImage, Review, Booking
 from app.forms import SpotImageForm, SpotForm, ReviewForm, SearchForm, BookingForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename
+from datetime import datetime
+
 
 spot_routes = Blueprint('spots', __name__)
 
@@ -219,6 +221,7 @@ def spot(id):
     return jsonify(spot.to_dict(False, False, True, True))
 
 
+
 @spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_spot(id):
@@ -301,7 +304,7 @@ def create_review(spot_id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@spot_routes.route('/<int:spot_id>/bookings', methods=['GET'])
+@spot_routes.route('/<int:spot_id>/bookings')
 @login_required
 def booking_by_spot(spot_id):
     """
@@ -310,3 +313,45 @@ def booking_by_spot(spot_id):
     spot = Spot.query.get(spot_id)
     dic = spot.to_dict(False, False, False, True)
     return jsonify(dic.Bookings)
+
+
+def check_booking_availability(start_date, end_date):
+    bookings = Booking.query().all()
+
+    for booking in bookings:
+        start_a = datetime(booking.start_date).day
+        start_b = start_date.day
+        end_a = datetime(booking.end_date).day
+        end_b = end_date.day
+        if max(start_a, start_b) < min(end_a, end_b):
+            return False
+    
+    return True
+
+
+@spot_routes.route('/<int:spot_id>/bookings', methods=['POST'])
+@login_required
+def add_booking(spot_id):
+    """
+    Create a booking for a spot
+    """
+    form = BookingForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        data = form.data
+
+        if check_booking_availability(datetime(data['start_date'], datetime(data['end_date']))) == False:
+            return {'errors': ['Booking already taken']}, 401
+
+        new_booking = Booking(
+            spot_id = spot_id,
+            user_id = current_user.id,
+            start_date = data['start_date'],
+            end_date = data['end_date']
+        )
+        db.session.add(new_booking)
+        db.session.commit()
+        return jsonify(new_booking.to_dict())
+    
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

@@ -243,16 +243,16 @@
 }
 
 .price-single-card {
+    position: relative;
+    bottom: 10%;
     display: flex;
     flex-direction: column;
     background-color: white;
-    max-height: 200px;
+    max-height: 600px;
     max-width: 300px;
-    min-height: 100px;
-    min-width: 200px;
-    margin: 10px 10px 20px 10px;
+    min-height: 320px;
+    min-width: 319px;
     border: 1px solid #ebebeb;
-    padding: 15px 5px 15px 15px;
     flex-wrap: wrap;
     line-height: 1.4;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -264,7 +264,7 @@
 .per-text {
     font-weight: 500;
     font-size: 16px;
-    color: rgb(146, 143, 143)
+    color: #757575;
 }
 
 .check2 {
@@ -279,3 +279,4 @@
     flex-direction: row;
     justify-content: space-around;
 }
+

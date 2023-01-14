@@ -10,25 +10,28 @@ import { EditModalProvider } from './context/EditModal';
 import { SignupModalProvider } from './context/SignupModal';
 import { ReviewUpdateModalProvider } from './context/ReviewUpdateModal';
 import { UploadUserPhotoModalProvider } from './context/UploadUserPhotoModal';
+import { BookingsDatesModalProvider } from './context/BookingDatesModal';
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <ModalProvider>
-    <UploadUserPhotoModalProvider>
-    <SignupModalProvider>
-    <DeleteModalProvider>
-    <EditModalProvider>
-    <ReviewUpdateModalProvider>
-    <Provider store={store}>
-        <App />
-      </Provider>
-      </ReviewUpdateModalProvider>
-      </EditModalProvider>
-      </DeleteModalProvider>
-      </SignupModalProvider>
-      </UploadUserPhotoModalProvider>
+      <BookingsDatesModalProvider>
+        <UploadUserPhotoModalProvider>
+          <SignupModalProvider>
+            <DeleteModalProvider>
+              <EditModalProvider>
+                <ReviewUpdateModalProvider>
+                  <Provider store={store}>
+                    <App />
+                  </Provider>
+                </ReviewUpdateModalProvider>
+              </EditModalProvider>
+            </DeleteModalProvider>
+          </SignupModalProvider>
+        </UploadUserPhotoModalProvider>
+      </BookingsDatesModalProvider>
     </ModalProvider>
   </React.StrictMode>,
   document.getElementById('root')
