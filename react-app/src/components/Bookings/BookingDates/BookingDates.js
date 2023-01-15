@@ -13,7 +13,7 @@ export default function BookingDate({ setEndDate, setStartDate, endDate, startDa
         <div>
             {newSide === 'start' && (
                 <div>
-                    <div className='price-nightly'>
+                    <div className='price-nightly2'>
                         <div className='price-text2'>${addZero(spot.price)}</div>
                         <div className='per-text2'>average per night (2 guests)</div>
                     </div>
