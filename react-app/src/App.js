@@ -53,6 +53,7 @@ function App() {
         </Route>
         <Route path='/user/:userId' exact={true}>
           <User />
+          <Footer />
         </Route>
         <Route path='/' exact={true} >
           <SplashPage />
@@ -60,15 +61,19 @@ function App() {
         </Route>
         <Route path='/userSpots' exact={true}>
           <GetUserSpots />
+          <Footer />
         </Route>
         <Route path='/spots' exact={true}>
           <GetAllSpots />
+          <Footer />
         </Route>
         <Route path='/spots/:spotId' exact={true}>
           <GetASpot spotCount={spotCount}/>
+          <Footer />
         </Route>
         <Route path='/search' exact={true}>
             <SearchSpots />
+            <Footer />
         </Route>
         <Route path='*'>
           <NotFound />

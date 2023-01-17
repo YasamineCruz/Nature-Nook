@@ -16,15 +16,6 @@ export default function SearchSpots(){
 
     useEffect( () => {
         let timer1 = setTimeout(() => setLoading(true), 1000);
-        // (async () => {
-        //     const response = await fetch(`/api/spots/search`, {
-        //         method: "POST",
-        //         headers: { "Content-Type": "application/json" },
-        //         body: JSON.stringify({search: 'Hot-tub Wifi Showers', field: 'amenity'}),
-        //     });
-        //     const spots = await response.json();
-        //     if(Object.values(spots).length >= 1) setSpots(Object.values(spots.Spots));
-        // })();
         return () => clearTimeout(timer1);
       },[]);
 

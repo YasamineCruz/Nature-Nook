@@ -113,7 +113,7 @@
     max-height: 500px;
     line-height: 28px;
     word-wrap: break-word;
-    word-break: break-all;
+    word-break: normal;
     overflow: hidden;
 }
 
@@ -137,7 +137,7 @@
     flex-direction: row;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 600;
-    font-size: 12px; 
+    font-size: 12px;
 }
 
 .owner-name {
@@ -163,7 +163,7 @@
 }
 
 .lil-name {
-    border-bottom: 1px solid rgb(226, 226, 226); 
+    border-bottom: 1px solid rgb(226, 226, 226);
     margin-top: 5px;
 }
 
@@ -205,7 +205,7 @@
     padding: 15px 5px 15px 15px;
     flex-wrap: wrap;
     line-height: 1.4;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
 .big-Amenities {
@@ -258,7 +258,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
     font-weight: 700;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
 .per-text {
@@ -280,3 +280,32 @@
     justify-content: space-around;
 }
 
+@media only screen and (max-width: 1200px) {
+    .spot-single-img {
+        max-width: 400px !important;
+        max-height: 200px !important;
+        min-width: 400px !important;
+    }
+
+    .add {
+        max-width: 400px !important;
+        max-height: 200px !important;
+        min-height: 200px !important;
+        cursor: pointer !important;
+    }
+
+    .spot-single-desc {
+        max-width: 250px !important;
+        word-wrap: break-word;
+        word-break: normal;
+        display: -webkit-box !important;
+        flex-direction: row;
+        min-width: 50px;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis !important;
+        line-height: 1.3em;
+        max-height: 140px;
+    }
+}

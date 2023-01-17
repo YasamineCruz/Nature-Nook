@@ -40,12 +40,13 @@
     position: absolute;
     min-height: 100px;
     min-width: 210px;
-    top: 7%;
+    top: 50px;
     background-color: white;
     border-radius: 6px;
     padding: 25px;
     right: 16.5%;
     border: 1px solid #ebebeb;
+    z-index: 1;
     /* animation: fadein 1.2s both; */
 }
 

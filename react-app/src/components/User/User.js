@@ -136,7 +136,7 @@ function User() {
                   </div>
                 )}
                 <div>
-                  <div className='Bookings-Title'>Your Vacation Bookings</div>
+                  <div className='Bookings-Title2'>Your Vacation Bookings</div>
                   {!user.Bookings && (
                     <div>No current bookings available...</div>
                   )}
