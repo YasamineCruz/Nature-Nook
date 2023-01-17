@@ -117,6 +117,7 @@ class Spot(db.Model):
                 'createdAt': self.created_at,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews],
+                'Bookings': [booking.to_dict() for booking in self.bookings],
                 'lat': self.lat,
                 'lng': self.lng
             }

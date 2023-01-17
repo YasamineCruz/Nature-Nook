@@ -150,7 +150,7 @@ export default function GetASpot() {
                                 </div>
                             </div>
                             <Review reviews={spot?.Reviews} />
-                            {user && (
+                            {user && user?.id !== spot?.owner?.id && (
                                 <CreateReview spotId={spotId} />
                             )}
                         </div>

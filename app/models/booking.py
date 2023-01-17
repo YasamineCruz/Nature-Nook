@@ -28,5 +28,6 @@ class Booking(db.Model):
             'user': self.user.to_dict(False, False, True),
             'startDate': self.start_date, 
             'endDate': self.end_date,
-            'createdAt': self.created_at
+            'createdAt': self.created_at,
+            'spot': self.spot.to_dict(False, False, True, False)
         }

@@ -1,4 +1,5 @@
 import { normalizeArray } from "../component-resources";
+import { refreshUser } from "./session";
 
 const CREATE_SPOT = "spots/CREATE_A_SPOT";
 const GET_SPOTS = "spots/GET_ALL_SPOTS";
@@ -214,10 +215,13 @@ export const createBooking = (spotId, bookingInfo) => async (dispatch) => {
     body: JSON.stringify(bookingInfo),
   })
 
+
   if (response.ok) {
     const newBooking = await response.json();
     dispatch(createABooking(newBooking));
     return newBooking;
+  } else {
+    return {errors: 'Booking already taken'}
   }
 }
 
@@ -237,7 +241,7 @@ export const updateBooking = (bookingInfo, bookingId) => async (dispatch) => {
 };
 
 
-export const deleteBooking = (bookingId, spotId) => async (dispatch) => {
+export const deleteBooking = (bookingId, userId) => async (dispatch) => {
   const response = await fetch(`/api/bookings/${bookingId}`,
     {
       method: "DELETE",
@@ -245,7 +249,7 @@ export const deleteBooking = (bookingId, spotId) => async (dispatch) => {
   );
   if (response.ok) {
     const res = response.json()
-    dispatch(deleteAReview(bookingId, spotId));
+    dispatch(refreshUser(userId));
     return res;
   }
 };
@@ -282,6 +286,7 @@ export default function reducer(state = initialState, action) {
       return newState
     case DELETE_SPOT:
       newState = { allSpots: { ...state.allSpots }, userSpots: { ...state.userSpots }, singleSpot: { ...state.singleSpot } }
+
       delete newState.allSpots[action.payload];
       delete newState.userSpots[action.payload];
       newState.singleSpot = {}
@@ -329,16 +334,6 @@ export default function reducer(state = initialState, action) {
       let newBookings = [...newState.singleSpot.Bookings]
       newBookings.push(action.payload)
       newState.singleSpot.Bookings = newBookings
-      return newState
-    case DELETE_REVIEW:
-      newState = { allSpots: { ...state.allSpots }, userSpots: { ...state.userSpots }, singleSpot: { ...state.singleSpot } }
-      if (Object.values(newState.allSpots).length >= 1) delete newState.allSpots[action.payload.spotId].Bookings[action.payload.bookingId]
-      let bookingsArr = newState.singleSpot.Bookings
-      for (let i = 0; i < bookingsArr.length; i++) {
-        let booking = bookingsArr[i];
-        if (booking.id === action.payload.bookingId) bookingsArr.splice(i, 1)
-      }
-      newState.singleSpot.Bookings = bookingsArr
       return newState
     default:
       return state;

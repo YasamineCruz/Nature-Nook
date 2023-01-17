@@ -315,15 +315,19 @@ def booking_by_spot(spot_id):
     return jsonify(dic.Bookings)
 
 
-def check_booking_availability(start_date, end_date):
-    bookings = Booking.query().all()
+def check_booking_availability(start_date, end_date, id):
+    bookings = Booking.query.filter(Booking.spot_id == id).all()
 
     for booking in bookings:
-        start_a = datetime(booking.start_date).day
-        start_b = start_date.day
-        end_a = datetime(booking.end_date).day
-        end_b = end_date.day
-        if max(start_a, start_b) < min(end_a, end_b):
+        start_a = datetime.strptime(booking.start_date, "%m/%d/%Y %H:%M:%S")
+        end_a = datetime.strptime(booking.end_date, "%m/%d/%Y %H:%M:%S")
+        if start_date == start_a:
+            return False
+        if end_date == end_a:
+            return False
+        if start_date >= start_a and start_date <= end_a:
+            return False
+        if end_date <= end_a and end_date >= start_a:
             return False
     
     return True
@@ -337,12 +341,13 @@ def add_booking(spot_id):
     """
     form = BookingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print('---------------HIt the router')
 
     if form.validate_on_submit():
         data = form.data
-
-        if check_booking_availability(datetime(data['start_date'], datetime(data['end_date']))) == False:
-            return {'errors': ['Booking already taken']}, 401
+        print('----------got in validate', data)
+        if check_booking_availability(datetime.strptime(data['start_date'], "%m/%d/%Y %H:%M:%S"), datetime.strptime(data['end_date'], "%m/%d/%Y %H:%M:%S"), spot_id) == False:
+            return {'errors': ['Booking already taken']}, 200
 
         new_booking = Booking(
             spot_id = spot_id,
