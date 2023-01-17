@@ -1,6 +1,5 @@
-import { useEffect } from "react"
 import NextButton from "./NextButton"
-
+import { useEffect } from "react"
 
 export default function CreateNameComponent({setShowDropdown, setStop, setShowModal, submitted, name, setName, setErrors, setCount, count, setSubmitted, errors}) {
 
@@ -43,21 +42,19 @@ export default function CreateNameComponent({setShowDropdown, setStop, setShowMo
                 {name.length >= 50 && (
                     <div className="create-event-errors">You've reached the max character length. Congrats!</div>
                 )}
-
-                { errors?.length >= 1 && submitted && (
-                    <div className='create-event-errors'>
-                        {errors.map((error, idx) => (
-                            <div key={idx}>{error}</div>
-                         ))}
-                    </div>
-                )}
-            </form>
-            
-            <div className='Button-Container-Create-Spot'>
-                <div className='empty-space'></div>
-                <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
-            </div>
+        { errors?.length >= 1 && submitted && (
+        <div className='create-event-errors'>
+        {errors.map((error, idx) => (
+        <div key={idx}>{error}</div>
+        ))}
         </div>
-    )  
+        )}
+    </form>
+    <div className='Button-Container-Create-Spot'>
+        <div className='empty-space'></div>
+        <NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
+    </div>
+    </div>
+    ) 
 
 }

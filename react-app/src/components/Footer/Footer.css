@@ -1,3 +1,4 @@
+
 body {
     position: relative;
     display: block;
@@ -41,7 +42,6 @@ footer {
     margin-right: 5px;
 }
 
-
 .bottom-not-link {
     display: flex;
     flex-direction: row;
@@ -51,4 +51,4 @@ footer {
 
 .link {
     cursor: pointer;
-}
+    }

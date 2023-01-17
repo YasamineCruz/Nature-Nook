@@ -75,6 +75,7 @@ function CreateSpotForm({setNotImage, setShowModal, setStop, setShowDropdown}) {
             setErrors(validationErrors)
           });
         setSpotId(spot.id)
+
         if(validationErrors.length <= 0){
             // setShowModal(false)
             setCount(8)
@@ -89,6 +90,7 @@ function CreateSpotForm({setNotImage, setShowModal, setStop, setShowDropdown}) {
             setAmenities("")
             setType("")
             setActivities("")
+            setUrl("")
             history.push(`/spots/${spot.id}`)
         }
     }

@@ -42,6 +42,7 @@ export default function GetASpot() {
     const spots = useSelector((state) => state.spot.allSpots)
     const user = useSelector((state) => state.session.user)
     const [loading, setLoading] = useState(false)
+
     const [img, setImg] = useState('')
 
     useEffect(() => {
@@ -65,7 +66,6 @@ export default function GetASpot() {
 
     useEffect(() => {
         document.body.classList.add('bg-white');
-
         return function cleanup() {
             document.body.classList.remove('bg-white');
         }
@@ -74,8 +74,6 @@ export default function GetASpot() {
     let notFound;
     if (Object.values(spots).length >= 1) notFound = checkUrl(spots, spotId)
     if (notFound) return notFound
-
-
     return (
         <div>
             {!loading && (

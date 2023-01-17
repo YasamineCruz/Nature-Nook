@@ -13,7 +13,6 @@ export default function GetAllSpots(){
     const [loading, setLoading] = useState(false)
     spots.sort((a, b) => b.id - a.id)
 
-
     useEffect( () => {
         let timer1 = setTimeout(() => setLoading(true), 1000);
         return () => clearTimeout(timer1);

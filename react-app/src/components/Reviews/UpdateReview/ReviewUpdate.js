@@ -32,19 +32,20 @@ const onSubmit = async (e) => {
         .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) {
-                  validationErrors.push(data.errors)
-                };
-                setErrors(validationErrors)
-        });
-        if(validationErrors.length <= 0){
+                validationErrors.push(data.errors)
+            };
+            setErrors(validationErrors)
+            });
+            if(validationErrors.length <= 0){
             setShowModal(false)
             setReview("")
             setRecommends("")
-        }
+            }
         }
     }
 
     return (
+        
         <div className='update-review-container'>
         <div className='add-review-bg-txt edit-review'>Edit your review</div>
         {errors && submitted && (
