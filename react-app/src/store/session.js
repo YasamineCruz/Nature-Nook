@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const REFRESH_USER = 'session/REFRESH_USER'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -12,6 +13,16 @@ const removeUser = () => ({
 })
 
 const initialState = { user: null };
+
+export const refreshUser = (userId) => async(dispatch) => {
+  const response = await fetch(`/api/users/${userId}`)
+  console.log('hitttt meeee', response)
+  if(response.ok){
+    let user = await response.json()
+    dispatch(setUser(user))
+    return null
+  }
+}
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -98,6 +109,8 @@ export const signUp = (username, email, password, firstName, lastName) => async 
     return ['An error occurred. Please try again.']
   }
 }
+
+
 
 
 export default function reducer(state = initialState, action) {

@@ -1,6 +1,9 @@
+import SearchBar from '../SearchBar/SearchBar'
 import './SplashPage.css'
 
 export default function SplashPage() {
+
+
     return (
         <div className='splash-page-container'>
             <div className='splash-page-upper-container'>
@@ -8,6 +11,9 @@ export default function SplashPage() {
                 <h3 className='splash-h3'>Discover and book tent camping, RV parks, cabins, treehouses, and glamping.</h3>
             </div>
             <div className='splash-page-img-container'>
+                <div className='search-bar'>
+                    <SearchBar />
+                </div>
                 <img className='splash-page-img' src='https://thepurplepassport.com/wp-content/uploads/2020/07/photo-1563299796-17596ed6b017.jpg' alt=''></img>
             </div>
         </div>

@@ -61,14 +61,15 @@ export default function CreateLocationComponent({setShowDropdown, setStop, setSh
                 required
                 />
                 {city.length >= 25 && (
-                <div className="create-event-errors">You've reached the max character length for a city. Congrats!</div>
+                    <div className="create-event-errors">You've reached the max character length for a city. Congrats!</div>
                 )}
                 {state.length >= 25 && (
-                <div className="create-event-errors">You've reached the max character length for a state. Congrats!</div>
+                    <div className="create-event-errors">You've reached the max character length for a state. Congrats!</div>
                 )}
                 {country.length >= 25 && (
-                <div className="create-event-errors">You've reached the max character length for a country. Congrats!</div>
-                )} 
+                    <div className="create-event-errors">You've reached the max character length for a country. Congrats!</div>
+                )}        
+
                 { errors?.length >= 1 && submitted && (
                 <div className='create-event-errors'>
                 {errors.map((error, idx) => (

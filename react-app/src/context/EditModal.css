@@ -30,3 +30,36 @@
   margin-top: 2%;
   margin-bottom: 2%;
   }
+
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.edit-spot-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-text {
+  text-align: center;
+}
+
+.img-upload {
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.edit-spot-container {
+  max-width: 500px;
+  max-height: 455px;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

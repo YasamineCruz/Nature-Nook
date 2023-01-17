@@ -40,7 +40,7 @@ export default function CreateActivitiesComponent({setShowDropdown, setStop, set
                         checked={activities.find(e => e.toLowerCase() === activity.toLowerCase())}
                         onChange={()=>{
                             let copyActivites = [...activities]
-                            console.log(copyActivites)
+                         
                             if (copyActivites.find(e => e.toLowerCase() === activity.toLowerCase())) {
                                 let i = copyActivites.findIndex(e => e.toLowerCase() === activity.toLowerCase())
                                 copyActivites.splice(i, 1)

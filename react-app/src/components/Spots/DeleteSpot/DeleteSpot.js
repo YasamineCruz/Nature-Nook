@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { deleteSpot } from "../../../store/spot";
+import { deleteSpot, getSpots } from "../../../store/spot";
 
 
 export function DeleteSpot({spotId, spot, setShowModal}){
@@ -10,6 +10,7 @@ export function DeleteSpot({spotId, spot, setShowModal}){
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(deleteSpot(spotId))
+        dispatch(getSpots())
         setShowModal(false)
         history.push('/spots')
     }
@@ -17,7 +18,7 @@ export function DeleteSpot({spotId, spot, setShowModal}){
     return (
         <div className='delete-spot-container'>
             <form className='delete-spot-wrapper' onSubmit={onSubmit}>
-                <div className='create-modal-text'>Are you sure you want to delete {spot.name}?</div>
+                <div className='delete-modal-text'>Are you sure you want to delete {spot.name}?</div>
 
                 <div className='Button-Container-Create-Spot add-padding edit-for-delete'>
                     <button className='BackButton' onClick={()=> setShowModal(false)} type='button'>Cancel</button>

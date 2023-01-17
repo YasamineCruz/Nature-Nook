@@ -48,19 +48,32 @@ const NavBar = () => {
          <img src={fav} alt='' className='dropdown-fav pointer' onMouseEnter={() => setShowDropdown(true)} />
         {showDropdown && (
           <div className='dropdown-wrapper' onMouseEnter={() => setShowDropdown(true)}  onMouseLeave={(e)=> {if(stop === false) setShowDropdown(false)}}>
+             <div className='dropdown-link-wrapper'>
+              <NavLink className='dropdown-link' to={`/user/${sessionUser.id}`} exact={true} activeClassName='active'>
+                Profile Page
+              </NavLink>
+            </div>
+            
             <div className='dropdown-link-wrapper'>
-            <NavLink className='dropdown-link' to='/spots' exact={true} activeClassName='active'>
-              Spots
-            </NavLink>
-          </div>
+              <NavLink className='dropdown-link' to='/spots' exact={true} activeClassName='active'>
+                All Spots
+              </NavLink>
+            </div>
 
-          <div className='dropdown-link-wrapper'>
-            <CreateSpotModal setStop={setStop} setShowDropdown={setShowDropdown}/>
-          </div>
+              <div className='dropdown-link-wrapper'>
+              <NavLink className='dropdown-link' to='/userSpots' exact={true} activeClassName='active'>
+                Your Spots
+              </NavLink>
+            </div>
 
-          <div className='dropdown-link-wrapper'>
-            <LogoutButton/>
-          </div> 
+            <div className='dropdown-link-wrapper'>
+              <CreateSpotModal setStop={setStop} setShowDropdown={setShowDropdown}/>
+            </div>
+
+            <div className='dropdown-link-wrapper'>
+              <LogoutButton/>
+            </div> 
+
 
         </div>
         )}

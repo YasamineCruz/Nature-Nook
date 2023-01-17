@@ -32,22 +32,22 @@ export default function CreatePriceComponent({setShowDropdown, setStop, setShowM
                 className='create-modal-input' 
                 type='text'
                 onChange={(e) => {
-                let regex = /^[0-9\b]+$/
-                let pArr = e.target.value.split("")
-                if(pArr.find(e => e === '$')){
-                let i = pArr.findIndex(e => e === '$')
-                pArr.splice(i,1)
-                }
-                let p = pArr.join("")
-                // let testString = p.split('.')
-                // let pass = true
-                // if(testString.length >= 3) pass = false
-                // if(testString[0].length >= 10) pass = false
-                // if(testString.length === 2){
-                // if(testString[1].length >= 3) pass = false
-                // }
-                if(p === '') setPrice(`${p}`)
-                if(regex.test(p) && p.length <= 4) setPrice(`$${p}`)
+                    let regex = /^[.0-9\b]+$/
+                    let pArr = e.target.value.split("")
+                    if(pArr.find(e => e === '$')){
+                        let i = pArr.findIndex(e => e === '$')
+                        pArr.splice(i,1)
+                    }
+                    let p = pArr.join("")
+                    let testString = p.split('.')
+                    let pass = true
+                    if(testString.length >= 3) pass = false
+                    if(testString[0].length >= 10) pass = false
+                    if(testString.length === 2){
+                        if(testString[1].length >= 3) pass = false
+                    }
+                    if(p === '') setPrice(`${p}`)
+                    if(regex.test(p) && pass) setPrice(`$${p}`)
                 }}
                 value={price}
                 placeholder='[XX]'
@@ -63,6 +63,10 @@ export default function CreatePriceComponent({setShowDropdown, setStop, setShowM
                 {price.length > 4 && (
                 <div className="create-event-errors">That's too expensive.</div>
                 )}
+                {price.length > 9 && (
+                    <div className="create-event-errors">That's too expensive.</div>
+                )}
+
             </form>
 
             <div className='Button-Container-Create-Spot'>

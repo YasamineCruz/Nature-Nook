@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
 
     spots = db.relationship('Spot', back_populates='user', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='user', cascade="all, delete-orphan")
+    user_photos = db.relationship('UserPhoto', back_populates='user', cascade="all, delete-orphan")
+    bookings = db.relationship('Booking', back_populates='user', cascade="all, delete-orphan")
 
 
     @property
@@ -45,7 +47,8 @@ class User(db.Model, UserMixin):
                 'email': self.email,
                 'firstName': self.first_name,
                 'lastName': self.last_name,
-                'join_date': self.created_at,
+                'joinDate': self.created_at,
+                'userPhotos': [photo.to_dict() for photo in self.user_photos],
             }
         if with_spots == False and with_reviews == True:
             return {
@@ -54,7 +57,8 @@ class User(db.Model, UserMixin):
                 'email': self.email,
                 'firstName': self.first_name,
                 'lastName': self.last_name,
-                'join_date': self.created_at,
+                'joinDate': self.created_at,
+                'userPhotos': [photo.to_dict() for photo in self.user_photos],
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
         if with_reviews == False and with_spots == True:
@@ -64,7 +68,8 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'firstName': self.first_name,
             'lastName': self.last_name,
-            'join_date': self.created_at,
+            'joinDate': self.created_at,
+            'userPhotos': [photo.to_dict() for photo in self.user_photos],
             'Spots': [spot.to_dict() for spot in self.spots],
         }
         else:
@@ -74,7 +79,9 @@ class User(db.Model, UserMixin):
                 'email': self.email,
                 'firstName': self.first_name,
                 'lastName': self.last_name,
-                'join_date': self.created_at,
+                'joinDate': self.created_at,
+                'userPhotos': [photo.to_dict() for photo in self.user_photos],
                 'Spots': [spot.to_dict() for spot in self.spots],
-                'Reviews': [review.to_dict() for review in self.reviews]
+                'Reviews': [review.to_dict() for review in self.reviews],
+                'Bookings': [booking.to_dict() for booking in self.bookings]
             }

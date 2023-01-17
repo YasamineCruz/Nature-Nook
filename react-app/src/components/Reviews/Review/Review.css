@@ -99,8 +99,9 @@
     place-items: center;
     color: black;
     text-decoration: none;
-    }
-    
+}
+
+
 .fav-and-thumb > * {
     grid-column: 1 / 1;
     grid-row: 1 / 1;

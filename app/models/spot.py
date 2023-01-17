@@ -34,7 +34,7 @@ class Spot(db.Model):
     user = db.relationship('User', back_populates='spots')
     spot_images = db.relationship('SpotImage', back_populates='spot', cascade="all, delete-orphan")
     reviews = db.relationship('Review', back_populates='spot', cascade="all, delete-orphan")
-
+    bookings = db.relationship('Booking', back_populates='spot', cascade="all, delete-orphan")
 
     def to_dict(self, plain = False, with_ltlg = False, photos = False, reviews = False):
         if plain == True: 
@@ -48,7 +48,8 @@ class Spot(db.Model):
                 'country': self.country,
                 'amenities': self.amenities,
                 'type': self.type,
-                'activities': self.activities
+                'activities': self.activities,
+                'createdAt': self.created_at
              }
         if with_ltlg == False and photos == True and reviews == True:
             return {
@@ -63,8 +64,10 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
-                'Reviews': [review.to_dict() for review in self.reviews]
+                'Reviews': [review.to_dict() for review in self.reviews],
+                'Bookings': [booking.to_dict() for booking in self.bookings],
             }
         if photos == False and reviews == True:
              return {
@@ -79,6 +82,7 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Reviews': [review.to_dict() for review in self.reviews]
             }
         if reviews == False and photos == True:
@@ -94,6 +98,7 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
             }   
         else:
@@ -109,8 +114,10 @@ class Spot(db.Model):
                 'amenities': self.amenities,
                 'type': self.type,
                 'activities': self.activities,
+                'createdAt': self.created_at,
                 'Photos': [spot_image.to_dict() for spot_image in self.spot_images],
                 'Reviews': [review.to_dict() for review in self.reviews],
+                'Bookings': [booking.to_dict() for booking in self.bookings],
                 'lat': self.lat,
                 'lng': self.lng
             }

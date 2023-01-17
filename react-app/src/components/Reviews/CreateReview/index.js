@@ -13,7 +13,6 @@ export default function CreateReview({spotId}){
     const [submitted, setSubmitted] = useState(false)
     const dispatch = useDispatch();
 
-
     useEffect(()=>{
         let validationErrors = []
         if(!review || review.length < 15) validationErrors.push('You must enter a review between 15 and 500 characters')
@@ -43,7 +42,6 @@ export default function CreateReview({spotId}){
             setReview("")
             setRecommends("")
             setSubmitted(false)
-            }
         }
     }
     
@@ -64,6 +62,8 @@ export default function CreateReview({spotId}){
                 onChange={(e)=> setReview(e.target.value)}
                 value={review}
                 required
+                minlength={15}
+                min={25}
                 maxLength={500}
                 cols={60}
                 rows={10}

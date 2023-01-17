@@ -10,7 +10,7 @@ import CreateLocationComponent from './CreateLocation'
 import CreateAmenitiesComponent from "./CreateAmenities";
 import CreateTypeComponent from "./CreateType";
 import CreateActivitiesComponent from "./CreateActivities";
-import CreateImageComponent from "./CreateImage";
+import UploadPicture from "./CreateImage";
 import '../../../context/Modal.css'
 import BackButton from "./BackButton";
 
@@ -22,12 +22,14 @@ export function resetPrice(price){
     let i = pArr.findIndex(e => e === '$')
     pArr.splice(i,1)
     }
-  let p = pArr.join("")
+    let p = pArr.join("")
+  
   p = Number(p)
+
   return p
 }
 
-function CreateSpotForm({setShowModal, setStop, setShowDropdown}) {
+function CreateSpotForm({setNotImage, setShowModal, setStop, setShowDropdown}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [submitted, setSubmitted] = useState(false);
@@ -42,8 +44,7 @@ function CreateSpotForm({setShowModal, setStop, setShowDropdown}) {
   const [count, setCount] = useState(0)
   const [activities, setActivities] = useState([])
   const [errors, setErrors] = useState([]);
-  const [url, setUrl] = useState('')
-
+  const [spotId, setSpotId] = useState("");
  
 
   const handleSubmit = async(e) => {
@@ -61,26 +62,25 @@ function CreateSpotForm({setShowModal, setStop, setShowDropdown}) {
         amenities: amenities.join(" "),
         type,
         activities: activities.join(" "),
-        url
     }
- 
+    
+
     if(errors.length <= 0){
         let spot = await dispatch(createSpot(spotInfo))
         .catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) {
               validationErrors.push(data.errors)
-              console.log(data)
             };
             setErrors(validationErrors)
           });
-        console.log(spot)
+        setSpotId(spot.id)
 
         if(validationErrors.length <= 0){
-            setShowModal(false)
-            setCount(0)
-            setShowDropdown(false)
-            setStop(false)
+            // setShowModal(false)
+            setCount(8)
+            // setShowDropdown(false)
+            // setStop(false)
             setName("")
             setDescription("")
             setPrice("")
@@ -122,10 +122,10 @@ function CreateSpotForm({setShowModal, setStop, setShowDropdown}) {
         {count === 6 && (
           <CreateActivitiesComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} activities={activities} setActivities={setActivities} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
         )}
-        {count === 7 && (
-          <CreateImageComponent setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} url={url} setUrl={setUrl} setErrors={setErrors} count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
-        )}
         {count === 8 && (
+          <UploadPicture setNotImage={setNotImage} spotId={spotId} setShowDropdown={setShowDropdown} setStop={setStop} setShowModal={setShowModal} submitted={submitted} count={count} setCount={setCount} setSubmitted={setSubmitted}/>
+        )}
+        {count === 7 && (
           <div>
             <div className='top-container'>
                 <button className='exit-button' type='button' onClick={()=> { setShowModal(false); setStop(false); setShowDropdown(false)}}>

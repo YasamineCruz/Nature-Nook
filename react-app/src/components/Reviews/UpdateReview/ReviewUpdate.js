@@ -11,24 +11,25 @@ export default function UpdateReview({reviewInfo, setShowModal}) {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-    let validationErrors = []
-    if(!review || review.length < 15) validationErrors.push('You must enter a review between 15 and 500 characters')
-    if(!recommends) validationErrors.push('Please recommend')
-    setErrors(validationErrors)
+        let validationErrors = []
+        if(!review || review.length < 15) validationErrors.push('You must enter a review between 15 and 500 characters')
+        if(!recommends) validationErrors.push('Please recommend')
+        setErrors(validationErrors)
     },[review, recommends])
 
-    const onSubmit = async (e) => {
-        e.preventDefault()
-        let validationErrors = []
-        setSubmitted(true)
-        let reviewData = {
-                        review,
-                        recommends: recommendsCheck(recommends)
-        }
-        
-        if(errors.length <= 0) {
-            dispatch(updateReview(reviewData, reviewInfo.id))
-            .catch(async (res) => {
+
+const onSubmit = async (e) => {
+    e.preventDefault()
+    let validationErrors = []
+    setSubmitted(true)
+    let reviewData = {
+        review,
+        recommends: recommendsCheck(recommends)
+    }
+
+    if(errors.length <= 0) {
+        dispatch(updateReview(reviewData, reviewInfo.id))
+        .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) {
                 validationErrors.push(data.errors)
