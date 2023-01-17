@@ -12,6 +12,10 @@ export default function GetAllSpots(){
     const spots = useSelector((state) => Object.values(state.spot.allSpots))
     const [loading, setLoading] = useState(false)
     spots.sort((a, b) => b.id - a.id)
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/main
 
 
     useEffect( () => {

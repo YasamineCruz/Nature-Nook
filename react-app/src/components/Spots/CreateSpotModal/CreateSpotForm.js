@@ -89,6 +89,7 @@ function CreateSpotForm({setNotImage, setShowModal, setStop, setShowDropdown}) {
             setAmenities("")
             setType("")
             setActivities("")
+            setUrl("")
             history.push(`/spots/${spot.id}`)
         }
     }

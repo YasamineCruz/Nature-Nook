@@ -3,29 +3,29 @@
     display: flex;
     flex-direction: column;
     border-top: 1px solid rgb(222, 222, 222);
-
-}
-
+    
+    }
+    
 .review-info {
     max-height: 500px;
     margin-bottom: 30px;
-}
-
+    }
+    
 .review-amount {
     font-family: inherit;
     font-size: 18px;
     font-weight: bold;
     margin-top: 30px;
-}
-
+    }
+    
 .review-wrapper {
     margin-top: 50px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
+    }
+    
 .review {
     display: flex;
     flex-direction: row;
@@ -38,8 +38,8 @@
     border-radius: 25px;
     word-wrap: break-word;
     word-break: break-all;
-}
-
+    }
+    
 .green-review {
     display: flex;
     flex-direction: row;
@@ -53,35 +53,35 @@
     margin-top: 35px;
     margin-left: 25px;
     z-index: 2;
-}
-
+    }
+    
 .date-recommends-wrapper {
     margin-left: 5px;
-}
-
+    }
+    
 .review-recommends {
     display: flex;
     flex-direction: row;
-}
-
+    }
+    
 .owner-name2 {
     font-family: Calibre, Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: 600;
     line-height: 24px;
-}
-
+    }
+    
 .recommends {
     font-family: Calibre, Helvetica, Arial, sans-serif;
     margin-left: 5px;
     line-height: 24px;
-}
-
+    }
+    
 .space {
     width: 5px;
     margin-left: 10px;
-}
-
+    }
+    
 .review-top-div {
     display: flex;
     flex-direction: row;
@@ -89,8 +89,8 @@
     align-items: center;
     height: 60px;
     padding: 5px;
-}
-
+    }
+    
 .fav-and-thumb {
     display: grid;
     max-width: 50px;
@@ -99,21 +99,21 @@
     place-items: center;
     color: black;
     text-decoration: none;
-}
-
+    }
+    
 .fav-and-thumb > * {
     grid-column: 1 / 1;
     grid-row: 1 / 1;
-}
-
+    }
+    
 .fav {
     z-index: 1;
     max-height: 50px;
     max-width: 50px;
     background-color: white;
     border-radius: 50%;
-}
-
+    }
+    
 .red-review {
     z-index: 2;
     display: flex;
@@ -126,10 +126,11 @@
     border-radius: 50%;
     margin-top: 35px;
     margin-left: 25px;
-}
-
+    }
+    
 .user-only {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
+    }
+    

@@ -21,13 +21,9 @@ import SearchSpots from './components/Spots/SearchSpots/SearchSpots';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-  const [spotCount, setSpotCount] = useState('')
   const spots = useSelector(state => Object.values(state?.spot?.allSpots))
 
 
-  useEffect(()=>{
-    if(spots) setSpotCount(spots.length)
-  },[])
 
   useEffect(() => {
     (async() => {
