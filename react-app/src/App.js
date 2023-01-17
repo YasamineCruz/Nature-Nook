@@ -64,7 +64,7 @@ function App() {
           <Footer />
         </Route>
         <Route path='/spots/:spotId' exact={true}>
-          <GetASpot spotCount={spotCount}/>
+          <GetASpot/>
           <Footer />
         </Route>
         <Route path='/search' exact={true}>

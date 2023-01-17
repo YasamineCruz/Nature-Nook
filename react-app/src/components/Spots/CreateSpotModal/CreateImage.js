@@ -78,7 +78,3 @@ const UploadPicture = ({setNotImage, spotId, setShowDropdown, setStop, setShowMo
 
 export default UploadPicture;
 
-{/* <div className='Button-Container-Create-Spot'>
-<BackButton count={count} setCount={setCount}/>
-<NextButton count={count} setCount={setCount} setSubmitted={setSubmitted} errors={errors}/>
-</div> */}
