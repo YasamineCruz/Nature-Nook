@@ -286,7 +286,6 @@ export default function reducer(state = initialState, action) {
       return newState
     case DELETE_SPOT:
       newState = { allSpots: { ...state.allSpots }, userSpots: { ...state.userSpots }, singleSpot: { ...state.singleSpot } }
-
       delete newState.allSpots[action.payload];
       delete newState.userSpots[action.payload];
       newState.singleSpot = {}
