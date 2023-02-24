@@ -63,7 +63,7 @@ If the user selects the spots option from the landing page, they are directed to
 
 ---
 
-When a user wants to upload a spot, while logged in there is a icon displayed in the upper right navigation bar. When a user hovers over this icon a dropdown menu is displayed the dropdown has a option to create a spot. When create a spot is clicked a modal opens and the user cna put in basic spot information as well as a url for the main spot Image.
+When a user wants to upload a spot, while logged in there is a icon displayed in the upper right navigation bar. When a user hovers over this icon a dropdown menu is displayed the dropdown has a option to create a spot. When create a spot is clicked a modal opens and the user can put in basic spot information as well as a url for the main spot Image.
 
 ---
 
